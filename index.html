@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+  <title>Gengar Edge Event</title>
+  <style>
+  button {
+    font-size: 20pt;
+    padding: 10px;
+  }
+  </style>
+</head>
+
+<body>
+  <p>
+    Call gengarEmit(eventName, ...args); For example, emit a "testevent" with two arguments: <br />
+    window.gengarEmit('testevent', 'data_from_test_event', 'another_args');
+  </p>
+  <button onclick="window.gengarEmit('testevent', 'data_from_test_event', 'another_args');">testevent</button>
+</body>
+
+</html>
+
