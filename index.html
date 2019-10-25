@@ -4,22 +4,47 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
-  <title>Gengar Edge Event</title>
+  <title>Gengar Edge Frontend API Test</title>
   <style>
   button {
-    font-size: 20pt;
+    font-size: 16pt;
     padding: 10px;
   }
   </style>
 </head>
 
 <body>
-  <p>
-    Call gengarEmit(eventName, ...args); For example, emit a "testevent" with two arguments: <br />
-    window.gengarEmit('testevent', 'data_from_test_event', 'another_args');
-  </p>
-  <button onclick="window.gengarEmit('testevent', 'data_from_test_event', 'another_args');">testevent</button>
+
+  <button onclick="gengar.emit('testevent', 'data_from_test_event', 'another_args_new!');">
+    gengar.emit('testevent', 'data_from_test_event', 'another_args_new!');
+  </button>
+
+  <button onclick="gengar.postMessage('msg from edge-frontend');">
+    gengar.postMessage('msg from edge-frontend');
+  </button>
+
+  Try call Fronted emit('eventAlakazm', ..), emit('eventAlakazm2', ..), and postMessage('msg');
+  <div id="log"></div>
+
+  <script>
+    gengar.addEventListener('eventAlakazm', (...args) => {
+      const log = document.querySelector('#log');
+      log.innerText = 'get eventAlakazm, args:' + JSON.stringify(args);
+    });
+
+    gengar.addEventListener('eventAlakazm2', (...args) => {
+      const log = document.querySelector('#log');
+      log.innerText = 'get eventAlakazm2, args:' + JSON.stringify(args);
+    });
+
+    gengar.onMessage(msg => {
+      const log = document.querySelector('#log');
+      log.innerText = 'get msg from frontend: ' + msg;
+    });
+  </script>
+
 </body>
 
 </html>
+
 
