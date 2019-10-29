@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+  <title>Fake AR Tour</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.min.js"></script>
+  <style>
+    body{
+      margin: 0;
+      overflow: hidden;
+    }
+    canvas {
+      width: 100vh;
+      height: 100vh;
+    }
+    main {
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      color: white;
+    }
+    main .footer {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+    }
+    .footer button {
+      font-size: 14pt;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas></canvas>
+
+  <main>
+    <h1>Fake AR Tour</h1>
+    <div class="footer">
+      <button onclick="gengar.emit('shrinkwindow');">shrink</button>
+      <button onclick="gengar.emit('expandwindow');">expand</button>
+    </div>
+  </main>
+
+  <script src="./controls/DeviceOrientationControls.js"></script>
+  <script src="./main.js"></script>
+</body>
+
+</html>
