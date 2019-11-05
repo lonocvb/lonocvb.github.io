@@ -24,8 +24,9 @@ THREE.DeviceOrientationControls = function ( object, controlElement ) {
 
 	this.isUserInteracting = false;
 	this.enableSesnor = true;
-	this.lon = 0;
-	this.lat = 0;
+	this.roll = 0;
+
+	this.deviceOrientation = { alpha: 0, beta: 0, gamma: 0 };
 
 	var onDeviceOrientationChangeEvent = function ( event ) {
 
@@ -33,8 +34,13 @@ THREE.DeviceOrientationControls = function ( object, controlElement ) {
 
 			scope.deviceOrientation = event;
 
-			scope.lon = 0;
-			scope.lat = 0;
+			scope.roll = 0;
+
+		} else {
+
+			scope.roll = Math.atan( event.gamma / event.beta );
+
+			if ( event.beta < 0 ) scope.roll = scope.roll + Math.PI;
 
 		}
 
@@ -59,8 +65,6 @@ THREE.DeviceOrientationControls = function ( object, controlElement ) {
 		scope.onMouseDownMouseX = clientX;
 		scope.onMouseDownMouseY = clientY;
 
-		scope.onMouseDownLon = scope.lon;
-		scope.onMouseDownLat = scope.lat;
 	}
 
 	const onPointerMove = function (event) {
@@ -70,8 +74,21 @@ THREE.DeviceOrientationControls = function ( object, controlElement ) {
 			var clientX = event.clientX || event.touches[ 0 ].clientX;
 			var clientY = event.clientY || event.touches[ 0 ].clientY;
 
-			scope.lon = ( clientX - scope.onMouseDownMouseX ) * 0.2 + scope.onMouseDownLon;
-			scope.lat = ( clientY - scope.onMouseDownMouseY ) * 0.2  + scope.onMouseDownLat;
+			const lon = ( clientX - scope.onMouseDownMouseX ) * 0.2;
+			const lat = ( clientY - scope.onMouseDownMouseY ) * 0.2;
+			const c = Math.cos(- scope.roll);
+			const s = Math.sin(- scope.roll);
+			const lonR = lon * c + lat * s;
+			const latR = lon * -s + lat * c;
+
+			const alpha = scope.deviceOrientation.alpha + lonR;
+			const beta = scope.deviceOrientation.beta + latR;
+			const gamma = scope.deviceOrientation.gamma;
+
+			scope.deviceOrientation = { alpha, beta, gamma };
+
+			scope.onMouseDownMouseX = clientX;
+			scope.onMouseDownMouseY = clientY;
 
 		}
 
@@ -97,17 +114,13 @@ THREE.DeviceOrientationControls = function ( object, controlElement ) {
 
 		return function ( quaternion, alpha, beta, gamma, orient ) {
 
-			alpha += THREE.Math.degToRad(scope.lon);
-
-			beta += THREE.Math.degToRad(scope.lat);
-
 			euler.set( beta, alpha, - gamma, 'YXZ' ); // 'ZXY' for the device, but 'YXZ' for us
 
 			quaternion.setFromEuler( euler ); // orient the device
 
 			quaternion.multiply( q1 ); // camera looks out the back of the device, not the top
 
-			quaternion.multiply( q0.setFromAxisAngle( zee, - orient ) ); // adjust for screen orientation
+			quaternion.multiply( q0.setFromAxisAngle( zee, - scope.roll - orient ) ); // adjust for screen orientation
 
 		};
 
