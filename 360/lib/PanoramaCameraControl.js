@@ -6,7 +6,7 @@
  * W3C Device Orientation control (http://w3c.github.io/deviceorientation/spec-source-orientation.html)
  */
 
-class PanoramaEvent {
+class PanoramaCameraControl {
 
 	constructor(object, controlElement) {
 
@@ -25,7 +25,7 @@ class PanoramaEvent {
 		this.curRoll = 0;
 		this.lastRoll = 0;
 
-		this.deviceOrientation = { alpha: 0, beta: 0, gamma: 0 };
+		this.deviceOrientation = { alpha: -90, beta: 90, gamma: 0 };
 
 		this.connect();
 	}
@@ -39,8 +39,6 @@ class PanoramaEvent {
 		if (this.enableSesnor === true) {
 			this.deviceOrientation = event;
 			this.lastRoll = this.curRoll;
-		} else {
-			console.log('disabled sensor, skip', this.enableSesnor);
 		}
 
 		this.roll = this.curRoll - this.lastRoll;
@@ -55,7 +53,6 @@ class PanoramaEvent {
 	onPointerDown(event) {
 		this.isUserInteracting = true;
 		this.enableSesnor = false;
-		console.log('pd', this.enableSesnor);
 		this.controlElement.checked = false;
 
 		const clientX = event.clientX || event.touches[ 0 ].clientX;
@@ -110,16 +107,16 @@ class PanoramaEvent {
 
 		const target = (window.gengar) ? gengar : window;
 
-		target.addEventListener( 'orientationchange', e => this.onScreenOrientationChangeEvent(e), false );
-		target.addEventListener( 'deviceorientation', e => this.onDeviceOrientationChangeEvent(e), false );
+		target.addEventListener('orientationchange', e => this.onScreenOrientationChangeEvent(e), false);
+		target.addEventListener('deviceorientation', e => this.onDeviceOrientationChangeEvent(e), false);
 
-		document.addEventListener( 'mousedown', e => this.onPointerDown(e), false );
-		document.addEventListener( 'mousemove', e => this.onPointerMove(e), false );
-		document.addEventListener( 'mouseup', e => this.onPointerUp(e), false );
+		document.addEventListener('mousedown', e => this.onPointerDown(e), false);
+		document.addEventListener('mousemove', e => this.onPointerMove(e), false);
+		document.addEventListener('mouseup', e => this.onPointerUp(e), false);
 
-		document.addEventListener( 'touchstart', e => this.onPointerDown(e), false );
-		document.addEventListener( 'touchmove', e => this.onPointerMove(e), false );
-		document.addEventListener( 'touchend', e => this.onPointerUp(e), false );
+		document.addEventListener('touchstart', e => this.onPointerDown(e), false);
+		document.addEventListener('touchmove', e => this.onPointerMove(e), false);
+		document.addEventListener('touchend', e => this.onPointerUp(e), false);
 
 		const that = this;
 		this.controlElement.onclick = function() {
@@ -131,9 +128,9 @@ class PanoramaEvent {
 		const device = this.deviceOrientation;
 
 		if (device) {
-			const alpha = device.alpha ? THREE.Math.degToRad( device.alpha ) + this.alphaOffset : 0; // Z
-			const beta = device.beta ? THREE.Math.degToRad( device.beta ) : 0; // X'
-			const gamma = device.gamma ? THREE.Math.degToRad( device.gamma ) : 0; // Y''
+			const alpha = device.alpha ? THREE.Math.degToRad(device.alpha)  + this.alphaOffset : 0; // Z
+			const beta = device.beta ? THREE.Math.degToRad(device.beta) : 0; // X'
+			const gamma = device.gamma ? THREE.Math.degToRad(device.gamma) : 0; // Y''
 
 			const orient = this.screenOrientation ? THREE.Math.degToRad(this.screenOrientation) : 0; // O
 
@@ -143,4 +140,4 @@ class PanoramaEvent {
 
 }
 
-export default PanoramaEvent;
+export default PanoramaCameraControl;
