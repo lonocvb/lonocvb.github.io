@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
-  <title>Fake AR Tour</title>
+  <title>AR Tour (mock demo)</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.min.js"></script>
   <style>
     body{
@@ -25,7 +25,7 @@
     }
     main .footer {
       position: absolute;
-      bottom: 60px;
+      bottom: 10px;
       left: 10px;
     }
     .footer button {
@@ -45,7 +45,7 @@
     </div>
     <div style="display: flex; flex: 1 1;">
       <div style="flex: 1 1; background: rgba(255,0,0,0.1);"></div>
-      <div style="flex: 1 1; background: rgba(0,0,255,0.1);;"></div>
+      <div style="flex: 1 1; background: rgba(0,0,255,0.1);"></div>
     </div>
   </div>
   -->
@@ -53,11 +53,13 @@
   <canvas></canvas>
 
   <main style="pointer-events: none;">
-    <h1>AR Tour (mock demo)</h1>
-    <input style="pointer-events:all;" type="checkbox" id="control" checked="checked" /> <label style="pointer-events:all;" for="control">by sensor</label>
-    <div class="footer">
-      <button style="pointer-events:all;" onclick="gengar.emit('shrinkwindow');">shrink</button>
-      <button style="pointer-events:all;" onclick="gengar.emit('expandwindow');">expand</button>
+    <h3>AR Tour (mock demo)</h3>
+    <span style="pointer-events:all; background: rgba(255,255,255,0.5);">
+      <input type="checkbox" id="control" checked="checked" /> <label style="pointer-events:all;" for="control">by sensor</label>
+    </span>
+    <div class="footer" style="pointer-events:all;" >
+      <button onclick="gengar.emit('shrinkwindow');">shrink</button>
+      <button onclick="gengar.emit('expandwindow');">expand</button>
     </div>
   </main>
 
