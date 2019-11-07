@@ -21,7 +21,20 @@
       top: 0;
       left: 0;
 
+      pointer-events: none;
+    }
+    .clickable {
+      pointer-events: all;
+    }
+    main .title {
+      background: rgba(0,0,0,0.5);
+      padding: 5px;
       color: white;
+    }
+    main .control {
+      background: rgba(0,0,0,0.5);
+      color: white;
+      padding: 5px;
     }
     main .footer {
       position: absolute;
@@ -52,18 +65,29 @@
 
   <canvas></canvas>
 
-  <main style="pointer-events: none;">
-    <h3>AR Tour (mock demo)</h3>
-    <span style="pointer-events:all; background: rgba(255,255,255,0.5);">
-      <input type="checkbox" id="control" checked="checked" /> <label style="pointer-events:all;" for="control">by sensor</label>
-    </span>
-    <div class="footer" style="pointer-events:all;" >
+  <main>
+    <h3 class="title">AR Tour (mock demo)</h3>
+    <div class="control clickable">
+      <div>
+        <input type="radio" name="radio_sensor_source" id="radio_deviceorientation" checked="checked" value="2" />
+        <label for="radio_deviceorientation">by deviceorientation</label>
+      </div>
+      <div>
+        <input type="radio" name="radio_sensor_source" id="radio_devicemotion" value="3" />
+        <label for="radio_devicemotion">by devicemotion</label>
+      </div>
+      <div>
+        <input type="radio" name="radio_sensor_source" id="radio_manual" value="1"/>
+        <label for="radio_manual">by manual</label>
+      </div>
+    </div>
+    <div class="footer clickable" style="pointer-events:all;" >
       <button onclick="gengar.emit('shrinkwindow');">shrink</button>
       <button onclick="gengar.emit('expandwindow');">expand</button>
     </div>
   </main>
 
-  <script type="module" src="./main.js"></script>
+  <script src="./main.bundle.js"></script>
 </body>
 
 </html>

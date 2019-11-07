@@ -42,9 +42,7 @@ class PanoramaViewer {
 
     this.camera.target = new THREE.Vector3(0, 0, 0);
 
-    // TODO, injection config to avoid hard-code.
-    const checkbox = document.querySelector('#control')
-    this.cameraControl = new PanoramaCameraControl(this.camera, checkbox);
+    this.cameraControl = new PanoramaCameraControl(this.camera);
     this.cameraControl.connect();
 
     this.sphere = new THREE.SphereBufferGeometry(100, 100, 40);
