@@ -140,6 +140,10 @@ class PanoramaViewer {
     }
   }
 
+  setSensorType(type) {
+    this.cameraControl.setSensorType(type);
+  }
+
   changeTexture(imagePath) {
     this.sphereMaterial.map = THREE.ImageUtils.loadTexture(imagePath);
   }

@@ -9,12 +9,7 @@
 
 const GENGAR_EXISTED = (typeof window.gengar !== 'undefined');
 
-const SensorSourceType = {
-  MANUAL: 1,
-  DEVICE_ORIENTATION: 2,
-  DEVICE_MOTION: 3,
-  GENGAR: 4,
-};
+import SensorSourceType from './SensorSourceType.js';
 
 class SensorSource {
   constructor(type) {
@@ -184,27 +179,13 @@ class PanoramaCameraControl {
     quaternion.multiply( q0.setFromAxisAngle( zee, - orient ) ); // adjust for screen orientation
   }
 
-  connect() {
+  connect(type = SensorSourceType.DEVICE_ORIENTATION) {
     this.onScreenOrientationChangeEvent(); // run once on load
+    this.sensor = new SensorSource(type);
+  }
 
-    if (GENGAR_EXISTED) {
-      this.sensor = new SensorSource(SensorSourceType.GENGAR);
-
-      // TODO binding should not be here.
-      document.querySelector('.control').style.display = 'none';
-    } else {
-      this.sensor = new SensorSource(SensorSourceType.DEVICE_ORIENTATION);
-
-      // TODO binding should not be here.
-      const radios = document.querySelectorAll('.control input[type="radio"]');
-
-      for (let radio of radios) {
-        radio.addEventListener('change', e => {
-          const newType = document.querySelector('.control input:checked').value;
-          this.sensor.setType( newType );
-        });
-      }
-    }
+  setSensorType(type) {
+    this.sensor.setType(type);
   }
 
   update() {

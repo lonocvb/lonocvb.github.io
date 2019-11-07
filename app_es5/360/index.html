@@ -68,20 +68,24 @@
   <main>
     <h3 class="title">AR Tour (mock demo)</h3>
     <div class="control clickable">
-      <div>
+      <div class="normal">
         <input type="radio" name="radio_sensor_source" id="radio_deviceorientation" checked="checked" value="2" />
         <label for="radio_deviceorientation">by deviceorientation</label>
       </div>
-      <div>
+      <div class="normal">
         <input type="radio" name="radio_sensor_source" id="radio_devicemotion" value="3" />
         <label for="radio_devicemotion">by devicemotion</label>
+      </div>
+      <div class="gengar">
+        <input type="radio" name="radio_sensor_source" id="radio_gengar" value="4"/>
+        <label for="radio_gengar">by gengar.sensor</label>
       </div>
       <div>
         <input type="radio" name="radio_sensor_source" id="radio_manual" value="1"/>
         <label for="radio_manual">by manual</label>
       </div>
     </div>
-    <div class="footer clickable" style="pointer-events:all;" >
+    <div class="footer clickable gengar" style="pointer-events:all;" >
       <button onclick="gengar.emit('shrinkwindow');">shrink</button>
       <button onclick="gengar.emit('expandwindow');">expand</button>
     </div>

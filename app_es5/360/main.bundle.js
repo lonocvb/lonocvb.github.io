@@ -14,6 +14,8 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
+var _SensorSourceType = _interopRequireDefault(require("./SensorSourceType.js"));
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -27,12 +29,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
  * W3C Device Orientation control (http://w3c.github.io/deviceorientation/spec-source-orientation.html)
  */
 var GENGAR_EXISTED = typeof window.gengar !== 'undefined';
-var SensorSourceType = {
-  MANUAL: 1,
-  DEVICE_ORIENTATION: 2,
-  DEVICE_MOTION: 3,
-  GENGAR: 4
-};
 
 var SensorSource =
 /*#__PURE__*/
@@ -63,7 +59,7 @@ function () {
       gamma: 0
     };
     window.addEventListener('deviceorientation', function (e) {
-      if (_this.type != SensorSourceType.DEVICE_ORIENTATION) {
+      if (_this.type != _SensorSourceType["default"].DEVICE_ORIENTATION) {
         return;
       }
 
@@ -88,7 +84,7 @@ function () {
     var cosRoll = 1.0;
     var sinRoll = 0.0;
     window.addEventListener('devicemotion', function (e) {
-      if (_this.type != SensorSourceType.DEVICE_MOTION) {
+      if (_this.type != _SensorSourceType["default"].DEVICE_MOTION) {
         return;
       }
 
@@ -129,7 +125,7 @@ function () {
     var onMouseDownOri = this.ori_manual;
 
     var onPointerDown = function onPointerDown(event) {
-      if (_this.type != SensorSourceType.MANUAL) {
+      if (_this.type != _SensorSourceType["default"].MANUAL) {
         return;
       }
 
@@ -142,7 +138,7 @@ function () {
     };
 
     var onPointerMove = function onPointerMove(event) {
-      if (_this.type != SensorSourceType.MANUAL) {
+      if (_this.type != _SensorSourceType["default"].MANUAL) {
         return;
       }
 
@@ -199,7 +195,7 @@ function () {
         return;
       }
 
-      if (this.type == SensorSourceType.MANUAL) {
+      if (this.type == _SensorSourceType["default"].MANUAL) {
         var _this$update = this.update(),
             alpha = _this$update.alpha,
             beta = _this$update.beta,
@@ -217,13 +213,13 @@ function () {
   }, {
     key: "update",
     value: function update() {
-      if (this.type == SensorSourceType.MANUAL) {
+      if (this.type == _SensorSourceType["default"].MANUAL) {
         return this.ori_manual;
-      } else if (this.type == SensorSourceType.DEVICE_ORIENTATION) {
+      } else if (this.type == _SensorSourceType["default"].DEVICE_ORIENTATION) {
         return this.ori_ori;
-      } else if (this.type == SensorSourceType.DEVICE_MOTION) {
+      } else if (this.type == _SensorSourceType["default"].DEVICE_MOTION) {
         return this.ori_motion;
-      } else if (this.type == SensorSourceType.GENGAR) {
+      } else if (this.type == _SensorSourceType["default"].GENGAR) {
         return this.ori_gengar;
       }
 
@@ -269,46 +265,15 @@ function () {
   }, {
     key: "connect",
     value: function connect() {
-      var _this2 = this;
-
+      var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _SensorSourceType["default"].DEVICE_ORIENTATION;
       this.onScreenOrientationChangeEvent(); // run once on load
 
-      if (GENGAR_EXISTED) {
-        this.sensor = new SensorSource(SensorSourceType.GENGAR); // TODO binding should not be here.
-
-        document.querySelector('.control').style.display = 'none';
-      } else {
-        this.sensor = new SensorSource(SensorSourceType.DEVICE_ORIENTATION); // TODO binding should not be here.
-
-        var radios = document.querySelectorAll('.control input[type="radio"]');
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-          for (var _iterator = radios[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var radio = _step.value;
-            radio.addEventListener('change', function (e) {
-              var newType = document.querySelector('.control input:checked').value;
-
-              _this2.sensor.setType(newType);
-            });
-          }
-        } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-              _iterator["return"]();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
-        }
-      }
+      this.sensor = new SensorSource(type);
+    }
+  }, {
+    key: "setSensorType",
+    value: function setSensorType(type) {
+      this.sensor.setType(type);
     }
   }, {
     key: "update",
@@ -331,7 +296,7 @@ function () {
 var _default = PanoramaCameraControl;
 exports["default"] = _default;
 
-},{"@babel/runtime/helpers/classCallCheck":"@babel/runtime/helpers/classCallCheck","@babel/runtime/helpers/createClass":"@babel/runtime/helpers/createClass","@babel/runtime/helpers/defineProperty":"@babel/runtime/helpers/defineProperty","@babel/runtime/helpers/interopRequireDefault":"@babel/runtime/helpers/interopRequireDefault"}],2:[function(require,module,exports){
+},{"./SensorSourceType.js":3,"@babel/runtime/helpers/classCallCheck":"@babel/runtime/helpers/classCallCheck","@babel/runtime/helpers/createClass":"@babel/runtime/helpers/createClass","@babel/runtime/helpers/defineProperty":"@babel/runtime/helpers/defineProperty","@babel/runtime/helpers/interopRequireDefault":"@babel/runtime/helpers/interopRequireDefault"}],2:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -546,6 +511,11 @@ function () {
       }
     }
   }, {
+    key: "setSensorType",
+    value: function setSensorType(type) {
+      this.cameraControl.setSensorType(type);
+    }
+  }, {
     key: "changeTexture",
     value: function changeTexture(imagePath) {
       this.sphereMaterial.map = THREE.ImageUtils.loadTexture(imagePath);
@@ -579,11 +549,31 @@ var _default = PanoramaViewer;
 exports["default"] = _default;
 
 },{"./PanoramaCameraControl.js":1,"@babel/runtime/helpers/classCallCheck":"@babel/runtime/helpers/classCallCheck","@babel/runtime/helpers/createClass":"@babel/runtime/helpers/createClass","@babel/runtime/helpers/interopRequireDefault":"@babel/runtime/helpers/interopRequireDefault"}],3:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var SensorSourceType = {
+  MANUAL: 1,
+  DEVICE_ORIENTATION: 2,
+  DEVICE_MOTION: 3,
+  GENGAR: 4
+};
+var _default = SensorSourceType;
+exports["default"] = _default;
+
+},{}],4:[function(require,module,exports){
 'use strict';
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 var _PanoramaViewer = _interopRequireDefault(require("./lib/PanoramaViewer.js"));
+
+var _SensorSourceType = _interopRequireDefault(require("./lib/SensorSourceType.js"));
+
+var GENGAR_EXISTED = typeof window.gengar !== 'undefined';
 
 function initGengar(_ref) {
   var viewer = _ref.viewer;
@@ -775,21 +765,43 @@ function main() {
   window.addEventListener('resize', function () {
     viewer.changeSize(window.innerWidth, window.innerHeight);
   }, true);
-  viewer.startAnimate();
-  initGengar({
-    viewer: viewer
+  viewer.startAnimate(); // select sensors
+
+  var handleRadioSensorChange = function handleRadioSensorChange(e) {
+    var newType = document.querySelector('.control input:checked').value;
+    viewer.setSensorType(newType);
+  };
+
+  document.querySelectorAll('.control input[type="radio"]').forEach(function (radio) {
+    return radio.addEventListener('change', handleRadioSensorChange);
   });
+
+  if (!GENGAR_EXISTED) {
+    document.querySelectorAll('.gengar').forEach(function (div) {
+      return div.style.display = 'none';
+    });
+  } else {
+    initGengar({
+      viewer: viewer
+    });
+    document.querySelectorAll('.normal').forEach(function (div) {
+      return div.style.display = 'none';
+    });
+    document.querySelector('#radio_gengar').checked = true;
+  }
+
+  handleRadioSensorChange();
 }
 
 main();
 
-},{"./lib/PanoramaViewer.js":2,"@babel/runtime/helpers/interopRequireDefault":"@babel/runtime/helpers/interopRequireDefault"}],4:[function(require,module,exports){
+},{"./lib/PanoramaViewer.js":2,"./lib/SensorSourceType.js":3,"@babel/runtime/helpers/interopRequireDefault":"@babel/runtime/helpers/interopRequireDefault"}],5:[function(require,module,exports){
 function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
 }
 
 module.exports = _arrayWithHoles;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr)) {
     for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
@@ -801,7 +813,7 @@ function _arrayWithoutHoles(arr) {
 }
 
 module.exports = _arrayWithoutHoles;
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -811,13 +823,13 @@ function _assertThisInitialized(self) {
 }
 
 module.exports = _assertThisInitialized;
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 function _iterableToArray(iter) {
   if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
 }
 
 module.exports = _iterableToArray;
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 function _iterableToArrayLimit(arr, i) {
   if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
     return;
@@ -849,19 +861,19 @@ function _iterableToArrayLimit(arr, i) {
 }
 
 module.exports = _iterableToArrayLimit;
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance");
 }
 
 module.exports = _nonIterableRest;
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance");
 }
 
 module.exports = _nonIterableSpread;
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 function _setPrototypeOf(o, p) {
   module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
@@ -872,7 +884,7 @@ function _setPrototypeOf(o, p) {
 }
 
 module.exports = _setPrototypeOf;
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -1709,7 +1721,7 @@ function _inherits(subClass, superClass) {
 }
 
 module.exports = _inherits;
-},{"./setPrototypeOf":11}],"@babel/runtime/helpers/interopRequireDefault":[function(require,module,exports){
+},{"./setPrototypeOf":12}],"@babel/runtime/helpers/interopRequireDefault":[function(require,module,exports){
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
     "default": obj
@@ -1731,7 +1743,7 @@ function _possibleConstructorReturn(self, call) {
 }
 
 module.exports = _possibleConstructorReturn;
-},{"../helpers/typeof":"@babel/runtime/helpers/typeof","./assertThisInitialized":6}],"@babel/runtime/helpers/slicedToArray":[function(require,module,exports){
+},{"../helpers/typeof":"@babel/runtime/helpers/typeof","./assertThisInitialized":7}],"@babel/runtime/helpers/slicedToArray":[function(require,module,exports){
 var arrayWithHoles = require("./arrayWithHoles");
 
 var iterableToArrayLimit = require("./iterableToArrayLimit");
@@ -1743,7 +1755,7 @@ function _slicedToArray(arr, i) {
 }
 
 module.exports = _slicedToArray;
-},{"./arrayWithHoles":4,"./iterableToArrayLimit":8,"./nonIterableRest":9}],"@babel/runtime/helpers/toConsumableArray":[function(require,module,exports){
+},{"./arrayWithHoles":5,"./iterableToArrayLimit":9,"./nonIterableRest":10}],"@babel/runtime/helpers/toConsumableArray":[function(require,module,exports){
 var arrayWithoutHoles = require("./arrayWithoutHoles");
 
 var iterableToArray = require("./iterableToArray");
@@ -1755,7 +1767,7 @@ function _toConsumableArray(arr) {
 }
 
 module.exports = _toConsumableArray;
-},{"./arrayWithoutHoles":5,"./iterableToArray":7,"./nonIterableSpread":10}],"@babel/runtime/helpers/typeof":[function(require,module,exports){
+},{"./arrayWithoutHoles":6,"./iterableToArray":8,"./nonIterableSpread":11}],"@babel/runtime/helpers/typeof":[function(require,module,exports){
 function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
 
 function _typeof(obj) {
@@ -1776,4 +1788,4 @@ module.exports = _typeof;
 },{}],"@babel/runtime/regenerator":[function(require,module,exports){
 module.exports = require("regenerator-runtime");
 
-},{"regenerator-runtime":12}]},{},[3]);
+},{"regenerator-runtime":13}]},{},[4]);

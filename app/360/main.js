@@ -1,6 +1,9 @@
 'use strict';
 
+const GENGAR_EXISTED = (typeof window.gengar !== 'undefined');
+
 import PanoramaViewer from './lib/PanoramaViewer.js';
+import SensorSourceType from './lib/SensorSourceType.js';
 
 function initGengar({ viewer }) {
   if (!window.gengar) {
@@ -54,7 +57,27 @@ function main() {
 
   viewer.startAnimate();
 
-  initGengar({ viewer });
+  // select sensors
+  const handleRadioSensorChange = e => {
+    const newType = document.querySelector('.control input:checked').value;
+    viewer.setSensorType(newType);
+  };
+
+  document.querySelectorAll('.control input[type="radio"]')
+  .forEach(
+    radio => radio.addEventListener('change', handleRadioSensorChange)
+  );
+
+  if (!GENGAR_EXISTED) {
+    document.querySelectorAll('.gengar').forEach(div => div.style.display = 'none');
+  } else {
+    initGengar({ viewer });
+    document.querySelectorAll('.normal').forEach(div => div.style.display = 'none');
+    document.querySelector('#radio_gengar').checked = true;
+  }
+
+  handleRadioSensorChange();
+
 }
 
 main();
