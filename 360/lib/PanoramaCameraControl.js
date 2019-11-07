@@ -17,8 +17,6 @@ class PanoramaCameraControl {
 		this.deviceOrientation = {};
 		this.screenOrientation = 0;
 
-		this.alphaOffset = 0; // radians
-
 		this.isUserInteracting = false;
 		this.enableSesnor = true;
 		this.roll = 0;
@@ -127,15 +125,13 @@ class PanoramaCameraControl {
 	update() {
 		const device = this.deviceOrientation;
 
-		if (device) {
-			const alpha = device.alpha ? THREE.Math.degToRad(device.alpha)  + this.alphaOffset : 0; // Z
-			const beta = device.beta ? THREE.Math.degToRad(device.beta) : 0; // X'
-			const gamma = device.gamma ? THREE.Math.degToRad(device.gamma) : 0; // Y''
+		const alpha = device.alpha ? THREE.Math.degToRad(device.alpha) : 0; // Z
+		const beta = device.beta ? THREE.Math.degToRad(device.beta) : 0; // X'
+		const gamma = device.gamma ? THREE.Math.degToRad(device.gamma) : 0; // Y''
 
-			const orient = this.screenOrientation ? THREE.Math.degToRad(this.screenOrientation) : 0; // O
+		const orient = this.screenOrientation ? THREE.Math.degToRad(this.screenOrientation) : 0; // O
 
-			this.setObjectQuaternion(this.object.quaternion, alpha, beta, gamma, orient);
-		}
+		this.setObjectQuaternion(this.object.quaternion, alpha, beta, gamma, orient);
 	}
 
 }

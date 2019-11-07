@@ -11,9 +11,7 @@ class PanoramaViewer {
 
     this.initWebGL({ canvas, width, height, imagePath });
 
-    console.log(textLabels);
     for (let label of textLabels) {
-      console.log(label);
       this.createLabelSprite(label);
     }
 
@@ -25,12 +23,9 @@ class PanoramaViewer {
       const _raycaster = new THREE.Raycaster();
       _raycaster.setFromCamera(_mouse, this.cameraOrtho);
 
-      var intersects = _raycaster.intersectObjects(this.clickableObjects);
-      intersects.forEach(onLabelClick);
-
+      var intersects = _raycaster.intersectObjects(this.sceneOrtho.children);
+      intersects.forEach(o => onLabelClick(o.object.label));
     }, false);
-
-    this.render();
   }
 
   initWebGL({ canvas, width, height, imagePath }) {
@@ -39,10 +34,8 @@ class PanoramaViewer {
     this.renderer.autoClear = false;
 
     this.sceneOrtho = new THREE.Scene();
-    this.cameraOrtho = new THREE.OrthographicCamera(-width / 2, width / 2,height / 2, -height / 2, 1, 10);
-    this.cameraOrtho.position.z = 10;
-    this.labels = [];
-    this.clickableObjects = [];
+    this.cameraOrtho = new THREE.OrthographicCamera(-width / 2, width / 2,height / 2, -height / 2, 1, gRadius);
+    this.cameraOrtho.position.z = 400;
 
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(75, width / height, 1, gRadius);
@@ -87,23 +80,29 @@ class PanoramaViewer {
     this.cameraOrtho.position.z = 10;
   }
 
-  createLabelSprite({ text, position, args = [] }) {
+  createLabelSprite({ text, position: pos, args = [] }) {
     const canvas1 = document.createElement('canvas');
     const context1 = canvas1.getContext('2d');
 
-    context1.font = "20px Arial";
+    const height = 20;
+    const padding = 4;
+
+    context1.font = `${height}px Arial`;
     const metrics = context1.measureText(text);
     const width = metrics.width;
 
+    // resize canvas to fix content;
+    canvas1.width = width + padding + padding;
+    canvas1.height = height + padding + padding;
+
+    // context1 is reset, so we need to set the 'font' again.
+    context1.font = `${height}px Arial`;
     context1.fillStyle = "rgba(0,0,0,0.5)";
-    context1.fillRect(0, 0, width + 8, 20 + 8);
-
+    context1.fillRect(0, 0, canvas1.width, canvas1.height);
     context1.fillStyle = "rgba(255,255,255,0.95)";
-    context1.fillText(text, 4, 20);
+    context1.fillText(text, padding, height);
 
-    const texture1 = new THREE.Texture(canvas1);
-
-    texture1.needsUpdate = true;
+    const texture1 = new THREE.CanvasTexture(canvas1);
 
     const spriteMaterial = new THREE.SpriteMaterial({ map: texture1 });
     const sprite1 = new THREE.Sprite(spriteMaterial);
@@ -111,34 +110,34 @@ class PanoramaViewer {
     sprite1.scale.set(1.0, 1.0, 1.0);
     sprite1.position.set(0, 0, 0);
     sprite1.name = text;
-    sprite1.text = text;
-    sprite1.args = args;
 
-    const label = {
-      text: text,
-      pos: position,
-      sprite: sprite1,
+    sprite1.label = {
+      text,
+      pos,
+      args,
+      width: canvas1.width,
+      height: canvas1.height,
     };
 
-    this.sceneOrtho.add(label.sprite);
-    this.clickableObjects.push(label.sprite);
-
-    this.labels.push(label);
-    return label;
+    this.sceneOrtho.add(sprite1);
   }
 
   updateSprites() {
-    for (let i = 0; i < this.labels.length; i++) {
-      const wp = geoPosition2World(this.labels[i].pos.lon, this.labels[i].pos.lat);
+    for (let sprite of this.sceneOrtho.children) {
+      const label = sprite.label;
+      const wp = geoPosition2World(label.pos.lon, label.pos.lat);
       const sp = worldPostion2Screen(wp, this.camera);
       const test = wp.clone().project(this.camera);
 
       if (test.x > -1 && test.x < 1 && test.y > -1 && test.y < 1 && test.z > -1 && test.z < 1) {
-        this.labels[i].sprite.scale.set(400, 150, 1.0);
-        this.labels[i].sprite.position.set(sp.x + 200, sp.y - 75, 1);
+        const width = label.width;
+        const height = label.height;
+
+        sprite.scale.set(width, height, 10);
+        sprite.position.set(sp.x + width / 2, sp.y - height / 2, 1);
       } else {
-        this.labels[i].sprite.scale.set(1.0, 1.0, 1.0);
-        this.labels[i].sprite.position.set(0, 0, 0);
+        sprite.scale.set(1.0, 1.0, 1.0);
+        sprite.position.set(0, 0, 0);
       }
     }
   }
