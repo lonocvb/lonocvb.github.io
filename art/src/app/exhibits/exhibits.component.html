@@ -1,7 +1,10 @@
-<button routerLink="info">INFO</button>
-<button routerLink="av">AV</button>
-<button routerLink="shop">SHOP</button>
+<main>
+  <div id="header">
+    <button id="btn-info" [ngClass]="pos == 'info' ? 'active' : ''" routerLink="info"></button>
+    <button id="btn-av"   [ngClass]="pos == 'av' ? 'active' : ''" routerLink="av"></button>
+    <button id="btn-shop" [ngClass]="pos == 'shop' ? 'active' : ''" routerLink="shop"></button>
 
-<button routerLink="../">back</button>
-
-<router-outlet></router-outlet>
+    <button id="btn-back" routerLink="/"></button>
+  </div>
+  <router-outlet></router-outlet>
+</main>

@@ -1,44 +1,43 @@
+<main>
 
 <canvas #panoramaCanvas></canvas>
 
-<main>
-  <div class="control clickable">
-    <div class="normal" *ngIf="!isGengar">
-      <input type="radio" name="radio_sensor_source" id="radio_deviceorientation" [value]="2" [(ngModel)]="sensorType" />
-      <label for="radio_deviceorientation">by deviceorientation</label>
-    </div>
-    <div class="normal"  *ngIf="!isGengar">
-      <input type="radio" name="radio_sensor_source" id="radio_devicemotion" [value]="3" [(ngModel)]="sensorType" />
-      <label for="radio_devicemotion">by devicemotion</label>
-    </div>
-    <div class="gengar" *ngIf="isGengar">
-      <input type="radio" name="radio_sensor_source" id="radio_gengar" [value]="4" [(ngModel)]="sensorType" />
-      <label for="radio_gengar">by gengar.sensor</label>
-    </div>
-    <div>
-      <input type="radio" name="radio_sensor_source" id="radio_manual" [value]="1" [(ngModel)]="sensorType" />
-      <label for="radio_manual">by manual</label>
-    </div>
+<div id="sensor-control">
+  <div *ngIf="!isGengar">
+    <input id="r1" type="radio" name="radio_sensor_source" [value]="2" [(ngModel)]="sensorType" />
+    <label for="r1">by deviceorientation</label>
   </div>
-
-</main>
+  <div *ngIf="!isGengar">
+    <input id="r2" type="radio" name="radio_sensor_source" [value]="3" [(ngModel)]="sensorType" />
+    <label for="r2">by devicemotion</label>
+  </div>
+  <div *ngIf="isGengar">
+    <input id="r3" type="radio" name="radio_sensor_source" [value]="4" [(ngModel)]="sensorType" />
+    <label for="r3">by gengar.sensor</label>
+  </div>
+  <div>
+    <input id="r4" type="radio" name="radio_sensor_source" [value]="1" [(ngModel)]="sensorType" />
+    <label for="r4">by manual</label>
+  </div>
+</div>
 
 <div id="right-menu">
-    <button routerLink="/liveart-scaner">qrcode</button>
-    <button routerLink="/tour-list">tour</button>
-  </div>
+  <button id="btn-liveart-scaner" routerLink="/liveart-scaner"></button>
+  <button id="btn-tour-list" (click)="showTourList()"></button>
+</div>
 
-<button id="footer-menu-toggle"
-[ngClass]="footerMenuShow ? 'show' : ''"
-(click)="toggleFooterMenu()"
-  >footer</button>
+<button id="btn-footer-menu-toggle"
+  [ngClass]="footerMenuShow ? 'show' : ''"
+  (click)="toggleFooterMenu()"></button>
 <div id="footer-menu" [ngClass]="footerMenuShow ? 'show' : ''">
-<button>eat</button>
-<button>toilet</button>
-<button>elev</button>
-<button>exit</button>
+  <button id="btn-footer-menu-resturant"></button>
+  <button id="btn-footer-menu-toilet"></button>
+  <button id="btn-footer-menu-elevator"></button>
+  <button id="btn-footer-menu-exit"></button>
 </div>
 
 <app-tour-list *ngIf="tourListShow"></app-tour-list>
 
-<button id="close-all" *ngIf="true">close all</button>
+<button id="btn-close-all" *ngIf="tourListShow" (click)="closeAll()"></button>
+
+</main>

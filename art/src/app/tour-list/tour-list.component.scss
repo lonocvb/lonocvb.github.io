@@ -1,4 +1,6 @@
 
+@import "../../styles.scss";
+
 #list {
   position: absolute;
   top: 0;
@@ -12,17 +14,59 @@
 
   overflow-y: hidden;
 
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.86);
+
+  padding: 10px;
 }
 
-$block-size: 200px;
+$block-size: 180px;
 
-#list > * {
+#list > div {
   flex: 0 0 $block-size;
 
   width: $block-size;
   height: $block-size;
 
   margin: 5px;
-  background: white;
+  background-color: $pale-lilac;
+  background-position: center center;
+}
+
+#tour-list-new {
+  background-image: url('/assets/tour-list-new.png');
+}
+#tour-list-ex1 {
+  background-image: url('/assets/tour-list-ex1.png');
+}
+
+#btn-start-tour-outer {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+
+  display: flex;
+  width: 100%;
+}
+
+#btn-start-tour {
+  flex: 0 0;
+  margin: auto;
+
+  font-family: OpenSans;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  padding: 9px 18px;
+
+  height: 38px;
+  opacity: 0.3;
+  border-radius: 30px;
+  border-width: 0px;
+  background-color: $pale-lilac;
+
+  white-space: nowrap;
 }

@@ -15,7 +15,6 @@ import { LiveartScanerComponent } from './liveart-scaner/liveart-scaner.componen
 import { Page404Component } from './page404/page404.component';
 import { TourListComponent } from './tour-list/tour-list.component';
 import { ExhibitsComponent } from './exhibits/exhibits.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +28,7 @@ import { ExhibitsComponent } from './exhibits/exhibits.component';
     LiveartScanerComponent,
     Page404Component,
     TourListComponent,
-    ExhibitsComponent
+    ExhibitsComponent,
   ],
   imports: [
     BrowserModule,

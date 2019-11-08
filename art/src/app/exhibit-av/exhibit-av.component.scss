@@ -1,0 +1,58 @@
+
+@import '../../styles.scss';
+
+main {
+  margin: 0px 17.8px;
+}
+
+#title-audio, #title-video {
+  @extend .global_font;
+  font-size: 14px;
+  font-weight: bold;
+}
+#title-video {
+  margin-top: 42px;
+}
+
+.audio {
+  margin: 12px 0 3px;
+  padding: 15px 16px 11px 62px;
+
+  @extend .global_font;
+  font-size: 18px;
+
+  border-radius: 16px;
+  background-color: #ffffff;
+  background-image: url('/assets/play.png');
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: 18px center;
+}
+
+.video {
+  margin-top: 12px;
+  position: relative;
+}
+
+.video img {
+  width: 100%;
+  border-radius: 16px;
+  background-color: #d8d8d8;
+}
+.video .btn-play {
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+  padding: 0;
+  margin: 0;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('/assets/play.png');
+  background-color: transparent;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}

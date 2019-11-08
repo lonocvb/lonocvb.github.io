@@ -1,0 +1,56 @@
+
+@import "../../styles.scss";
+
+main {
+  background: $pale-lilac;
+}
+
+#header {
+  display: flex;
+  height: calc(32px + 23px);
+  margin-left: 5px;
+}
+
+#header > button {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 32px 32px;
+
+  padding: 0;
+  margin: 0 15px;
+}
+
+#header > button.active:before {
+  display: block;
+  width: 42px;
+  height: 3px;
+  border-radius: 1.5px;
+  background-color: $Blue-Primary;
+  content: ' ';
+
+  position: relative;
+  bottom: -25px;
+  left: -5px;
+}
+
+#btn-info {
+  background-image: url('/assets/information.png');
+}
+#btn-av {
+  background-image: url('/assets/video.png');
+}
+#btn-shop {
+  background-image: url('/assets/shopping.png');
+}
+#header button + #btn-back {
+  margin-left: auto;
+  background-size: 17px;
+  background-position: center;
+  background-image: url('/assets/cross.png');
+}

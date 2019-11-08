@@ -1,0 +1,72 @@
+
+@import '../../styles.scss';
+
+main {
+  margin: 0;
+}
+
+#goods {
+  margin: 5px;
+  margin-top: -5px;
+}
+
+.good {
+  float: left;
+  width: 50%;
+
+  display: flex;
+  text-align: center;
+}
+
+.good .container {
+  flex: 1 1 auto;
+
+  margin: 5px;
+  padding: 10px;
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+
+.good img {
+  display: block;
+  height: 74px;
+  margin: 0 auto;
+}
+
+.good .title {
+  @extend .global_font;
+  font-size: 14px;
+
+  margin: 10px 0;
+}
+
+.good .price {
+  @extend .global_font;
+  font-size: 18px;
+  font-weight: 600;
+
+  margin: 10px 0;
+}
+
+.good .price:before {
+  content: '$ ';
+}
+
+.good .star {
+  content: ' ';
+}
+.good .star1:before {
+  content: '★';
+}
+.good .star2:before {
+  content: '★★';
+}
+.good .star3:before {
+  content: '★★★';
+}
+.good .star4:before {
+  content: '★★★★';
+}
+.good .star5:before {
+  content: '★★★★★';
+}

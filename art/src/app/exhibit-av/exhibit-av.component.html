@@ -1,1 +1,14 @@
-<p>exhibit-av works!</p>
+<main>
+
+  <div id="title-audio">AUDIO</div>
+  <div class="audio" *ngFor="let audio of audios;" (click)="play(audio);">
+    {{ audio.title }}
+  </div>
+
+  <div id="title-video">VIDEO</div>
+  <div class="video" *ngFor="let video of videos;" (click)="play(video);">
+    <img src="assets/{{ video.preview }}" />
+    <button class="btn-play"></button>
+  </div>
+
+</main>

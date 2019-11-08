@@ -9,6 +9,7 @@ const gRadius = 1000;
 class PanoramaViewer {
   constructor({ canvas, width, height, imagePath, textLabels = [], onLabelClick = () => {} }) {
 
+    this.enable = false;
     this.canvas = canvas;
 
     this.initWebGL({ canvas, width, height, imagePath });
@@ -59,8 +60,21 @@ class PanoramaViewer {
   }
 
   startAnimate() {
-    requestAnimationFrame(() => this.startAnimate());
+    if (this.enable) {
+      return;
+    }
+    this.enable = true;
+    this._startAnimate();
+  }
+  _startAnimate() {
+    if (this.enable) {
+      requestAnimationFrame(() => this._startAnimate());
+    }
     this.render();
+  }
+
+  stopAnimate() {
+    this.enable = false;
   }
 
   render() {

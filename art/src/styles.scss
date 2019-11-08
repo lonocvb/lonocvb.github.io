@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+$pale-lilac: #e9e9f2;
+$Blue-Primary: #00bcf2;
+
 body {
   margin: 0;
-  overflow: hidden;
+  background: $pale-lilac;
+}
+
+.global_font {
+  font-family: OpenSans;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
 }

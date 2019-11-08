@@ -146,11 +146,6 @@ class SensorSource {
       return;
     }
 
-    if (this.type == SensorSourceType.MANUAL) {
-      const { alpha, beta, gamma } = this.update();
-      this.ori_manual = { alpha, beta, gamma };
-    }
-
     this.type = type;
   }
 

@@ -1,1 +1,12 @@
-<p>exhibit-shop works!</p>
+<main>
+  <div id="goods">
+    <div class="good" *ngFor="let good of goods;">
+      <div class="container" (click)="buy(good);">
+        <img *ngIf="good.preview" src="assets/{{ good.preview }}" />
+        <div class="title">{{ good.name }}</div>
+        <div class="price">{{ good.price }}</div>
+        <div class="star star{{ good.star }}"></div>
+      </div>
+    </div>
+  </div>
+</main>

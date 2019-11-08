@@ -8,19 +8,20 @@ import { ExhibitDetailsComponent } from './exhibit-details/exhibit-details.compo
 import { ExhibitAvComponent } from './exhibit-av/exhibit-av.component';
 import { ExhibitShopComponent } from './exhibit-shop/exhibit-shop.component';
 import { ExhibitsComponent } from './exhibits/exhibits.component';
+import { TourDetailsComponent } from './tour-details/tour-details.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'index', pathMatch: 'full'},
   {path: 'index', component: PanoramaComponent},
-  {path: 'exhibit', component: ExhibitsComponent, children: [
+  {path: 'exhibit/:name', component: ExhibitsComponent, children: [
     {path: '', redirectTo: 'info', pathMatch: 'full'},
     {path: 'info', component: ExhibitDetailsComponent},
     {path: 'av', component: ExhibitAvComponent},
     {path: 'shop', component: ExhibitShopComponent},
   ]},
   {path: 'liveart-scaner', component: LiveartScanerComponent},
-  {path: 'tour-list', component: TourListComponent},
+  {path: 'tour-detail', component: TourDetailsComponent},
   {path: '**', component: Page404Component},
 ];
 

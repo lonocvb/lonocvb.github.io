@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 
 import PanoramaViewer from './lib/PanoramaViewer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-panorama',
@@ -28,8 +29,9 @@ export class PanoramaComponent implements OnInit {
   footerMenuShow: boolean = false;
   tourListShow: boolean = false;
 
-  constructor() {
-
+  constructor(
+    private router: Router,
+  ) {
     const windowAny: any = window;
     this.isGengar = (typeof windowAny.gengar !== 'undefined');
   }
@@ -73,7 +75,8 @@ export class PanoramaComponent implements OnInit {
         { text: 'top', position: { lon: 0, lat: 90 }, args: { yo: 'yo' } },
         { text: 'bottom', position: { lon: 0, lat: -90 }, args: { yo: 'yo' } },
       ],
-      onLabelClick: label => console.log(label.text),
+      //onLabelClick: label => console.log(label.text),
+      onLabelClick: label => this.router.navigate(['exhibit', label.text, 'info']),
     });
 
     this.viewer.startAnimate();
@@ -88,8 +91,14 @@ export class PanoramaComponent implements OnInit {
     this.footerMenuShow = !this.footerMenuShow;
   }
 
-  toggleTourList() {
-    this.tourListShow = !this.tourListShow;
+  showTourList() {
+    this.tourListShow = true;
+    this.viewer.stopAnimate();
+  }
+
+  closeAll() {
+    this.tourListShow = false;
+    this.viewer.startAnimate();
   }
 
 }
