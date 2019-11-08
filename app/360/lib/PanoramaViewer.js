@@ -127,7 +127,7 @@ class PanoramaViewer {
       const sp = worldPostion2Screen(wp, this.camera);
       const test = wp.clone().project(this.camera);
 
-      if (test.x > -1 && test.x < 1 && test.y > -1 && test.y < 1 && test.z > -1 && test.z < 1) {
+      if (test.x >= -1 && test.x <= 1 && test.y >= -1 && test.y <= 1 && test.z >= -1 && test.z <= 1) {
         const width = label.width;
         const height = label.height;
 
