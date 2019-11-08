@@ -15,11 +15,13 @@ class SensorSource {
   constructor(type) {
     this.setType(type);
 
-    this.ori_manual = { alpha: -90, beta: 90, gamma: 0 };
-    this.ori_ori =     { alpha: -90, beta: 90, gamma: 0 };
-    this.ori_motion = { alpha: -90, beta: 90, gamma: 0 };
-    this.ori_gengar = { alpha: -90, beta: 90, gamma: 0 };
+    const ori_default = { alpha: -90, beta: 90, gamma: 0 };
+    this.ori_manual = { ...ori_default };
+    this.ori_ori =    { ...ori_default };
+    this.ori_motion = { ...ori_default };
+    this.ori_gengar = { ...ori_default };
 
+    // for ori_ori
     window.addEventListener('deviceorientation', e => {
       if (this.type != SensorSourceType.DEVICE_ORIENTATION) {
         return;
@@ -28,6 +30,7 @@ class SensorSource {
       this.ori_ori = e;
     }, false);
 
+    // for ori_motion
     const toDegree = r => r / Math.PI * 180;
     const toRadian = d => d / 180 * Math.PI;
     const { sin, cos, acos, atan, abs, max } = Math;
@@ -64,6 +67,7 @@ class SensorSource {
       }
     }, false);
 
+    // for ori_manual
     let isUserInteracting = false;
     let onMouseDownMouseX = 0;
     let onMouseDownMouseY = 0;
@@ -115,6 +119,7 @@ class SensorSource {
     document.addEventListener('touchmove', e => onPointerMove(e), false);
     document.addEventListener('touchend', e => onPointerUp(e), false);
 
+    // for ori_gengar
     if (GENGAR_EXISTED) {
       gengar.addEventListener('deviceorientation', e => {
         this.ori_gengar = e;
