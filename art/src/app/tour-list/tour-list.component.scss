@@ -1,0 +1,28 @@
+
+#list {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+
+  overflow-y: hidden;
+
+  background: rgba(0,0,0,0.5);
+}
+
+$block-size: 200px;
+
+#list > * {
+  flex: 0 0 $block-size;
+
+  width: $block-size;
+  height: $block-size;
+
+  margin: 5px;
+  background: white;
+}

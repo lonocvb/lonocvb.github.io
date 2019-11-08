@@ -1,1 +1,44 @@
-<p>panorama works!</p>
+
+<canvas #panoramaCanvas></canvas>
+
+<main>
+  <div class="control clickable">
+    <div class="normal" *ngIf="!isGengar">
+      <input type="radio" name="radio_sensor_source" id="radio_deviceorientation" [value]="2" [(ngModel)]="sensorType" />
+      <label for="radio_deviceorientation">by deviceorientation</label>
+    </div>
+    <div class="normal"  *ngIf="!isGengar">
+      <input type="radio" name="radio_sensor_source" id="radio_devicemotion" [value]="3" [(ngModel)]="sensorType" />
+      <label for="radio_devicemotion">by devicemotion</label>
+    </div>
+    <div class="gengar" *ngIf="isGengar">
+      <input type="radio" name="radio_sensor_source" id="radio_gengar" [value]="4" [(ngModel)]="sensorType" />
+      <label for="radio_gengar">by gengar.sensor</label>
+    </div>
+    <div>
+      <input type="radio" name="radio_sensor_source" id="radio_manual" [value]="1" [(ngModel)]="sensorType" />
+      <label for="radio_manual">by manual</label>
+    </div>
+  </div>
+
+</main>
+
+<div id="right-menu">
+    <button routerLink="/liveart-scaner">qrcode</button>
+    <button routerLink="/tour-list">tour</button>
+  </div>
+
+<button id="footer-menu-toggle"
+[ngClass]="footerMenuShow ? 'show' : ''"
+(click)="toggleFooterMenu()"
+  >footer</button>
+<div id="footer-menu" [ngClass]="footerMenuShow ? 'show' : ''">
+<button>eat</button>
+<button>toilet</button>
+<button>elev</button>
+<button>exit</button>
+</div>
+
+<app-tour-list *ngIf="tourListShow"></app-tour-list>
+
+<button id="close-all" *ngIf="true">close all</button>

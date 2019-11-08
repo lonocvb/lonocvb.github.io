@@ -1,0 +1,71 @@
+main {
+  width: 100vw;
+  height: 100vh;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  pointer-events: none;
+}
+
+input, button, label {
+  pointer-events: all;
+}
+
+button {
+  background: white;
+}
+
+.title {
+  background: rgba(0,0,0,0.5);
+  padding: 5px;
+  color: white;
+}
+
+.control {
+  background: rgba(0,0,0,0.5);
+  color: white;
+  padding: 5px;
+}
+
+#right-menu {
+  position: absolute;
+
+  top: 20px;
+  right: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+$footer-menu-height: 20px;
+
+#footer-menu-toggle {
+  position: absolute;
+
+  bottom: 20px;
+  right: 20px;
+}
+#footer-menu-toggle.show {
+  bottom: calc(20px + #{$footer-menu-height});
+}
+
+#footer-menu {
+  display: flex;
+  width: 100%;
+
+  height: $footer-menu-height;
+
+  position: absolute;
+  bottom: -$footer-menu-height;
+  left: 0;
+}
+
+#footer-menu.show {
+  bottom: 0;
+}
+
+#footer-menu button {
+  flex: 1 1;
+}
