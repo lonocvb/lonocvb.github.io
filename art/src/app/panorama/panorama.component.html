@@ -2,10 +2,12 @@
 
 <canvas #panoramaCanvas></canvas>
 
-<div appPelement lon="0" lat="0">(0,0)</div>
-<div appPelement lon="90" lat="0">(45,0)</div>
-<div appPelement lon="180" lat="0">(180,0)</div>
-<div appPelement lon="270" lat="0">(270,0)</div>
+<div appPelement lon="0" lat="10" routerLink="/exhibit/1">CAST OF GIULIANO DE'MEDICI BY MICHELANGELO</div>
+<div appPelement lon="5" lat="5" opacity="0.7" routerLink="/exhibit/1.a">Limestone statuette of a female votary</div>
+<div appPelement lon="10" lat="0" opacity="0.5" routerLink="/exhibit/1.b">Statue of Diadoumenos. Roman Copy of a Greek </div>
+<div appPelement lon="100" lat="0" routerLink="/exhibit/2">(100,0)</div>
+<div appPelement lon="180" lat="0" routerLink="/exhibit/3">(180,0)</div>
+<div appPelement lon="270" lat="0" routerLink="/exhibit/4">(270,0)</div>
 
 <div id="sensor-control">
   <div *ngIf="!isGengar">

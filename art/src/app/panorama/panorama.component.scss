@@ -1,4 +1,6 @@
 
+@import '../../styles.scss';
+
 button {
   border: 0;
   background-color: transparent;
@@ -13,9 +15,48 @@ main {
 }
 
 .p-element {
-  // test
-  background: white;
-  padding: 5px;
+  @extend .global-font;
+  line-height: 1.2;
+  font-weight: bold;
+  font-size: 20px;
+  transform: scale(0.5);
+  color: white;
+
+  width: 192px;
+  height: 64px;
+  padding: 14px;
+
+  border-bottom: 2px solid white;
+
+  margin-top: -47px;
+  margin-left: -20px;
+
+  cursor: pointer;
+}
+
+$p-size: 32px;
+.p-element:before {
+  display: block;
+  width: $p-size;
+  height: $p-size;
+  content: ' ';
+  border-bottom: 2px solid white;
+
+  position: absolute;
+  left: calc(-#{$p-size} - 6px);
+  bottom: calc(-#{$p-size} + 14px);
+
+  transform: rotate(-45deg);
+}
+.p-element:after {
+  background-image: url('/assets/shape.png');
+  background-size: 34px 36px;
+  width: 34px;
+  height: 36px;
+  content: ' ';
+  position: absolute;
+  bottom: 8px;
+  right: 0;
 }
 
 #sensor-control {
