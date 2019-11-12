@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, HostListener, ViewChildren, Q
 
 import PanoramaViewer from './lib/PanoramaViewer';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { TourNavService } from '../tour-nav.service';
 import { PelementDirective } from './pelement.directive';
 
@@ -38,6 +39,7 @@ export class PanoramaComponent implements OnInit {
   constructor(
     private router: Router,
     private tourNav: TourNavService,
+    private location: Location,
   ) {
     const windowAny: any = window;
     this.isGengar = (typeof windowAny.gengar !== 'undefined');
@@ -57,7 +59,7 @@ export class PanoramaComponent implements OnInit {
 
     this.viewer = new PanoramaViewer({
       canvas: this.canvas.nativeElement,
-      imagePath: '/assets/360/04.jpg',
+      imagePath: this.location.prepareExternalUrl('assets/360/04.jpg'),
       width: window.innerWidth,
       height: window.innerHeight,
 

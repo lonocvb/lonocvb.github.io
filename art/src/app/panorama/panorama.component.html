@@ -43,7 +43,7 @@
   <button id="btn-footer-menu-exit"      (click)="btnNavExit()"></button>
 </div>
 
-<app-tour-list *ngIf="tourListShow" (wantClose)="closeAll($event)"></app-tour-list>
+<app-tour-list *ngIf="tourListShow" (wantClose)="closeAll()"></app-tour-list>
 
 <button id="btn-close-all" *ngIf="tourListShow" (click)="closeAll()"></button>
 

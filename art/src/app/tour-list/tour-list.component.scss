@@ -56,7 +56,7 @@ $block-size: 180px;
 
 
 #tour-list-new {
-  background-image: url('/assets/tour-list-new.png');
+  background-image: url('../../assets/tour-list-new.png');
 }
 
 .tour.active {
@@ -69,10 +69,10 @@ $block-size: 180px;
 }
 
 .tour-ex0 {
-  background-image: url('/assets/tour-ex0.png');
+  background-image: url('../../assets/tour-ex0.png');
 }
 .tour-ex0.active {
-  background-image: url('/assets/tour-ex0-on-going.png');
+  background-image: url('../../assets/tour-ex0-on-going.png');
 }
 
 #btn-start-tour-outer {

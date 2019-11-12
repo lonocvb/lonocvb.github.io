@@ -40,17 +40,17 @@ main {
 }
 
 #btn-info {
-  background-image: url('/assets/information.png');
+  background-image: url('../../assets/information.png');
 }
 #btn-av {
-  background-image: url('/assets/video.png');
+  background-image: url('../../assets/video.png');
 }
 #btn-shop {
-  background-image: url('/assets/shopping.png');
+  background-image: url('../../assets/shopping.png');
 }
 #header button + #btn-back {
   margin-left: auto;
   background-size: 17px;
   background-position: center;
-  background-image: url('/assets/cross.png');
+  background-image: url('../../assets/cross.png');
 }
