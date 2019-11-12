@@ -2,7 +2,7 @@
 @import '../../styles.scss';
 
 #title {
-  @extend .global_font;
+  @extend .global-font;
   font-weight: bold;
   font-size: 22px;
 
@@ -10,14 +10,14 @@
 }
 
 #time {
-  @extend .global_font;
+  @extend .global-font;
   font-size: 16px;
 
   margin: 10px 20px 0;
 }
 
 #describe {
-  @extend .global_font;
+  @extend .global-font;
   font-size: 18px;
 
   margin: 10px 20px 0;

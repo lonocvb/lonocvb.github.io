@@ -104,6 +104,9 @@ $footer-menu-height: 51px;
 #btn-tour-list {
   background-image: url('/assets/button-tour.png');
 }
+#btn-tour-list.active {
+  background-image: url('/assets/button-tour-blue.png');
+}
 #btn-footer-menu-resturant {
   background-image: url('/assets/resturant.png');
 }

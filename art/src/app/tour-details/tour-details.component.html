@@ -1,1 +1,23 @@
-<p>tour-details works!</p>
+<main>
+
+  <div id="title">{{ tour.title }}</div>
+  <div id="sub">
+    {{ tour.item | i18nPlural: {'=0': '0 Items', '=1': '1 Items', 'other': '# Items' } }},
+    {{ tour.time | i18nPlural: {'=0': '0 Hours', '=1': '1 Hour', 'other': '# Hours' } }}
+  </div>
+  <div id="describe">{{ tour.describe }} </div>
+
+  <div id="artworks-title">ARTWORKS</div>
+  <div id="artworks">
+    <div class="artwork" *ngFor="let artwork of tour.artworks;">
+      <div class="container">
+        <img src="assets/{{ artwork.preview }}" />
+        <!-- div class="title">{{ artwork.title }}</div> -->
+      </div>
+    </div>
+  </div>
+
+  <button id="btn-back" (click)="close();"></button>
+  <button id="btn-start-tour" (click)="startTour();">START TOUR</button>
+
+</main>

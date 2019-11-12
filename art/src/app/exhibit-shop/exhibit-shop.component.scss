@@ -34,14 +34,14 @@ main {
 }
 
 .good .title {
-  @extend .global_font;
+  @extend .global-font;
   font-size: 14px;
 
   margin: 10px 0;
 }
 
 .good .price {
-  @extend .global_font;
+  @extend .global-font;
   font-size: 18px;
   font-weight: 600;
 

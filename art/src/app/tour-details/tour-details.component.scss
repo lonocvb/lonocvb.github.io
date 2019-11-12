@@ -1,0 +1,86 @@
+
+@import '../../styles.scss';
+
+main {
+  margin: 0 20px;
+}
+
+#title {
+  @extend .global-font;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#sub {
+  @extend .global-font;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+#describe {
+  @extend .global-font;
+  font-size: 18px;
+
+  margin-bottom: 12px;
+}
+
+#artworks-title {
+  @extend .global-font;
+  font-size: 14px;
+  font-weight: bold;
+
+  color: $Blue-Primary;
+
+  margin-bottom: 2px;
+}
+
+#artworks {
+  margin: -5px;
+}
+
+.artwork {
+  float: left;
+  width: 50%;
+}
+
+.artwork .container {
+  width: 100%;
+}
+
+.artwork .container img {
+  margin: 5px;
+}
+
+#btn-start-tour {
+  @extend .global-font;
+  font-size: 16px;
+  color: white;
+  background-color: $Blue-Primary;
+
+  border-radius: 30px;
+
+  padding: 19px 20px;
+  border: 0;
+
+  margin: 26px auto 0;
+  display: block;
+  width: 160px;
+}
+
+#btn-back {
+  position: absolute;
+  top: 11px;
+  right: 15px;
+
+  width: 32px;
+  height: 32px;
+  display: block;
+
+  border: 0;
+
+  background-size: 17px;
+  background-position: center;
+  background-image: url('/assets/cross.png');
+  background-repeat: no-repeat;
+  background-color: transparent;
+}

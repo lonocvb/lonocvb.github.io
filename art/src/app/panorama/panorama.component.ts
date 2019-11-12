@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular
 
 import PanoramaViewer from './lib/PanoramaViewer';
 import { Router } from '@angular/router';
+import { TourNavService } from '../tour-nav.service';
 
 @Component({
   selector: 'app-panorama',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class PanoramaComponent implements OnInit {
   isGengar: boolean;
+  inTour: boolean;
 
   _sensorType: number = 1;
 
@@ -31,12 +33,15 @@ export class PanoramaComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private tourNav: TourNavService,
   ) {
     const windowAny: any = window;
     this.isGengar = (typeof windowAny.gengar !== 'undefined');
   }
 
   ngOnInit() {
+    this.inTour = this.tourNav.tourIdx != -1;
+    this.tourNav.tourChange.subscribe(val => this.inTour = val !=  -1);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -101,4 +106,9 @@ export class PanoramaComponent implements OnInit {
     this.viewer.startAnimate();
   }
 
+  // TODO
+  btnNavResturant() {}
+  btnNavToilet() {}
+  btnNavElevator() {}
+  btnNavExit() {}
 }

@@ -12,17 +12,17 @@ import { TourDetailsComponent } from './tour-details/tour-details.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'index', pathMatch: 'full'},
-  {path: 'index', component: PanoramaComponent},
-  {path: 'exhibit/:name', component: ExhibitsComponent, children: [
-    {path: '', redirectTo: 'info', pathMatch: 'full'},
-    {path: 'info', component: ExhibitDetailsComponent},
-    {path: 'av', component: ExhibitAvComponent},
-    {path: 'shop', component: ExhibitShopComponent},
+  { path: '', redirectTo: 'index', pathMatch: 'full' },
+  { path: 'index', component: PanoramaComponent },
+  { path: 'exhibit/:name', component: ExhibitsComponent, children: [
+    { path: '', redirectTo: 'info', pathMatch: 'full' },
+    { path: 'info', component: ExhibitDetailsComponent },
+    { path: 'av', component: ExhibitAvComponent },
+    { path: 'shop', component: ExhibitShopComponent },
   ]},
-  {path: 'liveart-scaner', component: LiveartScanerComponent},
-  {path: 'tour-detail', component: TourDetailsComponent},
-  {path: '**', component: Page404Component},
+  { path: 'liveart-scaner', component: LiveartScanerComponent },
+  { path: 'tour/:id', component: TourDetailsComponent },
+  { path: '**', component: Page404Component },
 ];
 
 @NgModule({

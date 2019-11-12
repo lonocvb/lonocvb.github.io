@@ -1,12 +1,18 @@
 
 <div id="list">
-  <div id="tour-list-new" onclick="alert('new');"></div>
-  <div id="tour-list-ex1" routerLink="/tour-detail"></div>
-  <div></div>
-  <div></div>
-  <div></div>
+  <div id="tour-list-new" class="tour" onclick="alert('new');"></div>
+
+  <div *ngFor="let tour of tours; let id = index;"  class="tour tour-ex{{ id }}" [ngClass]="tourIdx == id ? 'active' : ''" routerLink="/tour/{{ id }}" >
+    <div class="title">{{ tour.title }}</div>
+    <div class="sub">
+      {{ tour.item | i18nPlural: {'=0': '0 Items', '=1': '1 Items', 'other': '# Items' } }},
+      {{ tour.time | i18nPlural: {'=0': '0 Hours', '=1': '1 Hour', 'other': '# Hours' } }}
+    </div>
+  </div>
+
+  <div style="width: 10px; height: 100px; flex: 0 0 auto; background: transparent;"></div>
 </div>
 
 <div id="btn-start-tour-outer">
-  <button id="btn-start-tour">START TOUR</button>
+  <button id="btn-start-tour" [ngClass]="tourIdx != -1 ? 'active' : ''" (click)="stopTour();">STOP TOUR</button>
 </div>
