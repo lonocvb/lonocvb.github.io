@@ -15,6 +15,7 @@ import { LiveartScanerComponent } from './liveart-scaner/liveart-scaner.componen
 import { Page404Component } from './page404/page404.component';
 import { TourListComponent } from './tour-list/tour-list.component';
 import { ExhibitsComponent } from './exhibits/exhibits.component';
+import { PelementDirective } from './panorama/pelement.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { ExhibitsComponent } from './exhibits/exhibits.component';
     Page404Component,
     TourListComponent,
     ExhibitsComponent,
+    PelementDirective,
   ],
   imports: [
     BrowserModule,

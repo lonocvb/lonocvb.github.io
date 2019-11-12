@@ -2,6 +2,11 @@
 
 <canvas #panoramaCanvas></canvas>
 
+<div appPelement lon="0" lat="0">(0,0)</div>
+<div appPelement lon="90" lat="0">(45,0)</div>
+<div appPelement lon="180" lat="0">(180,0)</div>
+<div appPelement lon="270" lat="0">(270,0)</div>
+
 <div id="sensor-control">
   <div *ngIf="!isGengar">
     <input id="r1" type="radio" name="radio_sensor_source" [value]="2" [(ngModel)]="sensorType" />

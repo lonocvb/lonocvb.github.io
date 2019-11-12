@@ -1,8 +1,9 @@
-import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener, ViewChildren, QueryList } from '@angular/core';
 
 import PanoramaViewer from './lib/PanoramaViewer';
 import { Router } from '@angular/router';
 import { TourNavService } from '../tour-nav.service';
+import { PelementDirective } from './pelement.directive';
 
 @Component({
   selector: 'app-panorama',
@@ -25,6 +26,9 @@ export class PanoramaComponent implements OnInit {
 
   @ViewChild('panoramaCanvas', {static: false})
   canvas: ElementRef;
+
+  @ViewChildren(PelementDirective)
+  pElements: QueryList<PelementDirective>;
 
   viewer: any;
 
@@ -51,12 +55,14 @@ export class PanoramaComponent implements OnInit {
 
   ngAfterViewInit() {
 
+    console.log(this.pElements.map(p => p.toLabel()));
+
     this.viewer = new PanoramaViewer({
       canvas: this.canvas.nativeElement,
       imagePath: '/assets/360/04.jpg',
       width: window.innerWidth,
       height: window.innerHeight,
-
+/*
       textLabels: [
         { text: '0,0', position: { lon: 0, lat: 0 }, args: { yo: 'yo' } },
         { text: '45,0', position: { lon: 45, lat: 0 }, args: { yo: 'yo' } },
@@ -80,8 +86,9 @@ export class PanoramaComponent implements OnInit {
         { text: 'top', position: { lon: 0, lat: 90 }, args: { yo: 'yo' } },
         { text: 'bottom', position: { lon: 0, lat: -90 }, args: { yo: 'yo' } },
       ],
-      //onLabelClick: label => console.log(label.text),
       onLabelClick: label => this.router.navigate(['exhibit', label.text, 'info']),
+*/
+      elementLabels: this.pElements.map(p => p.toLabel()),
     });
 
     this.viewer.startAnimate();

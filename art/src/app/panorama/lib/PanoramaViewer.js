@@ -7,7 +7,7 @@ const gRadius = 1000;
 
 // ref: THREE.js
 class PanoramaViewer {
-  constructor({ canvas, width, height, imagePath, textLabels = [], onLabelClick = () => {} }) {
+  constructor({ canvas, width, height, imagePath, textLabels = [], elementLabels = [], onLabelClick = () => {} }) {
 
     this.enable = false;
     this.canvas = canvas;
@@ -29,6 +29,8 @@ class PanoramaViewer {
       var intersects = _raycaster.intersectObjects(this.sceneOrtho.children);
       intersects.forEach(o => onLabelClick(o.object.label));
     }, false);
+
+    this.elementLabels = elementLabels;
 
   }
 
@@ -81,6 +83,7 @@ class PanoramaViewer {
     this.cameraControl.update();
 
     this.updateSprites();
+    this.updateElements();
 
     this.renderer.render(this.scene, this.camera);
     this.renderer.render(this.sceneOrtho, this.cameraOrtho);
@@ -156,6 +159,26 @@ class PanoramaViewer {
         sprite.position.set(0, 0, 0);
       }
     }
+  }
+
+  updateElements() {
+    for (let elementLabel of this.elementLabels) {
+      const wp = geoPosition2World(elementLabel.position.lon, elementLabel.position.lat);
+      const sp = worldPostion2Screen(wp, this.camera, this.canvas.width, this.canvas.height);
+      const test = wp.clone().project(this.camera);
+
+      if (test.x >= -1 && test.x <= 1 && test.y >= -1 && test.y <= 1 && test.z >= -1 && test.z <= 1) {
+        const x = sp.x + this.canvas.width / 2;
+        const y = -sp.y + this.canvas.height / 2;
+
+        elementLabel.element.style.display = 'block';
+        elementLabel.element.style.left = `${x}px`;
+        elementLabel.element.style.top = `${y}px`;
+      } else {
+        elementLabel.element.style.display = 'none';
+      }
+    }
+
   }
 
   setSensorType(type) {
