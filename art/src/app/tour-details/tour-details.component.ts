@@ -18,14 +18,10 @@ export class TourDetailsComponent implements OnInit {
     private tourNav: TourNavService,
     private router: Router,
     private location: Location,
-  ) {
-    route.paramMap.pipe(
-      switchMap((params: ParamMap) => [params.get('id')]),
-    ).subscribe(val => this.id = parseInt(val));
-  }
+  ) {}
 
   ngOnInit() {
-    console.log('id', this.id);
+    this.id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.tour = this.tourNav.getList()[this.id];
   }
 

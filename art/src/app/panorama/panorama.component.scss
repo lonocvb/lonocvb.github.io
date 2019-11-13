@@ -154,18 +154,42 @@ $footer-menu-height: 51px;
 #btn-tour-list.active {
   background-image: url('../../assets/button-tour-blue.png');
 }
+
+#text-tour-list {
+  @extend .global-font;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  color: white;
+  transform: scale(0.5);
+
+  margin-top: -12px;
+}
+
 #btn-footer-menu-resturant {
   background-image: url('../../assets/resturant.png');
 }
 #btn-footer-menu-toilet {
   background-image: url('../../assets/toilet.png');
+  filter: contrast(0) brightness(100);
+}
+#btn-footer-menu-toilet.active {
+  filter: none;
 }
 #btn-footer-menu-elevator {
   background-image: url('../../assets/elevator.png');
+}
+#btn-footer-menu-resturant.active,
+#btn-footer-menu-elevator.active,
+#btn-footer-menu-exit.active {
+  filter: sepia(1) saturate(10) hue-rotate(110deg) contrast(0.6);
 }
 #btn-footer-menu-exit {
   background-image: url('../../assets/exit.png');
 }
 #btn-close-all {
   background-image: url('../../assets/back.png');
+}
+#btn-footer-menu-toilet.active {
+  filter: none;
 }

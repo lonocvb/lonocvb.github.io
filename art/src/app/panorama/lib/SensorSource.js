@@ -8,7 +8,7 @@ class SensorSource {
     this.setType(type);
     this.ele = ele;
 
-    const ori_default = { alpha: -90, beta: 90, gamma: 0 };
+    const ori_default = { alpha: 180, beta: 90, gamma: 0 };
     this.ori_manual = { ...ori_default };
     this.ori_ori =    { ...ori_default };
     this.ori_motion = { ...ori_default };

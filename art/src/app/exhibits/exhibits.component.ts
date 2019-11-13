@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, switchMap, tap } from 'rxjs/operators';
+import { filter, switchMap, tap, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-exhibits',
@@ -10,8 +10,7 @@ import { filter, switchMap, tap } from 'rxjs/operators';
 })
 export class ExhibitsComponent implements OnInit {
 
-  name: string = '';
-  pos: string = 'info';
+  pos$: Observable<string>;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,15 +19,11 @@ export class ExhibitsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events.pipe(
+    this.pos$ = this.router.events.pipe(
       filter(evt => evt instanceof NavigationEnd),
       switchMap((evt: NavigationEnd) => [evt.urlAfterRedirects.split('/').pop()]),
-    ).subscribe(url => this.pos = url);
-    this.pos = this.router.url.split('/').pop();
-
-    this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => [params.get('name')]),
-    ).subscribe(val => this.name = val);
+      startWith(this.router.url.split('/').pop()),
+    );
   }
 
 }

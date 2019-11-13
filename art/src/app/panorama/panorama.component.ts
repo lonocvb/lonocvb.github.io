@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { TourNavService } from '../tour-nav.service';
 import { PelementDirective } from './pelement.directive';
+import { startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-panorama',
@@ -46,8 +47,9 @@ export class PanoramaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.inTour = this.tourNav.tourIdx != -1;
-    this.tourNav.tourChange.subscribe(val => this.inTour = val !=  -1);
+    this.tourNav.tourChange.pipe(
+      startWith(-1),
+    ).subscribe(val => this.inTour = val !=  -1);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -59,7 +61,7 @@ export class PanoramaComponent implements OnInit {
 
     this.viewer = new PanoramaViewer({
       canvas: this.canvas.nativeElement,
-      imagePath: this.location.prepareExternalUrl('assets/360/04.jpg'),
+      imagePath: this.location.prepareExternalUrl('assets/360/x1.jpg'),
       width: window.innerWidth,
       height: window.innerHeight,
 
@@ -94,9 +96,33 @@ export class PanoramaComponent implements OnInit {
     this.viewer.startAnimate();
   }
 
-  // TODO
-  btnNavResturant() {}
-  btnNavToilet() {}
-  btnNavElevator() {}
-  btnNavExit() {}
+  navPaths = [
+    'assets/360/x1.jpg',
+    'assets/360/x1-rest.jpg',
+    'assets/360/x1-toilet.jpg',
+    'assets/360/x1-ele.jpg',
+    'assets/360/x1-exit.jpg',
+  ];
+  nav: number = 0;
+  navSet(idx) {
+    if (this.nav == idx) {
+      idx = 0;
+    }
+    if (this.nav != idx) {
+      this.nav = idx;
+      this.viewer.changeTexture(this.location.prepareExternalUrl(this.navPaths[idx]));
+    }
+  }
+  btnNavResturant() {
+    this.navSet(1);
+  }
+  btnNavToilet() {
+    this.navSet(2);
+  }
+  btnNavElevator() {
+    this.navSet(3);
+  }
+  btnNavExit() {
+    this.navSet(4);
+  }
 }

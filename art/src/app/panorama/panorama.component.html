@@ -2,12 +2,12 @@
 
 <canvas #panoramaCanvas></canvas>
 
-<div appPelement lon="0" lat="10" routerLink="/exhibit/1">CAST OF GIULIANO DE'MEDICI BY MICHELANGELO</div>
-<div appPelement lon="5" lat="5" opacity="0.7" routerLink="/exhibit/1.a">Limestone statuette of a female votary</div>
-<div appPelement lon="10" lat="0" opacity="0.5" routerLink="/exhibit/1.b">Statue of Diadoumenos. Roman Copy of a Greek </div>
-<div appPelement lon="100" lat="0" routerLink="/exhibit/2">(100,0)</div>
-<div appPelement lon="180" lat="0" routerLink="/exhibit/3">(180,0)</div>
-<div appPelement lon="270" lat="0" routerLink="/exhibit/4">(270,0)</div>
+<div appPelement lon="67" lat="4" routerLink="/exhibit/1">CAST OF GIULIANO DE'MEDICI BY MICHELANGELO</div>
+<div appPelement lon="68.5" lat="2" opacity="0.7" routerLink="/exhibit/1.a">Limestone statuette of a female votary</div>
+<div appPelement lon="69.5" lat="1" opacity="0.4" routerLink="/exhibit/1.b">Statue of Diadoumenos. Roman Copy of a Greek </div>
+<div appPelement lon="277" lat="8" routerLink="/exhibit/A">AAAAAAAA AAAAAAA AAAAAAA</div>
+<div appPelement lon="150" lat="30" routerLink="/exhibit/B">BBBBBBBB BBBBBBB BBBBBBB</div>
+<div appPelement lon="215" lat="20" routerLink="/exhibit/C">CCCCCCC CCCCCCC CCCCCCC</div>
 
 <div id="sensor-control">
   <div *ngIf="!isGengar">
@@ -31,16 +31,17 @@
 <div id="right-menu">
   <button id="btn-liveart-scaner" routerLink="/liveart-scaner"></button>
   <button id="btn-tour-list" [ngClass]="inTour ? 'active' : ''" (click)="showTourList()"></button>
+  <div id="text-tour-list" *ngIf="inTour">70%</div>
 </div>
 
 <button id="btn-footer-menu-toggle"
   [ngClass]="footerMenuShow ? 'show' : ''"
   (click)="toggleFooterMenu()"></button>
 <div id="footer-menu" [ngClass]="footerMenuShow ? 'show' : ''">
-  <button id="btn-footer-menu-resturant" (click)="btnNavResturant()"></button>
-  <button id="btn-footer-menu-toilet"    (click)="btnNavToilet()"></button>
-  <button id="btn-footer-menu-elevator"  (click)="btnNavElevator()"></button>
-  <button id="btn-footer-menu-exit"      (click)="btnNavExit()"></button>
+  <button id="btn-footer-menu-resturant" [ngClass]="nav == 1 ? 'active' : ''" (click)="btnNavResturant()"></button>
+  <button id="btn-footer-menu-toilet"    [ngClass]="nav == 2 ? 'active' : ''" (click)="btnNavToilet()"></button>
+  <button id="btn-footer-menu-elevator"  [ngClass]="nav == 3 ? 'active' : ''" (click)="btnNavElevator()"></button>
+  <button id="btn-footer-menu-exit"      [ngClass]="nav == 4 ? 'active' : ''" (click)="btnNavExit()"></button>
 </div>
 
 <app-tour-list *ngIf="tourListShow" (wantClose)="closeAll()"></app-tour-list>

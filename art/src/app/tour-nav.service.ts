@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 interface ArtworkData {
   preview: string;
@@ -20,8 +20,9 @@ export interface TourData {
   providedIn: 'root'
 })
 export class TourNavService {
-  tourChange: Subject<number> = new Subject<number>();
-  tourIdx: number = -1;
+  tourChange: BehaviorSubject<number> = new BehaviorSubject<number>(-1);
+  tourIdx$: Observable<number>;
+  tourIdx: number;
 
   itemVisited: number = 28;
   itemTotal: number = 41;
@@ -64,7 +65,8 @@ export class TourNavService {
       },
     ];
 
-    this.tourChange.subscribe(val => this.tourIdx = val);
+    this.tourIdx$ = this.tourChange;
+    this.tourIdx$.subscribe(val => this.tourIdx = val);
   }
 
   getList(): Array<TourData> {

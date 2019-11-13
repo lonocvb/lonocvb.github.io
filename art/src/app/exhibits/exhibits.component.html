@@ -1,5 +1,5 @@
 <main>
-  <div id="header">
+  <div id="header" *ngIf="(pos$ | async) as pos">
     <button id="btn-info" [ngClass]="pos == 'info' ? 'active' : ''" routerLink="info"></button>
     <button id="btn-av"   [ngClass]="pos == 'av' ? 'active' : ''" routerLink="av"></button>
     <button id="btn-shop" [ngClass]="pos == 'shop' ? 'active' : ''" routerLink="shop"></button>

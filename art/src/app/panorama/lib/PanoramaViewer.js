@@ -56,7 +56,7 @@ class PanoramaViewer {
     this.sphere.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
 
     this.sphereMaterial = new THREE.MeshBasicMaterial();
-    this.sphereMaterial.map = THREE.ImageUtils.loadTexture(imagePath);
+    this.sphereMaterial.map = new THREE.TextureLoader().load(imagePath);
 
     this.scene.add(new THREE.Mesh(this.sphere, this.sphereMaterial));
   }
@@ -186,7 +186,7 @@ class PanoramaViewer {
   }
 
   changeTexture(imagePath) {
-    this.sphereMaterial.map = THREE.ImageUtils.loadTexture(imagePath);
+    this.sphereMaterial.map = new THREE.TextureLoader().load(imagePath);
   }
 
   unlisten() {
