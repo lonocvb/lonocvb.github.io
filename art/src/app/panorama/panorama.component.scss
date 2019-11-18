@@ -1,17 +1,21 @@
 
 @import '../../styles.scss';
 
-button {
-  border: 0;
-  background-color: transparent;
-}
-
 main {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 
   position: relative;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.p-element:hover {
+  background: rgba(0,0,0,0.5);
 }
 
 .p-element {
@@ -48,6 +52,7 @@ $p-size: 32px;
 
   transform: rotate(-45deg);
 }
+
 .p-element:after {
   background-image: url('../../assets/shape.png');
   background-size: 34px 36px;
@@ -57,139 +62,4 @@ $p-size: 32px;
   position: absolute;
   bottom: 8px;
   right: 0;
-}
-
-#sensor-control {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-
-  background: rgba(0,0,0,0.5);
-  color: white;
-  padding: 5px;
-}
-
-#right-menu {
-  position: absolute;
-
-  top: 10px;
-  right: 10px;
-
-  display: flex;
-  flex-direction: column;
-}
-
-#right-menu > button {
-  width: 42px;
-  height: 42px;
-  margin-bottom: 11px;
-
-  border: 0;
-}
-
-$footer-menu-height: 51px;
-
-#btn-footer-menu-toggle {
-  position: absolute;
-
-  bottom: 20px;
-  right: 20px;
-
-  width: 38px;
-  height: 38px;
-}
-#btn-footer-menu-toggle.show {
-  bottom: calc(20px + #{$footer-menu-height});
-}
-
-#footer-menu {
-  display: flex;
-  width: 100%;
-
-  height: $footer-menu-height;
-
-  position: absolute;
-  bottom: -$footer-menu-height;
-  left: 0;
-
-  background: black;
-}
-
-#footer-menu.show {
-  bottom: 0;
-}
-
-#footer-menu > button {
-  flex: 0 0 32px;
-
-  width: 32px;
-  height: 32px;
-
-  margin: 12px auto 7px;
-
-}
-
-#btn-close-all {
-  position: absolute;
-
-  right: 10px;
-  bottom: 8px;
-
-  width: 42px;
-  height: 42px;
-}
-
-#btn-footer-menu-toggle {
-  background-image: url('../../assets/extra.png');
-}
-#btn-footer-menu-toggle.show {
-  transform: rotate(180deg);
-}
-#btn-liveart-scaner {
-  background-image: url('../../assets/button-qr.png');
-}
-#btn-tour-list {
-  background-image: url('../../assets/button-tour.png');
-}
-#btn-tour-list.active {
-  background-image: url('../../assets/button-tour-blue.png');
-}
-
-#text-tour-list {
-  @extend .global-font;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1;
-  color: white;
-  transform: scale(0.5);
-
-  margin-top: -12px;
-}
-
-#btn-footer-menu-resturant {
-  background-image: url('../../assets/resturant.png');
-}
-#btn-footer-menu-toilet {
-  background-image: url('../../assets/toilet.png');
-  filter: contrast(0) brightness(100);
-}
-#btn-footer-menu-toilet.active {
-  filter: none;
-}
-#btn-footer-menu-elevator {
-  background-image: url('../../assets/elevator.png');
-}
-#btn-footer-menu-resturant.active,
-#btn-footer-menu-elevator.active,
-#btn-footer-menu-exit.active {
-  filter: sepia(1) saturate(10) hue-rotate(110deg) contrast(0.6);
-}
-#btn-footer-menu-exit {
-  background-image: url('../../assets/exit.png');
-}
-#btn-close-all {
-  background-image: url('../../assets/back.png');
-}
-#btn-footer-menu-toilet.active {
-  filter: none;
 }

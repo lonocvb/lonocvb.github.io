@@ -9,11 +9,12 @@ import { ExhibitAvComponent } from './exhibit-av/exhibit-av.component';
 import { ExhibitShopComponent } from './exhibit-shop/exhibit-shop.component';
 import { ExhibitsComponent } from './exhibits/exhibits.component';
 import { TourDetailsComponent } from './tour-details/tour-details.component';
+import { MainComponent } from './main/main.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
-  { path: 'index', component: PanoramaComponent },
+  { path: 'index', component: MainComponent },
   { path: 'exhibit/:name', component: ExhibitsComponent, children: [
     { path: '', redirectTo: 'info', pathMatch: 'full' },
     { path: 'info', component: ExhibitDetailsComponent },

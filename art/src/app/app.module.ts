@@ -16,6 +16,7 @@ import { Page404Component } from './page404/page404.component';
 import { TourListComponent } from './tour-list/tour-list.component';
 import { ExhibitsComponent } from './exhibits/exhibits.component';
 import { PelementDirective } from './panorama/pelement.directive';
+import { MainComponent } from './main/main.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { PelementDirective } from './panorama/pelement.directive';
     TourListComponent,
     ExhibitsComponent,
     PelementDirective,
+    MainComponent,
   ],
   imports: [
     BrowserModule,

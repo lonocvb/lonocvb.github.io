@@ -9,43 +9,6 @@
 <div appPelement lon="150" lat="30" routerLink="/exhibit/B">BBBBBBBB BBBBBBB BBBBBBB</div>
 <div appPelement lon="215" lat="20" routerLink="/exhibit/C">CCCCCCC CCCCCCC CCCCCCC</div>
 
-<div id="sensor-control">
-  <div *ngIf="!isGengar">
-    <input id="r1" type="radio" name="radio_sensor_source" [value]="2" [(ngModel)]="sensorType" />
-    <label for="r1">by deviceorientation</label>
-  </div>
-  <div *ngIf="!isGengar">
-    <input id="r2" type="radio" name="radio_sensor_source" [value]="3" [(ngModel)]="sensorType" />
-    <label for="r2">by devicemotion</label>
-  </div>
-  <div *ngIf="isGengar">
-    <input id="r3" type="radio" name="radio_sensor_source" [value]="4" [(ngModel)]="sensorType" />
-    <label for="r3">by gengar.sensor</label>
-  </div>
-  <div>
-    <input id="r4" type="radio" name="radio_sensor_source" [value]="1" [(ngModel)]="sensorType" />
-    <label for="r4">by manual</label>
-  </div>
-</div>
-
-<div id="right-menu">
-  <button id="btn-liveart-scaner" routerLink="/liveart-scaner"></button>
-  <button id="btn-tour-list" [ngClass]="inTour ? 'active' : ''" (click)="showTourList()"></button>
-  <div id="text-tour-list" *ngIf="inTour">70%</div>
-</div>
-
-<button id="btn-footer-menu-toggle"
-  [ngClass]="footerMenuShow ? 'show' : ''"
-  (click)="toggleFooterMenu()"></button>
-<div id="footer-menu" [ngClass]="footerMenuShow ? 'show' : ''">
-  <button id="btn-footer-menu-resturant" [ngClass]="nav == 1 ? 'active' : ''" (click)="btnNavResturant()"></button>
-  <button id="btn-footer-menu-toilet"    [ngClass]="nav == 2 ? 'active' : ''" (click)="btnNavToilet()"></button>
-  <button id="btn-footer-menu-elevator"  [ngClass]="nav == 3 ? 'active' : ''" (click)="btnNavElevator()"></button>
-  <button id="btn-footer-menu-exit"      [ngClass]="nav == 4 ? 'active' : ''" (click)="btnNavExit()"></button>
-</div>
-
-<app-tour-list *ngIf="tourListShow" (wantClose)="closeAll()"></app-tour-list>
-
-<button id="btn-close-all" *ngIf="tourListShow" (click)="closeAll()"></button>
+<ng-content></ng-content>
 
 </main>

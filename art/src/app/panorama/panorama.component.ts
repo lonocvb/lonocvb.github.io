@@ -1,11 +1,9 @@
-import { Component, OnInit, ElementRef, ViewChild, HostListener, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener, ViewChildren, QueryList, Input, ContentChildren } from '@angular/core';
 
 import PanoramaViewer from './lib/PanoramaViewer';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { TourNavService } from '../tour-nav.service';
 import { PelementDirective } from './pelement.directive';
-import { startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-panorama',
@@ -13,17 +11,36 @@ import { startWith } from 'rxjs/operators';
   styleUrls: ['./panorama.component.scss']
 })
 export class PanoramaComponent implements OnInit {
-  isGengar: boolean;
-  inTour: boolean;
 
-  _sensorType: number = 1;
+  private _imagePath: string;
 
-  get sensorType() {
-    return this._sensorType;
+  @Input()
+  get imagePath() {
+    return this._imagePath;
   }
+  set imagePath(val: string) {
+    this._imagePath = val;
+    if (this.viewer) {
+      this.viewer.changeTexture(this.location.prepareExternalUrl(val));
+    }
+  }
+
+  @Input()
   set sensorType(val: number) {
-    this._sensorType = val;
-    this.viewer.setSensorType(val);
+    if (this.viewer) {
+      this.viewer.setSensorType(val);
+    }
+  }
+
+  @Input()
+  set enable(val: boolean) {
+    if (this.viewer) {
+      if (val) {
+        this.viewer.startAnimate();
+      } else {
+        this.viewer.stopAnimate();
+      }
+    }
   }
 
   @ViewChild('panoramaCanvas', {static: false})
@@ -32,38 +49,35 @@ export class PanoramaComponent implements OnInit {
   @ViewChildren(PelementDirective)
   pElements: QueryList<PelementDirective>;
 
-  viewer: any;
+  @ContentChildren(PelementDirective)
+  pcElements: QueryList<PelementDirective>;
 
-  footerMenuShow: boolean = false;
-  tourListShow: boolean = false;
+  viewer: any;
 
   constructor(
     private router: Router,
-    private tourNav: TourNavService,
     private location: Location,
   ) {
-    const windowAny: any = window;
-    this.isGengar = (typeof windowAny.gengar !== 'undefined');
   }
 
-  ngOnInit() {
-    this.tourNav.tourChange.pipe(
-      startWith(-1),
-    ).subscribe(val => this.inTour = val !=  -1);
-  }
+  ngOnInit() {}
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.viewer.changeSize(window.innerWidth, window.innerHeight);
+    this.viewer.changeSize(
+      this.canvas.nativeElement.parentElement.offsetWidth,
+      this.canvas.nativeElement.parentElement.offsetHeight);
   }
 
   ngAfterViewInit() {
 
+    console.log(this.canvas);
+
     this.viewer = new PanoramaViewer({
       canvas: this.canvas.nativeElement,
-      imagePath: this.location.prepareExternalUrl('assets/360/x1.jpg'),
-      width: window.innerWidth,
-      height: window.innerHeight,
+      imagePath: this.location.prepareExternalUrl(this._imagePath),
+      width: this.canvas.nativeElement.parentElement.offsetWidth,
+      height: this.canvas.nativeElement.parentElement.offsetHeight,
 
       textLabels: [
         { text: 'top', position: { lon: 0, lat: 90 }, args: { yo: 'yo' } },
@@ -71,7 +85,7 @@ export class PanoramaComponent implements OnInit {
       ],
       onLabelClick: label => this.router.navigate(['exhibit', label.text, 'info']),
 
-      elementLabels: this.pElements.map(p => p.toLabel()),
+      elementLabels: this.pElements.map(p => p.toLabel()).concat(this.pcElements.map(p => p.toLabel())),
     });
 
     this.viewer.startAnimate();
@@ -80,49 +94,5 @@ export class PanoramaComponent implements OnInit {
 
   ngOnDestroy()	{
     this.viewer.unlisten();
-  }
-
-  toggleFooterMenu() {
-    this.footerMenuShow = !this.footerMenuShow;
-  }
-
-  showTourList() {
-    this.tourListShow = true;
-    this.viewer.stopAnimate();
-  }
-
-  closeAll() {
-    this.tourListShow = false;
-    this.viewer.startAnimate();
-  }
-
-  navPaths = [
-    'assets/360/x1.jpg',
-    'assets/360/x1-rest.jpg',
-    'assets/360/x1-toilet.jpg',
-    'assets/360/x1-ele.jpg',
-    'assets/360/x1-exit.jpg',
-  ];
-  nav: number = 0;
-  navSet(idx) {
-    if (this.nav == idx) {
-      idx = 0;
-    }
-    if (this.nav != idx) {
-      this.nav = idx;
-      this.viewer.changeTexture(this.location.prepareExternalUrl(this.navPaths[idx]));
-    }
-  }
-  btnNavResturant() {
-    this.navSet(1);
-  }
-  btnNavToilet() {
-    this.navSet(2);
-  }
-  btnNavElevator() {
-    this.navSet(3);
-  }
-  btnNavExit() {
-    this.navSet(4);
   }
 }
