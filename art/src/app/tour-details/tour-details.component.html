@@ -9,13 +9,15 @@
 
   <div id="artworks-title">ARTWORKS</div>
   <div id="artworks">
-    <div class="artwork" *ngFor="let artwork of tour.artworks;">
+    <div class="artwork" appFloatTop *ngFor="let artwork of tour.artworks;">
       <div class="container">
-        <img src="assets/{{ artwork.preview }}" />
+        <img src="assets/{{ artwork.preview }}" (load)="artwrokImageLoaded()" />
         <!-- div class="title">{{ artwork.title }}</div> -->
       </div>
     </div>
   </div>
+
+  <br style="clear:both" />
 
   <button id="btn-back" (click)="close();"></button>
   <button id="btn-start-tour" (click)="startTour();">START TOUR</button>

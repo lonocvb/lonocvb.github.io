@@ -1,8 +1,8 @@
 <main>
   <div id="goods">
-    <div class="good" *ngFor="let good of goods;">
+    <div class="good" appFloatTop *ngFor="let good of goods;">
       <div class="container" (click)="buy(good);">
-        <img *ngIf="good.preview" src="assets/{{ good.preview }}" />
+        <img *ngIf="good.preview" src="assets/{{ good.preview }}" (load)="artwrokImageLoaded()" />
         <div class="title">{{ good.name }}</div>
         <div class="price">{{ good.price }}</div>
         <div class="star star{{ good.star }}"></div>

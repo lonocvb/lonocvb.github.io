@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren } from '@angular/core';
 import { Location } from '@angular/common';
 import { TourNavService, TourData } from '../tour-nav.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap, tap } from 'rxjs/operators';
+import { FloatTopDirective } from '../float-top.directive';
 
 @Component({
   selector: 'app-tour-details',
@@ -12,6 +13,9 @@ import { switchMap, tap } from 'rxjs/operators';
 export class TourDetailsComponent implements OnInit {
   id: number;
   tour: TourData;
+
+  @ViewChildren(FloatTopDirective)
+  floatTopElements: Array<FloatTopDirective>;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,6 +27,10 @@ export class TourDetailsComponent implements OnInit {
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.tour = this.tourNav.getList()[this.id];
+  }
+
+  artwrokImageLoaded() {
+    FloatTopDirective.float(this.floatTopElements);
   }
 
   close() {

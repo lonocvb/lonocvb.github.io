@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren } from '@angular/core';
+import { FloatTopDirective } from '../float-top.directive';
 
 interface GoodData{
   name: string;
@@ -15,6 +16,9 @@ interface GoodData{
 export class ExhibitShopComponent implements OnInit {
   goods: Array<GoodData>;
 
+  @ViewChildren(FloatTopDirective)
+  floatTopElements: Array<FloatTopDirective>;
+
   constructor() { }
 
   ngOnInit() {
@@ -27,8 +31,16 @@ export class ExhibitShopComponent implements OnInit {
     ];
   }
 
+  ngAfterViewInit() {
+    this.artwrokImageLoaded();
+  }
+
   buy(good: GoodData) {
     alert(`Buy: "${good.name}"`);
+  }
+
+  artwrokImageLoaded() {
+    FloatTopDirective.float(this.floatTopElements);
   }
 
 }

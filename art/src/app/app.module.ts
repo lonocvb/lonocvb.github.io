@@ -17,6 +17,7 @@ import { TourListComponent } from './tour-list/tour-list.component';
 import { ExhibitsComponent } from './exhibits/exhibits.component';
 import { PelementDirective } from './panorama/pelement.directive';
 import { MainComponent } from './main/main.component';
+import { FloatTopDirective } from './float-top.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { MainComponent } from './main/main.component';
     ExhibitsComponent,
     PelementDirective,
     MainComponent,
+    FloatTopDirective,
   ],
   imports: [
     BrowserModule,

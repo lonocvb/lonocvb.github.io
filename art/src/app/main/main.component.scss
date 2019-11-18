@@ -81,6 +81,7 @@ $footer-menu-height: 51px;
 }
 
 #btn-close-all {
+  @extend .sf;
   position: absolute;
 
   right: 10px;

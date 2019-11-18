@@ -48,6 +48,7 @@ main {
 }
 
 .artwork .container img {
+  width: calc(100% - 10px);
   margin: 5px;
 }
 
@@ -62,7 +63,7 @@ main {
   padding: 19px 20px;
   border: 0;
 
-  margin: 26px auto 0;
+  margin: 21px auto 0;
   display: block;
   width: 160px;
 }
@@ -78,7 +79,6 @@ main {
 
   border: 0;
 
-  background-size: 17px;
   background-position: center;
   background-image: url('../../assets/cross.png');
   background-repeat: no-repeat;
