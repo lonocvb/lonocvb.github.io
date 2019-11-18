@@ -43,7 +43,7 @@ export class PanoramaComponent implements OnInit {
     }
   }
 
-  @ViewChild('panoramaCanvas', {static: false})
+  @ViewChild('panoramaCanvas', { static: true })
   canvas: ElementRef;
 
   @ViewChildren(PelementDirective)

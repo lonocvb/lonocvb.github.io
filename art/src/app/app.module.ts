@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,7 @@ import { ExhibitsComponent } from './exhibits/exhibits.component';
 import { PelementDirective } from './panorama/pelement.directive';
 import { MainComponent } from './main/main.component';
 import { FloatTopDirective } from './float-top.directive';
+import { CameraComponent } from './camera/camera.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FloatTopDirective } from './float-top.directive';
     PelementDirective,
     MainComponent,
     FloatTopDirective,
+    CameraComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { FloatTopDirective } from './float-top.directive';
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
