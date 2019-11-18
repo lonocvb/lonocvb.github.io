@@ -70,9 +70,6 @@ export class PanoramaComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-
-    console.log(this.canvas);
-
     this.viewer = new PanoramaViewer({
       canvas: this.canvas.nativeElement,
       imagePath: this.location.prepareExternalUrl(this._imagePath),
@@ -89,7 +86,6 @@ export class PanoramaComponent implements OnInit {
     });
 
     this.viewer.startAnimate();
-
   }
 
   ngOnDestroy()	{

@@ -1,0 +1,211 @@
+
+@import '../../styles.scss';
+
+main {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+}
+
+#side-menu {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#side-menu button {
+  flex: 1 1 auto;
+  margin-bottom: 11px;
+  border: 0px;
+  width: 42px;
+  height: 42px;
+}
+
+#btn-qr {
+  background-image: url('../../assets/button-qr-blue.png');
+}
+
+#btn-liveart {
+  background-image: url('../../assets/button-live-art-gallery.png');
+}
+
+#btn-qr.black {
+  background-image: url('../../assets/button-qr-black.png');
+}
+
+#btn-liveart.black {
+  background-image: url('../../assets/button-live-art-gallery-black.png');
+}
+
+#dialog, #collect {
+  position: absolute;
+
+  width: calc(100% - 35px);
+  bottom: 0;
+  left: 0;
+
+  margin: 0;
+  padding: 15px 15px 15px 20px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+
+  background-color: #e9e9f2;
+}
+
+.title {
+  @extend .global-font;
+  font-size: 14px;
+
+  margin: -1px -1px 3px 0;
+
+  display: flex;
+  align-items: center;
+}
+
+.title:before {
+  display: inline-block;
+  content: ' ';
+  width: 33px;
+  height: 33px;
+  background-image: url('../../assets/live-art-small.png');
+}
+
+#btn-dialog-close,
+#btn-dialog-close2 {
+  width: 32px;
+  height: 32px;
+
+  background-color: transparent;
+  background-image: url('../../assets/cross.png');
+
+  margin-left: auto;
+}
+
+#dialog .content {
+  margin: 15px 0;
+
+  display: flex;
+  align-items: center;
+
+  @extend .global-font;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+#dialog .content span {
+  margin: 0 5px 0 10px;
+}
+
+#btn-go-alive {
+  @extend .global-font;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+
+  display: block;
+  width: calc(100% - 15px);
+  margin: 0 10px 0 5px;
+  background-color: $Blue-Primary;
+  padding: 15px 19.3px 14px;
+  border-radius: 24px;
+}
+
+#collect {
+  padding-bottom: 0px;
+}
+
+#collect .content {
+  @extend .global-font;
+
+  margin-top: 20px;
+  margin-left: -15px;
+  margin-right: -10px;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#collect .title {
+  @extend .global-font;
+  font-size: 16px;
+  font-weight: bold;
+
+  margin-top: 4px;
+}
+#collect .title::before {
+  margin-top: -5px;
+  margin-right: 9px;
+}
+
+#collect .title .sub {
+  @extend .global-font;
+  font-size: 14px;
+  font-weight: normal;
+  display: block;
+}
+
+.item {
+  width: 10px;
+  flex: 1 1 calc(33.3% - 30px);
+  padding: 0 5px;
+
+  text-align: center;
+}
+
+.content .idx {
+  font-size: 18px;
+  font-weight: 600;
+
+  margin-bottom: 5px;
+}
+
+.content img {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  background-color: white;
+  margin: 0 5px;
+}
+
+.content .name {
+  height: 38px;
+  font-size: 14px;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  margin-bottom: 10px;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+#footer {
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+
+  text-align: center;
+}
+
+#btn-delete {
+  width: 42px;
+  height: 42px;
+  background-color: transparent;
+  background-image: url('../../assets/button-delete-live-art.png');
+}

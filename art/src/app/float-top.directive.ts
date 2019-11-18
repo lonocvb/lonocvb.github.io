@@ -14,9 +14,9 @@ export class FloatTopDirective {
   static float(elements: Array<FloatTopDirective>) {
 
     const histHeight = {};
-
     for (let e of elements) {
       const n = e.el.nativeElement;
+      e.renderer.setStyle(n, 'margin-top', `0px`);
 
       const key = n.offsetLeft;
       const head = n.offsetTop;
@@ -25,8 +25,9 @@ export class FloatTopDirective {
 
       histHeight[key] = lastTail + n.clientHeight;
 
-      e.renderer.setStyle(n, 'margin-top', `-${offset}px`);
+      e.renderer.setStyle(n, 'margin-top', `${-offset}px`);
     }
+
   }
 
 }

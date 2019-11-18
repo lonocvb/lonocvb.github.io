@@ -27,6 +27,8 @@ export class ExhibitShopComponent implements OnInit {
       { name: 'The world between empires: Art and Identity in the Ancient Middle East', price: 65, star: 5, preview: 'good/good2.png' },
       { name: 'Roman Portraits: Sculptures in Stone and Bronze', price: 65, star: 5, preview: 'good/good3.png' },
       { name: 'Michelangelo: Divine Draftsman and Designer', price: 65, star: 5, preview: 'good/good4.png' },
+      { name: 'Louise C. Tiffany Favrile Journal', price: 18, star: 5, preview: 'good/good5.png' },
+      { name: 'Heavenly Skies Oversize Scarf', price: 65, star: 5, preview: 'good/good6.png' },
       { name: 'Dummy', price: 999, star: 3 },
     ];
   }

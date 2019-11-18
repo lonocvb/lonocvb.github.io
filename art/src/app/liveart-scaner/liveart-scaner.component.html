@@ -1,1 +1,48 @@
-<p>liveart-scaner works!</p>
+
+<!-- camera background-->
+<div style="background: lightblue; width: 100%; height: 100%;">
+</div>
+
+<main>
+  <div id="side-menu">
+    <button id="btn-qr" [ngClass]="showLiveart ? 'black' : ''" (click)="btnQR()"></button>
+    <button id="btn-liveart" [ngClass]="showLiveart ? 'black' : ''" (click)="btnLiveart()"></button>
+  </div>
+
+  <div id="dialog" *ngIf="showDialog">
+    <div class="title">
+      <span>Live Art #5</span>
+      <button id="btn-dialog-close" (click)="btnCloseAll()"></button>
+    </div>
+
+    <div class="content">
+      <img src="assets/thumbnail.png" />
+      <span>Terracotta statuette of a draped woman</span>
+    </div>
+
+    <button id="btn-go-alive">GO ALIVE</button>
+  </div>
+
+  <div id="footer">
+    <button id="btn-delete" (click)="btnDelete()" *ngIf="showLiveart"></button>
+  </div>
+
+  <div id="collect" *ngIf="showCollect">
+    <div class="title">
+      <span>
+        <span>LIVE ART GALLERY</span>
+        <span class="sub">Found 64 of 305</span>
+      </span>
+      <button id="btn-dialog-close2" (click)="btnCloseAll()"></button>
+    </div>
+
+    <div class="content">
+      <div class="item" *ngFor="let liveart of livearts; let idx = index;">
+        <div class="idx">{{ idx + 1 }}</div>
+        <img src="assets/{{ liveart.found ? liveart.preview : 'blank.png' }}" (click)="btnCollect(idx);" />
+        <div class="name" (click)="btnCollect(idx);">{{ liveart.found ? liveart.name : '' }}</div>
+      </div>
+    </div>
+  </div>
+
+</main>
