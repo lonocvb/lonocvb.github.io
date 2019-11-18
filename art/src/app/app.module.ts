@@ -7,10 +7,8 @@ import { AppComponent } from './app.component';
 import { PanoramaComponent } from './panorama/panorama.component';
 import { ExhibitDetailsComponent } from './exhibit-details/exhibit-details.component';
 import { TourDetailsComponent } from './tour-details/tour-details.component';
-import { LiveartListComponent } from './liveart-list/liveart-list.component';
 import { ExhibitShopComponent } from './exhibit-shop/exhibit-shop.component';
 import { ExhibitAvComponent } from './exhibit-av/exhibit-av.component';
-import { LiveartCameraComponent } from './liveart-camera/liveart-camera.component';
 import { LiveartScanerComponent } from './liveart-scaner/liveart-scaner.component';
 import { Page404Component } from './page404/page404.component';
 import { TourListComponent } from './tour-list/tour-list.component';
@@ -18,16 +16,15 @@ import { ExhibitsComponent } from './exhibits/exhibits.component';
 import { PelementDirective } from './panorama/pelement.directive';
 import { MainComponent } from './main/main.component';
 import { FloatTopDirective } from './float-top.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
     PanoramaComponent,
     ExhibitDetailsComponent,
     TourDetailsComponent,
-    LiveartListComponent,
     ExhibitShopComponent,
     ExhibitAvComponent,
-    LiveartCameraComponent,
     LiveartScanerComponent,
     Page404Component,
     TourListComponent,

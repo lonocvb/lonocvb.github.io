@@ -26,11 +26,11 @@ export class LiveartScanerComponent implements OnInit {
 
   ngOnInit() {
     this.livearts = [
-      { preview: 'thumbnail.png', name: 'Inlay Depicting', found: true },
+      { preview: 'collect/collect0.png', name: 'Inlay Depicting', found: true },
       { preview: 'thumbnail.png', name: 'Inlay Depicting', found: false },
-      { preview: 'thumbnail.png', name: 'Cynocephalus Ape', found: true },
+      { preview: 'collect/collect2.png', name: 'Cynocephalus Ape', found: true },
       { preview: 'thumbnail.png', name: 'Inlay Depicting', found: false },
-      { preview: 'thumbnail.png', name: 'Terracotta statuette of a draped woman', found: true },
+      { preview: 'collect/collect4.png', name: 'Terracotta statuette of a draped woman', found: true },
       { preview: 'thumbnail.png', name: 'Inlay Depicting', found: false },
     ];
   }

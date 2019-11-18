@@ -6,7 +6,7 @@
 <main>
   <div id="side-menu">
     <button id="btn-qr" [ngClass]="showLiveart ? 'black' : ''" (click)="btnQR()"></button>
-    <button id="btn-liveart" [ngClass]="showLiveart ? 'black' : ''" (click)="btnLiveart()"></button>
+    <button id="btn-liveart" [ngClass]="showLiveart ? 'black' : (showDialog ? 'gallery' : '')" (click)="btnLiveart()"></button>
   </div>
 
   <div id="dialog" *ngIf="showDialog">
@@ -16,7 +16,7 @@
     </div>
 
     <div class="content">
-      <img src="assets/thumbnail.png" />
+      <img src="assets/collect/thumbnail.png" />
       <span>Terracotta statuette of a draped woman</span>
     </div>
 
