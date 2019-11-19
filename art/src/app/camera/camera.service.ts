@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import QrScanner from './lib/qr-scanner.min.js';
-import QrScannerWorkerPath from '!!file-loader!./lib/qr-scanner-worker.min.js';
-QrScanner.WORKER_PATH = QrScannerWorkerPath;
+import { Location } from '@angular/common';
 
 enum CameraSource {
   INIT,
@@ -21,7 +20,12 @@ export class CameraService {
   state: CameraSource;
   supportFlip: boolean = false;
 
-  constructor() {
+  constructor(
+    private location: Location,
+  ) {
+    const QrScannerWorkerPath = this.location.prepareExternalUrl('/assets/qr-scanner-worker.min.js');
+    QrScanner.WORKER_PATH = QrScannerWorkerPath;
+
     this.constraints = {
       audio: false,
       video: {

@@ -18,12 +18,14 @@ export class LiveartModelComponent implements OnInit {
 
   @ViewChild('container', {static: true})
   container: ElementRef;
+  showLoading: boolean = false;
 
   constructor(
     private location: Location,
   ) { }
 
   ngOnInit() {
+    this.showLoading = true;
     this.init({
       container: this.container.nativeElement,
     });
@@ -50,6 +52,8 @@ export class LiveartModelComponent implements OnInit {
     loader.load(this.location.prepareExternalUrl(this.glTFPath), gltf => {
       this.normalizeScene(gltf.scene);
       this.scene.add(gltf.scene);
+
+      this.showLoading = false;
     });
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
