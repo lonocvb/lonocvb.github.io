@@ -17,6 +17,8 @@ export class CameraComponent implements OnInit {
   width: number;
   height: number;
 
+  isFront: boolean = false;
+
   //cameraPromise: Promise<any>;
 
   constructor(
@@ -34,9 +36,20 @@ export class CameraComponent implements OnInit {
     this.canvas.nativeElement.width = this.width;
     this.canvas.nativeElement.height = this.height;
 
-    this.camera.connectFrontCamera(this.width, this.height).then(stream => {
-      this.canvas.nativeElement.srcObject = stream;
-    });
+    setTimeout(() => this.startCamera(), 0);
+  }
+
+  async startCamera() {
+    try {
+      await this.camera.connectBackCamera(this.width, this.height).then(stream => {
+        this.canvas.nativeElement.srcObject = stream;
+      });
+    } catch (error) {
+      await this.camera.connectFrontCamera(this.width, this.height).then(stream => {
+        this.isFront = true;
+        this.canvas.nativeElement.srcObject = stream;
+      });
+    }
   }
 
   ngOnDestroy() {
@@ -44,8 +57,11 @@ export class CameraComponent implements OnInit {
   }
 
   async scanQR() {
-    console.log('start scan');
-    console.log(await this.camera.scanQR(this.canvas.nativeElement));
+    const ret = await this.camera.scanQR(this.canvas.nativeElement);
+    return {
+      result: ret,
+      found: ret != '',
+    }
   }
 
 }

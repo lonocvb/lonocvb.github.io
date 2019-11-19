@@ -19,7 +19,7 @@ export class CameraService {
   constraints: any;
 
   state: CameraSource;
-  supportFlip: boolean;
+  supportFlip: boolean = false;
 
   constructor() {
     this.constraints = {
@@ -57,6 +57,7 @@ export class CameraService {
       this.stream = await navigator.mediaDevices.getUserMedia(this.constraints);
     } catch (error) {
       console.log('connect error', error);
+      throw error;
     }
   }
 
@@ -67,7 +68,7 @@ export class CameraService {
         track.stop();
       });
     } catch (error) {
-
+      // ignore error;
     }
   }
 
@@ -76,20 +77,29 @@ export class CameraService {
   }
 
   async scanQR(ele) {
-    return await QrScanner.scanImage(ele)
-    .catch(error => {
-      console.log(error || 'No QR code found.');
-    });
+    try {
+      return await QrScanner.scanImage(ele);
+    } catch (error) {
+      return '';
+    };
   }
 
   async connectFrontCamera(width, height) {
-    await this.connect(width, height, CameraSource.FRONT);
-    return this.getMediaStream();
+    try {
+      await this.connect(width, height, CameraSource.FRONT);
+      return this.getMediaStream();
+    } catch (error) {
+      throw error;
+    }
   }
 
   async connectBackCamera(width, height) {
-    await this.connect(width, height, CameraSource.BACK);
-    return this.getMediaStream();
+    try {
+      await this.connect(width, height, CameraSource.BACK);
+      return this.getMediaStream();
+    } catch (error) {
+      throw error;
+    }
   }
 
   async flipCamera(width, height) {
