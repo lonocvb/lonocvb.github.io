@@ -17,6 +17,7 @@ import { PelementDirective } from './panorama/pelement.directive';
 import { MainComponent } from './main/main.component';
 import { FloatTopDirective } from './float-top.directive';
 import { CameraComponent } from './camera/camera.component';
+import { LiveartModelComponent } from './liveart-model/liveart-model.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CameraComponent } from './camera/camera.component';
     MainComponent,
     FloatTopDirective,
     CameraComponent,
+    LiveartModelComponent,
   ],
   imports: [
     BrowserModule,

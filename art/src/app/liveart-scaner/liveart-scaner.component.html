@@ -1,10 +1,11 @@
 
-<!-- camera background-->
-<div style="background: lightblue; width: 100%; height: 100%;">
-  <app-camera></app-camera>
-</div>
+<app-camera></app-camera>
 
 <div id="qr-scanner" #qrFocus *ngIf="showQrFocus"></div>
+
+<app-liveart-model
+  glTFPath="assets/3d/glTF/statue_of_asclepius/scene.gltf"
+  *ngIf="showLiveart"></app-liveart-model>
 
 <div id="side-menu">
   <button id="btn-qr" [ngClass]="showLiveart ? 'black' : ''" (click)="btnQR()"></button>

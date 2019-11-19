@@ -10,6 +10,7 @@ import { ExhibitShopComponent } from './exhibit-shop/exhibit-shop.component';
 import { ExhibitsComponent } from './exhibits/exhibits.component';
 import { TourDetailsComponent } from './tour-details/tour-details.component';
 import { MainComponent } from './main/main.component';
+import { LiveartModelComponent } from './liveart-model/liveart-model.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   ]},
   { path: 'liveart-scaner', component: LiveartScanerComponent },
   { path: 'tour/:id', component: TourDetailsComponent },
+  { path: 'test', component: LiveartModelComponent },
   { path: '**', component: Page404Component },
 ];
 
