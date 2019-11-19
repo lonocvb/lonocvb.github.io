@@ -1,9 +1,14 @@
 import { Component, OnInit, ElementRef, ViewChild, HostListener, ViewChildren, QueryList, Input, ContentChildren } from '@angular/core';
 
-import PanoramaViewer from './lib/PanoramaViewer';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { PelementDirective } from './pelement.directive';
+import { TourNavService } from '../tour-nav.service';
+
+import PanoramaViewer from './lib/PanoramaViewer';
+import PanoramaCameraControl from './lib/PanoramaCameraControl';
+import SensorSource from './lib/SensorSource';
+import SensorSourceType from './lib/SensorSourceType';
 
 @Component({
   selector: 'app-panorama',
@@ -25,11 +30,14 @@ export class PanoramaComponent implements OnInit {
     }
   }
 
+  sensorSource: SensorSource;
+
   @Input()
-  set sensorType(val: number) {
-    if (this.viewer) {
-      this.viewer.setSensorType(val);
-    }
+  set sensorType(val) {
+    this.sensorSource.setType(val);
+  }
+  get sensorType() {
+    return this.sensorSource.getType();
   }
 
   @Input()
@@ -55,9 +63,18 @@ export class PanoramaComponent implements OnInit {
   viewer: any;
 
   constructor(
+    private tourNav: TourNavService,
     private router: Router,
     private location: Location,
   ) {
+    if (!this.tourNav.cameraControl) {
+      this.sensorSource = new SensorSource(SensorSourceType.MANUAL);
+      this.tourNav.cameraControl = new PanoramaCameraControl(this.sensorSource);
+    } else {
+      this.sensorSource = this.tourNav.cameraControl.getSource();
+    }
+
+    this.sensorType = SensorSourceType.DEVICE_ORIENTATION;
   }
 
   ngOnInit() {}
@@ -70,11 +87,14 @@ export class PanoramaComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+
     this.viewer = new PanoramaViewer({
       canvas: this.canvas.nativeElement,
       imagePath: this.location.prepareExternalUrl(this._imagePath),
       width: this.canvas.nativeElement.parentElement.offsetWidth,
       height: this.canvas.nativeElement.parentElement.offsetHeight,
+
+      cameraControl: this.tourNav.cameraControl,
 
       textLabels: [
         { text: 'top', position: { lon: 0, lat: 90 }, args: { yo: 'yo' } },
@@ -88,7 +108,4 @@ export class PanoramaComponent implements OnInit {
     this.viewer.startAnimate();
   }
 
-  ngOnDestroy()	{
-    this.viewer.unlisten();
-  }
 }

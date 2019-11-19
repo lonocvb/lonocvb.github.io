@@ -145,8 +145,11 @@ class SensorSource {
     if (type == this.type) {
       return;
     }
-
     this.type = type;
+  }
+
+  getType() {
+    return this.type;
   }
 
   update() {

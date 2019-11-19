@@ -7,12 +7,12 @@ const gRadius = 1000;
 
 // ref: THREE.js
 class PanoramaViewer {
-  constructor({ canvas, width, height, imagePath, textLabels = [], elementLabels = [], onLabelClick = () => {} }) {
+  constructor({ canvas, width, height, imagePath, cameraControl, textLabels = [], elementLabels = [], onLabelClick = () => {} }) {
 
     this.enable = false;
     this.canvas = canvas;
 
-    this.initWebGL({ canvas, width, height, imagePath });
+    this.initWebGL({ canvas, width, height, imagePath, cameraControl });
 
     for (let label of textLabels) {
       this.createLabelSprite(label);
@@ -34,7 +34,7 @@ class PanoramaViewer {
 
   }
 
-  initWebGL({ canvas, width, height, imagePath }) {
+  initWebGL({ canvas, width, height, imagePath, cameraControl }) {
     this.renderer = new THREE.WebGLRenderer({ canvas });
     this.renderer.setSize(width, height);
     this.renderer.autoClear = false;
@@ -48,9 +48,10 @@ class PanoramaViewer {
 
     this.camera.target = new THREE.Vector3(0, 0, 0);
 
-    this.sensorSource = new SensorSource(SetSensorType.MANUAL);
-    this.cameraControl = new PanoramaCameraControl(this.camera, this.sensorSource);
-    this.cameraControl.connect();
+    //this.sensorSource = new SensorSource(SetSensorType.MANUAL);
+    //this.cameraControl = new PanoramaCameraControl(this.sensorSource);
+    this.cameraControl = cameraControl;
+    this.cameraControl.connect(this.camera);
 
     this.sphere = new THREE.SphereBufferGeometry(100, 100, 40);
     this.sphere.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
@@ -187,10 +188,6 @@ class PanoramaViewer {
 
   changeTexture(imagePath) {
     this.sphereMaterial.map = new THREE.TextureLoader().load(imagePath);
-  }
-
-  unlisten() {
-    this.sensorSource.unlisten();
   }
 }
 

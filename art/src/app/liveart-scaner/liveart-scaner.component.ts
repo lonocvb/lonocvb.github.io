@@ -28,6 +28,9 @@ export class LiveartScanerComponent implements OnInit {
   qrFocus: ElementRef;
   showQrFocus: boolean = true;
 
+  width;
+  height;
+
   worker = null;
 
   constructor(
@@ -46,6 +49,9 @@ export class LiveartScanerComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.width = this.appCamera.width;
+    this.height = this.appCamera.height;
+
     this.startQrScanTimer();
   }
 

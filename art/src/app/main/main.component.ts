@@ -21,6 +21,10 @@ export class MainComponent implements OnInit {
   ) {
     const windowAny: any = window;
     this.isGengar = (typeof windowAny.gengar !== 'undefined');
+
+    if (this.tourNav.cameraControl) {
+      this.sensorType = this.tourNav.cameraControl.getSource().getType();
+    }
   }
 
   ngOnInit() {
@@ -35,12 +39,10 @@ export class MainComponent implements OnInit {
 
   showTourList() {
     this.tourListShow = true;
-    //this.viewer.stopAnimate();
   }
 
   closeAll() {
     this.tourListShow = false;
-    //this.viewer.startAnimate();
   }
 
   navPaths = [

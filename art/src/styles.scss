@@ -3,6 +3,12 @@
 $pale-lilac: #e9e9f2;
 $Blue-Primary: #00bcf2;
 
+textarea:focus,
+input:focus,
+button:focus {
+  outline: none;
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -27,12 +33,10 @@ body {
   position: relative;
 
   // scale 1.33333
-  /*
   width: 75%;
   height: 75%;
   transform: scale(1.3333333);
   margin: 12.5vh 12.5vw;
-  */
 }
 
 .sf {

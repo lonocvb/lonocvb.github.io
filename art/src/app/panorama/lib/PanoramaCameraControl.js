@@ -9,15 +9,9 @@
 
 class PanoramaCameraControl {
 
-  constructor(object, sensor) {
-    this.object = object;
-    this.object.rotation.reorder( 'YXZ' );
-
+  constructor(sensor) {
     this.sensor = sensor;
-
     this.screenOrientation = 0;
-
-    this.connect();
   }
 
   onScreenOrientationChangeEvent(e) {
@@ -38,7 +32,9 @@ class PanoramaCameraControl {
     quaternion.multiply( q0.setFromAxisAngle( zee, - orient ) ); // adjust for screen orientation
   }
 
-  connect() {
+  connect(object) {
+    this.object = object;
+    this.object.rotation.reorder( 'YXZ' );
     this.onScreenOrientationChangeEvent(); // run once on load
   }
 
@@ -58,6 +54,9 @@ class PanoramaCameraControl {
     this.setObjectQuaternion(this.object.quaternion, alpha, beta, gamma, orient);
   }
 
+  getSource() {
+    return this.sensor;
+  }
 }
 
 export default PanoramaCameraControl;

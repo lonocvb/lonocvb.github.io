@@ -16,6 +16,12 @@ export class LiveartModelComponent implements OnInit {
   @Input()
   glTFPath: string = 'assets/3d/glTF/DamagedHelmet/DamagedHelmet.gltf';
 
+  @Input()
+  width: number;
+
+  @Input()
+  height: number;
+
   @ViewChild('container', {static: true})
   container: ElementRef;
   showLoading: boolean = false;
@@ -43,8 +49,8 @@ export class LiveartModelComponent implements OnInit {
 
   init({ container }) {
 
-    this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 200 );
-    this.camera.position.set( - 1.8, 0.9, 2.7 );
+    this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 0.25, 200);
+    this.camera.position.set(-1.8, 0.9, 2.7);
 
     this.scene = new THREE.Scene();
 
@@ -58,12 +64,12 @@ export class LiveartModelComponent implements OnInit {
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     this.renderer.setPixelRatio( window.devicePixelRatio );
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(this.width, this.height);
     this.renderer.gammaOutput = true;
     container.appendChild(this.renderer.domElement);
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.target.set( 0, - 0.2, - 0.5 );
+    this.controls.target.set(0, - 0.2, - 0.5);
     this.controls.update();
 
   }

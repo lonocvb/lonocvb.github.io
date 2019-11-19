@@ -1,10 +1,14 @@
 
 <app-camera></app-camera>
 
-<div id="qr-scanner" #qrFocus *ngIf="showQrFocus"></div>
+<div id="qr-focus-container" *ngIf="showQrFocus">
+  <div id="qr-focus" #qrFocus></div>
+</div>
 
 <app-liveart-model
   glTFPath="assets/3d/glTF/statue_of_asclepius/scene.gltf"
+  [width]="width"
+  [height]="height"
   *ngIf="showLiveart"></app-liveart-model>
 
 <div id="side-menu">

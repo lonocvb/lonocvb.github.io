@@ -80,4 +80,6 @@ export class TourNavService {
   stopTour() {
     this.tourChange.next(-1);
   }
+
+  cameraControl: any;
 }
