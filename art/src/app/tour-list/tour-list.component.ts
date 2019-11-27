@@ -40,4 +40,8 @@ export class TourListComponent implements OnInit {
 
     this.tourIdx = this.tourNav.tourIdx;
   }
+
+  onWheel({ deltaY }: WheelEvent, item: Element) {
+    item.scrollLeft += deltaY;
+  }
 }

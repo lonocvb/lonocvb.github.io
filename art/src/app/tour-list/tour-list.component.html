@@ -1,5 +1,5 @@
 
-<div id="list">
+<div id="list" #list (wheel)="onWheel($event, list)">
   <div id="tour-list-new" class="tour" onclick="alert('new');"></div>
 
   <div *ngFor="let tour of tours; let id = index;"  class="tour tour-ex{{ id }}" [ngClass]="tourIdx == id ? 'active' : ''" routerLink="/tour/{{ id }}" >
