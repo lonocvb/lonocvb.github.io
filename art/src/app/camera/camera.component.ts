@@ -46,10 +46,10 @@ export class CameraComponent implements OnInit {
       });
     } catch (error) {
       await this.camera.connectFrontCamera(this.width, this.height).then(stream => {
-        this.isFront = true;
         this.canvas.nativeElement.srcObject = stream;
       });
     }
+    this.isFront = this.camera.isFront();
   }
 
   ngOnDestroy() {

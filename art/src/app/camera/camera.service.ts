@@ -1,24 +1,18 @@
 import { Injectable } from '@angular/core';
-
-import QrScanner from './lib/qr-scanner.min.js';
 import { Location } from '@angular/common';
 
-enum CameraSource {
-  INIT,
-  FRONT,
-  BACK,
-};
+import { Camera, CameraSource } from './camera.js';
+import QrScanner from './lib/qr-scanner.min.js';
+import { CameraLocalImpl } from './camera-local-impl.js';
+import { CameraGengarImpl } from './camera-gengar-impl.js';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class CameraService {
+export class CameraService implements Camera {
 
-  stream: any = null;
-  constraints: any;
-
-  state: CameraSource;
-  supportFlip: boolean = false;
+  impl: Camera;
 
   constructor(
     private location: Location,
@@ -26,58 +20,8 @@ export class CameraService {
     const QrScannerWorkerPath = this.location.prepareExternalUrl('/assets/qr-scanner-worker.min.js');
     QrScanner.WORKER_PATH = QrScannerWorkerPath;
 
-    this.constraints = {
-      audio: false,
-      video: {
-        width: { ideal: 240 },
-        height: { ideal: 320 },
-      },
-    };
-    this.state = CameraSource.INIT;
 
-    const supports = navigator.mediaDevices.getSupportedConstraints();
-    this.supportFlip = supports['facingMode'] === true;
-  }
-
-  async connect(width, height, faceMode) {
-
-    if (faceMode == this.state) {
-      return;
-    }
-
-    try {
-      if (this.stream) {
-        const track = this.stream.getTracks()[0];
-        track.stop();
-        this.stream = null;
-      }
-
-      this.state = faceMode;
-
-      this.constraints.video.facingMode = faceMode == CameraSource.FRONT ? "user" : { exact: "environment" };
-      this.constraints.video.width.ideal = width;
-      this.constraints.video.height.ideal = height;
-
-      this.stream = await navigator.mediaDevices.getUserMedia(this.constraints);
-    } catch (error) {
-      console.log('connect error', error);
-      throw error;
-    }
-  }
-
-  disconnect() {
-    try {
-      this.state = CameraSource.INIT;
-      this.stream.getTracks().forEach(track => {
-        track.stop();
-      });
-    } catch (error) {
-      // ignore error;
-    }
-  }
-
-  getMediaStream() {
-    return this.stream;
+    this.impl = (!(window as any).gengar) ? new CameraLocalImpl() : new CameraGengarImpl();
   }
 
   async scanQR(ele) {
@@ -88,7 +32,7 @@ export class CameraService {
     };
   }
 
-  async connectFrontCamera(width, height) {
+  async connectFrontCamera(width: number, height: number): Promise<MediaStream> {
     try {
       await this.connect(width, height, CameraSource.FRONT);
       return this.getMediaStream();
@@ -97,7 +41,7 @@ export class CameraService {
     }
   }
 
-  async connectBackCamera(width, height) {
+  async connectBackCamera(width: number, height: number): Promise<MediaStream> {
     try {
       await this.connect(width, height, CameraSource.BACK);
       return this.getMediaStream();
@@ -106,17 +50,19 @@ export class CameraService {
     }
   }
 
-  async flipCamera(width, height) {
-    if (this.state == CameraSource.BACK) {
-      await this.connectFrontCamera(width, height);
-    } else {
-      await this.connectBackCamera(width, height);
-    }
-    return this.getMediaStream();
+  connect(width: number, height: number, faceMode: CameraSource): Promise<undefined> {
+    return this.impl.connect(width, height, faceMode);
   }
 
-  isFront() {
-    return this.state == CameraSource.FRONT;
+  disconnect() {
+    this.impl.disconnect();
   }
 
+  getMediaStream(): MediaStream {
+    return this.impl.getMediaStream();
+  }
+
+  isFront(): boolean {
+    return this.impl.isFront();
+  }
 }
