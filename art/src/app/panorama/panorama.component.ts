@@ -95,13 +95,13 @@ export class PanoramaComponent implements OnInit {
       height: this.canvas.nativeElement.parentElement.offsetHeight,
 
       cameraControl: this.tourNav.cameraControl,
-
+/*
       textLabels: [
         { text: 'top', position: { lon: 0, lat: 90 }, args: { yo: 'yo' } },
         { text: 'bottom', position: { lon: 0, lat: -90 }, args: { yo: 'yo' } },
       ],
       onLabelClick: label => this.router.navigate(['exhibit', label.text, 'info']),
-
+*/
       elementLabels: this.pElements.map(p => p.toLabel()).concat(this.pcElements.map(p => p.toLabel())),
     });
 

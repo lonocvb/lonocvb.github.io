@@ -20,12 +20,11 @@ export class ExhibitAvComponent implements OnInit {
 
   ngOnInit() {
     this.audios = [
-      { title: 'Terracotta statuette of a draped woman, Part 1' },
-      { title: 'Terracotta statuette of a draped woman, Part 2' },
+      { title: 'The introduction' },
+      { title: 'The history' },
     ];
     this.videos = [
-      { title: 'vidoe 1', preview: 'exhibit1/header.png' },
-      { title: 'video 2', preview: 'exhibit1/header.png' },
+      { title: 'vidoe01', preview: 'exhibit/video.png' },
     ];
   }
 

@@ -14,7 +14,9 @@ import { Location } from '@angular/common';
 export class LiveartModelComponent implements OnInit {
 
   @Input()
-  glTFPath: string = 'assets/3d/glTF/DamagedHelmet/DamagedHelmet.gltf';
+  set glTFPath(value: string) {
+    this.updateScene(value);
+  }
 
   @Input()
   width: number;
@@ -31,7 +33,6 @@ export class LiveartModelComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.showLoading = true;
     this.init({
       container: this.container.nativeElement,
     });
@@ -52,16 +53,6 @@ export class LiveartModelComponent implements OnInit {
     this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 0.25, 200);
     this.camera.position.set(-1.8, 0.9, 2.7);
 
-    this.scene = new THREE.Scene();
-
-    var loader = new GLTFLoader();
-    loader.load(this.location.prepareExternalUrl(this.glTFPath), gltf => {
-      this.normalizeScene(gltf.scene);
-      this.scene.add(gltf.scene);
-
-      this.showLoading = false;
-    });
-
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     this.renderer.setPixelRatio( window.devicePixelRatio );
     this.renderer.setSize(this.width, this.height);
@@ -71,7 +62,30 @@ export class LiveartModelComponent implements OnInit {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.target.set(0, - 0.2, - 0.5);
     this.controls.update();
+  }
 
+  updateScene(glTFPath: string) {
+    this.scene = new THREE.Scene();
+
+    const light1 = new THREE.AmbientLight(0xffffff, 0.3);
+    light1.name = 'ambient_light';
+    this.scene.add( light1 );
+
+    const light2 = new THREE.DirectionalLight(0xffffff, 2.5);
+    light2.position.set(0.5, 0, 0.866); // ~60º
+    light2.name = 'main_light';
+    this.scene.add( light2 );
+
+    const loader = new GLTFLoader();
+
+    this.showLoading = true;
+
+    loader.load(this.location.prepareExternalUrl(glTFPath), gltf => {
+      this.normalizeScene(gltf.scene);
+      this.scene.add(gltf.scene);
+
+      this.showLoading = false;
+    });
   }
 
   normalizeScene(scene) {

@@ -26,20 +26,20 @@ button {
 }
 
 #btn-qr {
-  background-image: url('../../assets/button-qr-blue.png');
+  background-image: url('../../assets/icon/button-qr-blue.svg');
 }
 #btn-qr.black {
-  background-image: url('../../assets/button-qr-black.png');
+  background-image: url('../../assets/icon/button-qr.svg');
 }
 
 #btn-liveart {
-  background-image: url('../../assets/button-live-art.png');
+  background-image: url('../../assets/icon/button-live-art-gallery-transparent.svg');
 }
 #btn-liveart.gallery {
-  background-image: url('../../assets/button-live-art-gallery.png');
+  background-image: url('../../assets/icon/button-live-art-gallery.svg');
 }
 #btn-liveart.black {
-  background-image: url('../../assets/button-live-art-gallery-black.png');
+  background-image: url('../../assets/icon/button-art-gallery.svg');
 }
 
 #dialog, #collect {
@@ -205,7 +205,7 @@ button {
   width: 42px;
   height: 42px;
   background-color: transparent;
-  background-image: url('../../assets/button-delete-live-art.png');
+  background-image: url('../../assets/icon/button-delete-live-art.svg');
 }
 
 #qr-focus-container {
@@ -236,4 +236,18 @@ button {
 @keyframes qr-ani {
   from { transform: scale(1); }
   to   { transform: scale(1.1); }
+}
+
+#text-liveart {
+  @extend .global-font;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  color: white;
+  transform: scale(0.5);
+  width: 84px;
+  margin: -21px;
+  margin-top: -15px;
+  white-space: nowrap;
+  text-align: center;
 }

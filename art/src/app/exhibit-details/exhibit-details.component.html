@@ -1,6 +1,13 @@
 <main>
-  <img id="banner" src="assets/exhibit1/header.png">
-  <div id="title">{{ title }}</div>
-  <div id="time">{{ time }}</div>
-  <div id="describe">{{ describe }} <strong>param: {{ name$ | async }}</strong></div>
+  <img id="banner" src="assets/exhibit/{{ data.name }}.png">
+  <div id="title">{{ data.title }}</div>
+  <div id="subtitle">{{ data.title }}</div>
+  <div id="time">{{ data.timeStr }}</div>
+  <div id="describe">{{ data.describe }}</div>
+
+
+  <div class="property" *ngFor="let item of data.describe2 | keyvalue">
+    <div class="key">{{ item.key }}</div>
+    <div class="value">{{ item.value }}</div>
+  </div>
 </main>

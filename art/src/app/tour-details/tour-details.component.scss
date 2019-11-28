@@ -41,15 +41,41 @@ main {
 .artwork {
   float: left;
   width: 50%;
-}
 
-.artwork .container {
-  width: 100%;
-}
+  .container {
+    width: 100%;
 
-.artwork .container img {
-  width: calc(100% - 10px);
-  margin: 5px;
+    .img {
+      width: calc(100% - 10px);
+      padding-top: calc(100% - 10px);
+      height: 0;
+      position: relative;
+
+      border-radius: 6px;
+      margin: 5px;
+
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        top: 0;
+
+        object-fit: cover;
+        object-position: top;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .name {
+      @extend .global-font;
+      font-size: 14px;
+      text-align: center;
+
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
+  }
 }
 
 #btn-start-tour {
@@ -63,7 +89,7 @@ main {
   padding: 19px 20px;
   border: 0;
 
-  margin: 21px auto 0;
+  margin: 0 auto;
   display: block;
   width: 160px;
 }

@@ -1,7 +1,11 @@
 
-<app-panorama [imagePath]="navPaths[nav]" [(sensorType)]="sensorType"></app-panorama>
+<app-panorama [imagePath]="navPaths[0]" [(sensorType)]="sensorType">
+  <div appPelement lon="231" lat="5" [ngClass]="navExtra == 2 ? '' : 'hide'">
+    <img src="../../assets/icon/extra-guide-toilet.png" />
+  </div>
+</app-panorama>
 
-<div id="sensor-control">
+<div id="sensor-control" [ngClass]="isGengar ? 'hide' : ''">
   <div *ngIf="!isGengar">
     <input id="r1" type="radio" name="radio_sensor_source" [value]="2" [(ngModel)]="sensorType" />
     <label for="r1">by deviceorientation</label>
@@ -30,10 +34,10 @@
   [ngClass]="footerMenuShow ? 'show' : ''"
   (click)="toggleFooterMenu()"></button>
 <div id="footer-menu" [ngClass]="footerMenuShow ? 'show' : ''">
-  <button id="btn-footer-menu-resturant" [ngClass]="nav == 1 ? 'active' : ''" (click)="btnNavResturant()"></button>
-  <button id="btn-footer-menu-toilet"    [ngClass]="nav == 2 ? 'active' : ''" (click)="btnNavToilet()"></button>
-  <button id="btn-footer-menu-elevator"  [ngClass]="nav == 3 ? 'active' : ''" (click)="btnNavElevator()"></button>
-  <button id="btn-footer-menu-exit"      [ngClass]="nav == 4 ? 'active' : ''" (click)="btnNavExit()"></button>
+  <button id="btn-footer-menu-resturant" [ngClass]="navExtra == 1 ? 'active' : ''" (click)="navExtraSet(1)"></button>
+  <button id="btn-footer-menu-toilet"    [ngClass]="navExtra == 2 ? 'active' : ''" (click)="navExtraSet(2)"></button>
+  <button id="btn-footer-menu-elevator"  [ngClass]="navExtra == 3 ? 'active' : ''" (click)="navExtraSet(3)"></button>
+  <button id="btn-footer-menu-exit"      [ngClass]="navExtra == 4 ? 'active' : ''" (click)="navExtraSet(4)"></button>
 </div>
 
 <app-tour-list *ngIf="tourListShow" (wantClose)="closeAll()"></app-tour-list>

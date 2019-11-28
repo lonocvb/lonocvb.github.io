@@ -172,7 +172,7 @@ class PanoramaViewer {
         const x = sp.x + this.canvas.width / 2;
         const y = -sp.y + this.canvas.height / 2;
 
-        elementLabel.element.style.display = 'block';
+        elementLabel.element.style.display = 'inline-block';
         elementLabel.element.style.left = `${x}px`;
         elementLabel.element.style.top = `${y}px`;
       } else {

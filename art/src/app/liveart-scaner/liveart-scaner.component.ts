@@ -26,7 +26,7 @@ export class LiveartScanerComponent implements OnInit {
 
   @ViewChild('qrFocus', { static: false })
   qrFocus: ElementRef;
-  showQrFocus: boolean = true;
+  showQrFocus: boolean = false;
 
   width;
   height;
@@ -39,18 +39,18 @@ export class LiveartScanerComponent implements OnInit {
 
   ngOnInit() {
     this.livearts = [
-      { preview: 'collect/collect0.png', name: 'Inlay Depicting', found: true },
+      { preview: 'collect/collect0.png', name: 'Seated Lion', found: true },
       { preview: 'thumbnail.png', name: 'Inlay Depicting', found: false },
-      { preview: 'collect/collect2.png', name: 'Cynocephalus Ape', found: true },
+      { preview: 'collect/collect2.png', name: 'Wounded Amazon', found: true },
       { preview: 'thumbnail.png', name: 'Inlay Depicting', found: false },
-      { preview: 'collect/collect4.png', name: 'Terracotta statuette of a draped woman', found: true },
+      { preview: 'collect/collect4.png', name: 'Colossal bust of Ramesses', found: true },
       { preview: 'thumbnail.png', name: 'Inlay Depicting', found: false },
     ];
   }
 
   ngAfterViewInit() {
-    this.width = this.appCamera.width;
-    this.height = this.appCamera.height;
+    this.width = document.body.offsetWidth;
+    this.height = document.body.offsetHeight;
 
     this.startQrScanTimer();
   }
@@ -59,6 +59,7 @@ export class LiveartScanerComponent implements OnInit {
     this.stopQrScanTimer();
   }
 
+  detectedIdx: number = 0;
   startQrScanTimer() {
     this.stopQrScanTimer();
 
@@ -72,12 +73,26 @@ export class LiveartScanerComponent implements OnInit {
       const res = await this.appCamera.scanQR();
 
       if (res.found) {
-        console.log('qrcode:', res.result);
-        this.showDialog = true;
+        console.log(`qrcode: !${res.result}!`);
+
+        const mapping = {
+          'edge-model-001': 0,
+          'edge-model-002': 2,
+          'edge-model-003': 4,
+        };
+
+        if (mapping.hasOwnProperty(res.result)) {
+          this.detectedIdx = mapping[res.result];
+          this.showDialog = true;
+        } else {
+          console.log('qr code detected but not in db.');
+        }
       }
     };
 
-    this.worker = setInterval(task, 750);
+    if (this.appCamera) {
+      this.worker = setInterval(task, 750);
+    }
   }
 
   stopQrScanTimer() {
@@ -94,7 +109,7 @@ export class LiveartScanerComponent implements OnInit {
 
   btnGoAlive() {
     this.showDialog = false;
-    this.showCollect = true;
+    this.btnCollect(this.detectedIdx);
   }
 
   btnCloseAll() {
@@ -102,10 +117,24 @@ export class LiveartScanerComponent implements OnInit {
     this.showCollect = false;
   }
 
+  glTFPath: string = '';
+
   btnCollect(idx: number) {
     if (!this.livearts[idx].found) {
       return;
     }
+
+    const pathList: Array<string> = [
+      'assets/3d/glTF/seated_lion_gltf/scene.gltf',
+      '',
+      'assets/3d/glTF/wounded_amazon_gltf/scene.gltf',
+      '',
+      'assets/3d/glTF/colossal_bust_of_ramesses_ii_v2.0_gltf/scene.gltf',
+      '',
+    ];
+
+    this.glTFPath = pathList[idx];
+
     this.btnCloseAll();
     this.showLiveart = true;
   }

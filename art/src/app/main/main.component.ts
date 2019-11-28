@@ -21,6 +21,7 @@ export class MainComponent implements OnInit {
   ) {
     const windowAny: any = window;
     this.isGengar = (typeof windowAny.gengar !== 'undefined');
+    this.sensorType = (this.isGengar) ? 4 : 1;
 
     if (this.tourNav.cameraControl) {
       this.sensorType = this.tourNav.cameraControl.getSource().getType();
@@ -46,32 +47,17 @@ export class MainComponent implements OnInit {
   }
 
   navPaths = [
-    'assets/360/x1.jpg',
-    'assets/360/x1-rest.jpg',
-    'assets/360/x1-toilet.jpg',
-    'assets/360/x1-ele.jpg',
-    'assets/360/x1-exit.jpg',
+    'assets/360/AR-room.png',
   ];
-  nav: number = 0;
 
-  navSet(idx) {
-    if (this.nav == idx) {
+  navExtra: number = 0;
+
+  navExtraSet(idx) {
+    if (this.navExtra == idx) {
       idx = 0;
     }
-    if (this.nav != idx) {
-      this.nav = idx;
+    if (this.navExtra != idx) {
+      this.navExtra = idx;
     }
-  }
-  btnNavResturant() {
-    this.navSet(1);
-  }
-  btnNavToilet() {
-    this.navSet(2);
-  }
-  btnNavElevator() {
-    this.navSet(3);
-  }
-  btnNavExit() {
-    this.navSet(4);
   }
 }

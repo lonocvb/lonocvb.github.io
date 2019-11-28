@@ -2,11 +2,12 @@
 <div id="list" #list (wheel)="onWheel($event, list)">
   <div id="tour-list-new" class="tour" onclick="alert('new');"></div>
 
-  <div *ngFor="let tour of tours; let id = index;"  class="tour tour-ex{{ id }}" [ngClass]="tourIdx == id ? 'active' : ''" routerLink="/tour/{{ id }}" >
-    <div class="title">{{ tour.title }}</div>
+  <div *ngFor="let tour of tours; let id = index;"  class="tour tour-{{ tour.name }}" [ngClass]="tourIdx == id ? 'active' : ''" routerLink="/tour/{{ tour.name }}" >
+    <div class="img"><img src="assets/tour/{{tour.name}}{{ tourIdx == id ? '-ongoing' : '' }}.png" /></div>
+    <div class="title">{{ tour.tourTitle }}</div>
     <div class="sub">
-      {{ tour.item | i18nPlural: {'=0': '0 Items', '=1': '1 Items', 'other': '# Items' } }},
-      {{ tour.time | i18nPlural: {'=0': '0 Hours', '=1': '1 Hour', 'other': '# Hours' } }}
+      {{ tour.numberOfItems | i18nPlural: {'=0': '0 Items', '=1': '1 Items', 'other': '# Items' } }},
+      {{ tour.duration }}
     </div>
   </div>
 </div>

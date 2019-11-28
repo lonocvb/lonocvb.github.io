@@ -1,14 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { TourNavService } from '../tour-nav.service';
+import { TourNavService, TourData } from '../tour-nav.service';
 import { Router } from '@angular/router';
 import { EventEmitter } from '@angular/core';
-
-interface TourData {
-  name: string;
-  title: string;
-  item: number;
-  time: number;
-};
 
 @Component({
   selector: 'app-tour-list',

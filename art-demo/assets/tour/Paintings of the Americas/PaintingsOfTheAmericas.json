@@ -1,0 +1,52 @@
+{
+	"tourTitle": "Paintings of the Americas",
+	"numberOfItems": 11,
+	"duration": "55 MINS",
+	"description": "The Art of the Americas collection includes more than 2,000 paintings created throughout the United States, Canada, and Latin America and ranging from the colonial period through the mid-20th century.",
+	"artworks": [
+		{
+			"img": "./Cocktails.jpg",
+			"name": "Cocktails"
+		},
+		{
+			"img": "./Daughters.jpg",
+			"name": "The Daughters"
+		},
+		{
+			"img": "./Deer.jpg",
+			"name": "Deer's Skull"
+		},
+		{
+			"img": "./DonManuel.jpg",
+			"name": "Don Manuel José Rubio y Salinas"
+		},
+		{
+			"img": "./DosMujeres.jpg",
+			"name": "Dos Mujeres"
+		},
+		{
+			"img": "./Fog.jpg",
+			"name": "The Fog Warning"
+		},
+		{
+			"img": "./GeorgeWashington.jpg",
+			"name": "George Washington"
+		},
+		{
+			"img": "./Expulsion.jpg",
+			"name": "Expulsion from the Garden of Eden"
+		},
+		{
+			"img": "./Delaware.jpg",
+			"name": "The Passage of the Delaware"
+		},
+		{
+			"img": "./Loge.jpg",
+			"name": "In the Loge"
+		},
+		{
+			"img": "./Paul.jpg",
+			"name": "Paul Revere"
+		}
+	]
+}

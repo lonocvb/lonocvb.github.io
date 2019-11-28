@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { ExhibitService, ExhibitData } from '../exhibit.service';
 
 @Component({
   selector: 'app-exhibit-details',
@@ -9,23 +8,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./exhibit-details.component.scss']
 })
 export class ExhibitDetailsComponent implements OnInit {
-  name$: Observable<string>;
+  name: string;
 
-  title: string;
-  time: string;
-  describe: string;
+  data: ExhibitData;
 
   constructor(
+    private exhibitService: ExhibitService,
     private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
-    this.name$ = this.route.parent.paramMap.pipe(
-      switchMap((params: ParamMap) => [params.get('name')]),
-    );
-    this.title = 'Teracotta statuette of a draped woman';
-    this.time = 'Early 3rd centruy B.C.';
-    this.describe = 'The variety among terracotta statuettes of draped ladies occurs principally in their hairdos and in the fall of their draperies, with the concomitant play of folds.';
+    this.name = this.route.parent.snapshot.paramMap.get('name');
+    this.data = this.exhibitService.getByName(this.name);
   }
 
 }

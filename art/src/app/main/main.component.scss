@@ -16,6 +16,10 @@ button {
   padding: 5px;
 }
 
+#sensor-control.hide {
+  visibility: hidden;
+}
+
 #right-menu {
   @extend .sf;
   position: absolute;
@@ -92,19 +96,19 @@ $footer-menu-height: 51px;
 }
 
 #btn-footer-menu-toggle {
-  background-image: url('../../assets/extra.png');
+  background-image: url('../../assets/icon/button-extra.svg');
 }
 #btn-footer-menu-toggle.show {
   transform: rotate(180deg) translateZ(0px);
 }
 #btn-liveart-scaner {
-  background-image: url('../../assets/button-qr.png');
+  background-image: url('../../assets/icon/button-qr.svg');
 }
 #btn-tour-list {
-  background-image: url('../../assets/button-tour.png');
+  background-image: url('../../assets/icon/button-tour.svg');
 }
 #btn-tour-list.active {
-  background-image: url('../../assets/button-tour-blue.png');
+  background-image: url('../../assets/icon/button-tour-blue.svg');
 }
 
 #text-tour-list {
@@ -144,4 +148,8 @@ $footer-menu-height: 51px;
 }
 #btn-footer-menu-toilet.active {
   filter: none;
+}
+
+.hide {
+  visibility: hidden;
 }

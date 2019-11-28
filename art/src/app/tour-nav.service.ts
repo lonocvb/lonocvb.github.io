@@ -2,19 +2,28 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 interface ArtworkData {
-  preview: string;
-  title: string;
+  img: string;
+  name: string;
 };
 
 export interface TourData {
-  name: string;
-  title: string;
-  item: number;
-  time: number;
-  describe: string;
+  name: string,
+  tourTitle: string;
+  numberOfItems: number;
+  duration: string;
+  description: string;
 
   artworks: Array<ArtworkData>;
 };
+
+function build(obj): TourData {
+  obj.name = obj.tourTitle.toLowerCase().replace(/\s/g, "_");
+  return obj;
+}
+
+import tour01 from '../assets/tour/Museum Highlights/MuseumHighlights.json';
+import tour02 from '../assets/tour/Paintings of the Americas/PaintingsOfTheAmericas.json';
+import tour03 from '../assets/tour/Sculpture of the Americas/SculptureOfTheAmericas.json';
 
 @Injectable({
   providedIn: 'root'
@@ -32,38 +41,8 @@ export class TourNavService {
   constructor() {
 
     this.tours = [
-      {
-        name: 'tour1',
-        title: 'MUSEUM HIGHLIGHTS',
-        item: 41,
-        time: 1,
-        describe: 'Discover The Met collection on this tour, which focuses on a selection of works of art representing different cultures and time periods and encourages vistors to explore the Museum on their own.',
-        artworks: [
-          { preview: 'artwork/art1.png', title: 'Kanagawa Oki Nami Ura' },
-          { preview: 'artwork/art2.png', title: 'Rapier of Prince-Elector Christian II of Saxony' },
-          { preview: 'artwork/art3.png', title: 'Jain Svetambara Tirthankara in Meditation' },
-          { preview: 'artwork/art4.png', title: 'Beaker with Apes' },
-        ]
-      },
-      { name: 'tour2', title: 'DUMMY2', item: 999, time: 99,
-        describe: 'Lorem ipsum dolor sit amet, eos suscipit philosophia in, te tractatos intellegat eam. Mandamus mediocrem reprehendunt eum eu, cu pertinax ocurreret his. Usu an legimus petentium, et vis sumo vivendo convenire, id eos dicit primis utamur. Sit enim eripuit ad, adhuc mundi sea ne, legere assentior ius ex. Usu ei denique lobortis.ｚ',
-        artworks: [
-          { preview: 'artwork/art1.png', title: 'Kanagawa Oki Nami Ura' },
-          { preview: 'artwork/art2.png', title: 'Rapier of Prince-Elector Christian II of Saxony' },
-          { preview: 'artwork/art3.png', title: 'Jain Svetambara Tirthankara in Meditation' },
-          { preview: 'artwork/art4.png', title: 'Beaker with Apes' },
-        ]
-      },
-      { name: 'tour3', title: 'DUMMY3', item: 100, time: 2,
-        describe: 'Discover The Met collection on this tour, which focuses on a selection of works of art representing different cultures and time periods and encourages vistors to explore the Museum on their own.',
-        artworks: [
-          { preview: 'artwork/art1.png', title: 'Kanagawa Oki Nami Ura' },
-          { preview: 'artwork/art2.png', title: 'Rapier of Prince-Elector Christian II of Saxony' },
-          { preview: 'artwork/art3.png', title: 'Jain Svetambara Tirthankara in Meditation' },
-          { preview: 'artwork/art4.png', title: 'Beaker with Apes' },
-        ]
-      },
-    ];
+      tour01, tour02, tour03
+    ].map(t => build(t));
 
     this.tourIdx$ = this.tourChange;
     this.tourIdx$.subscribe(val => this.tourIdx = val);
@@ -73,7 +52,21 @@ export class TourNavService {
     return this.tours;
   }
 
-  startTour(idx) {
+  getByName(name: string): TourData {
+    return this.tours.filter(t => name == t.name)[0];
+  }
+
+  startTourName(name: string) {
+    let id = 0;
+    for (let idx = 0; idx < this.tours.length; ++idx) {
+      if (this.tours[idx].name == name) {
+        id = idx;
+        break;
+      };
+    }
+    this.tourChange.next(id);
+  }
+  startTour(idx: number) {
     this.tourChange.next(idx);
   }
 

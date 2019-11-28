@@ -6,7 +6,7 @@
 </div>
 
 <app-liveart-model
-  glTFPath="assets/3d/glTF/statue_of_asclepius/scene.gltf"
+  [glTFPath]="glTFPath"
   [width]="width"
   [height]="height"
   *ngIf="showLiveart"></app-liveart-model>
@@ -14,17 +14,18 @@
 <div id="side-menu">
   <button id="btn-qr" [ngClass]="showLiveart ? 'black' : ''" (click)="btnQR()"></button>
   <button id="btn-liveart" [ngClass]="showLiveart ? 'black' : (showDialog ? 'gallery' : '')" (click)="btnLiveart()"></button>
+  <div id="text-liveart" *ngIf="showDialog">Found<br />64 / 305</div>
 </div>
 
 <div id="dialog" *ngIf="showDialog">
   <div class="title">
-    <span>Live Art #5</span>
+    <span>Live Art #{{ detectedIdx+1 }}</span>
     <button id="btn-dialog-close" (click)="btnCloseAll()"></button>
   </div>
 
   <div class="content">
-    <img src="assets/collect/thumbnail.png" />
-    <span>Terracotta statuette of a draped woman</span>
+    <img src="assets/collect/collect{{ detectedIdx }}.png" />
+    <span>{{ livearts[detectedIdx].name }}</span>
   </div>
 
   <button id="btn-go-alive" (click)="btnGoAlive()">GO ALIVE</button>

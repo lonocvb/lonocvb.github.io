@@ -30,13 +30,18 @@ $block-size: 180px;
   background-position: center center;
 }
 
+.tour .img {
+  height: 106px;
+  overflow: hidden;
+}
+
 .tour .title {
   @extend .global-font;
   font-size: 14px;
   font-weight: bold;
   text-align: center;
   line-height: 1.07;
-  margin: 106px 20px 0;
+  margin: 0 20px 0;
 
   height: 34px;
 }
@@ -64,13 +69,6 @@ $block-size: 180px;
 .tour:last-child:after {
   display: block;
   background: blue;
-}
-
-.tour-ex0 {
-  background-image: url('../../assets/tour-ex0.png');
-}
-.tour-ex0.active {
-  background-image: url('../../assets/tour-ex0-on-going.png');
 }
 
 #btn-start-tour-outer {

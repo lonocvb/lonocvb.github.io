@@ -20,23 +20,34 @@ canvas {
 
 .p-element {
   @extend .global-font;
-  line-height: 1.2;
-  font-weight: bold;
+
+  font-weight: 600;
   font-size: 20px;
   transform: scale(0.5);
   color: white;
-  //text-shadow: black 0.1em 0.1em 0.2em;
 
-  width: 192px;
-  height: 64px;
-  padding: 14px;
+  padding: 20px;
 
+  background: rgba(0,0,0,0.5);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   border-bottom: 2px solid white;
 
   margin-top: -47px;
   margin-left: -20px;
 
+  white-space: nowrap;
+
   cursor: pointer;
+}
+
+.p-element .legend {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 264px;
+
+  display: block;
+  font-size: 32px;
 }
 
 $p-size: 32px;
@@ -52,15 +63,4 @@ $p-size: 32px;
   bottom: calc(-#{$p-size} + 14px);
 
   transform: rotate(-45deg);
-}
-
-.p-element:after {
-  background-image: url('../../assets/shape.png');
-  background-size: 34px 36px;
-  width: 34px;
-  height: 36px;
-  content: ' ';
-  position: absolute;
-  bottom: 8px;
-  right: 0;
 }

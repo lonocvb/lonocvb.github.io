@@ -1,0 +1,128 @@
+{
+	"tourTitle": "Museum Highlights",
+	"numberOfItems": 30,
+	"duration": "2.5 HOURS",
+	"description": "See highlights selected by curators from the Museum's seventeen curatorial departments.",
+	"artworks": [
+		{
+			"img": "./Robe.jpg",
+			"name": "Robe à la Française"
+		},
+		{
+			"img": "./Euphemia.jpg",
+			"name": "Euphemia White Van Rensselaer"
+		},
+		{
+			"img": "./Mountain.jpg",
+			"name": "Mountain Stream"
+		},
+		{
+			"img": "./Terracotta.jpg",
+			"name": "Terracotta situla"
+		},
+		{
+			"img": "./Fame.jpg",
+			"name": "The Triumph of Fame"
+		},
+		{
+			"img": "./Kaunitz.jpg",
+			"name": "The Kaunitz Sisters"
+		},
+		{
+			"img": "./Champagnat.jpg",
+			"name": "Chasse of Champagnat"
+		},
+		{
+			"img": "./Lighthouse.jpg",
+			"name": "The Lighthouse at Two Lights"
+		},
+		{
+			"img": "./Michael.jpg",
+			"name": "Michael Angelo and Emma Clara Peale"
+		},
+		{
+			"img": "./Coatdress.jpg",
+			"name": "Coatdress"
+		},
+		{
+			"img": "./Piano.jpg",
+			"name": "Two Young Girls at the Piano"
+		},
+		{
+			"img": "./Cat.jpg",
+			"name": "Woman with a Cat"
+		},
+		{
+			"img": "./Erasmus.jpg",
+			"name": "Erasmus of Rotterdam"
+		},
+		{
+			"img": "./Rose.jpg",
+			"name": "A Rose"
+		},
+		{
+			"img": "./Daniel.jpg",
+			"name": "Daniel Crommelin Verplanck"
+		},
+		{
+			"img": "./Boating.jpg",
+			"name": "Boating"
+		},
+		{
+			"img": "./Princesse.jpg",
+			"name": "Princesse de Broglie"
+		},
+		{
+			"img": "./Tennis.jpg",
+			"name": "Tennis at Newport"
+		},
+		{
+			"img": "./Wheat.jpg",
+			"name": "Wheat Fields"
+		},
+		{
+			"img": "./Clavichord.jpg",
+			"name": "Clavichord"
+		},
+		{
+			"img": "./Cyclone.jpg",
+			"name": "Cyclone"
+		},
+		{
+			"img": "./Stepping.jpg",
+			"name": "Stepping Out"
+		},
+		{
+			"img": "./Northeaster.jpg",
+			"name": "Northeaster"
+		},
+		{
+			"img": "./Chair.jpg",
+			"name": "Easy Chair"
+		},
+		{
+			"img": "./Cape.jpg",
+			"name": "Cape"
+		},
+		{
+			"img": "./Raven.jpg",
+			"name": "Raven rattle"
+		},
+		{
+			"img": "./Susan.jpg",
+			"name": "Susan Walker Morse"
+		},
+		{
+			"img": "./Oaks.jpg",
+			"name": "Autumn Oaks"
+		},
+		{
+			"img": "./Street.jpg",
+			"name": "Street Scene in Paris"
+		},
+		{
+			"img": "./Francis.jpg",
+			"name": "Francis Brinley"
+		}
+	]
+}

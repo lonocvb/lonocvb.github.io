@@ -1,0 +1,52 @@
+{
+	"tourTitle": "Sculpture of the Americas",
+	"numberOfItems": 11,
+	"duration": "55 MINS",
+	"description": "Highlights of sculpture of the Americas range from the late 18th through the 21st centuries. Artists have cut, carved, gouged, and cast sculpture in all media, building figurative forms in three dimensions and exploring languages of abstract shapes.",
+	"artworks": [
+		{
+			"img": "./SleepingFaun.jpg",
+			"name": "Sleeping Faun"
+		},
+		{
+			"img": "./Medea.jpg",
+			"name": "Medea"
+		},
+		{
+			"img": "./Classical.jpg",
+			"name": "Study in the Classical"
+		},
+		{
+			"img": "./California.jpg",
+			"name": "California"
+		},
+		{
+			"img": "./Mirth.jpg",
+			"name": "Genius of Mirth"
+		},
+		{
+			"img": "./Centaur.jpg",
+			"name": "Dying Centaur"
+		},
+		{
+			"img": "./Liberty.jpg",
+			"name": "Liberty"
+		},
+		{
+			"img": "./Nurse.jpg",
+			"name": "Nurse"
+		},
+		{
+			"img": "./Cleopatra.jpg",
+			"name": "Cleopatra"
+		},
+		{
+			"img": "./Andrew.jpg",
+			"name": "Andrew Jackson"
+		},
+		{
+			"img": "./Sappho.jpg",
+			"name": "Sappho"
+		}
+	]
+}

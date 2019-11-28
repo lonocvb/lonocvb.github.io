@@ -23,7 +23,7 @@ const routes: Routes = [
     { path: 'shop', component: ExhibitShopComponent },
   ]},
   { path: 'liveart-scaner', component: LiveartScanerComponent },
-  { path: 'tour/:id', component: TourDetailsComponent },
+  { path: 'tour/:name', component: TourDetailsComponent },
   { path: 'test', component: LiveartModelComponent },
   { path: '**', component: Page404Component },
 ];
