@@ -1,4 +1,6 @@
 
+import * as THREE from '../../3rd-party/build/three.module.js';
+
 const gRadius = 1000;
 
 // ref: THREE.js

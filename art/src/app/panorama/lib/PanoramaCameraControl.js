@@ -1,3 +1,6 @@
+
+import * as THREE from '../../3rd-party/build/three.module.js';
+
 /**
  * @author yufu.kao@kaiostech.com
  *
