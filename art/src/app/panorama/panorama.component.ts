@@ -67,14 +67,12 @@ export class PanoramaComponent implements OnInit {
     private router: Router,
     private location: Location,
   ) {
-    if (!this.tourNav.cameraControl) {
+    if (this.tourNav.cameraControl) {
+      this.sensorSource = this.tourNav.cameraControl.getSource();
+    } else {
       this.sensorSource = new SensorSource(SensorSourceType.MANUAL);
       this.tourNav.cameraControl = new PanoramaCameraControl(this.sensorSource);
-    } else {
-      this.sensorSource = this.tourNav.cameraControl.getSource();
     }
-
-    this.sensorType = SensorSourceType.DEVICE_ORIENTATION;
   }
 
   ngOnInit() {}
@@ -87,6 +85,7 @@ export class PanoramaComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.sensorSource.listen(this.canvas.nativeElement);
 
     this.viewer = new PanoramaViewer({
       canvas: this.canvas.nativeElement,
@@ -106,6 +105,10 @@ export class PanoramaComponent implements OnInit {
     });
 
     this.viewer.startAnimate();
+  }
+
+  ngOnDestroy() {
+    this.sensorSource.unlisten();
   }
 
 }

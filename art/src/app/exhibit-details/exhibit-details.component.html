@@ -1,12 +1,12 @@
 <main>
   <img id="banner" src="assets/exhibit/{{ data.name }}.png">
   <div id="title">{{ data.title }}</div>
-  <div id="subtitle">{{ data.title }}</div>
+  <div id="subtitle">{{ data.subtitle }}</div>
   <div id="time">{{ data.timeStr }}</div>
   <div id="describe">{{ data.describe }}</div>
 
 
-  <div class="property" *ngFor="let item of data.describe2 | keyvalue">
+  <div class="property" *ngFor="let item of data.describe2">
     <div class="key">{{ item.key }}</div>
     <div class="value">{{ item.value }}</div>
   </div>

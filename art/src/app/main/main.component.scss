@@ -14,6 +14,12 @@ button {
   background: rgba(0,0,0,0.5);
   color: white;
   padding: 5px;
+
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
 }
 
 #sensor-control.hide {
@@ -142,9 +148,6 @@ $footer-menu-height: 51px;
 }
 #btn-footer-menu-exit {
   background-image: url('../../assets/exit.png');
-}
-#btn-close-all {
-  background-image: url('../../assets/back.png');
 }
 #btn-footer-menu-toilet.active {
   filter: none;

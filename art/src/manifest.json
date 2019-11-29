@@ -1,0 +1,14 @@
+{
+  "name": "AR Tour",
+  "short_name": "ART",
+  "icons": [{
+      "src": "./favicon.ico",
+      "sizes": "128x128",
+      "type": "image/x-icon"
+    }],
+  "lang": "en-US",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "white",
+  "theme_color": "white"
+}

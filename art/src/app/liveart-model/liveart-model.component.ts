@@ -5,7 +5,6 @@ import * as THREE from '../3rd-party/build/three.module.js';
 import { OrbitControls } from '../3rd-party/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from '../3rd-party/examples/jsm/loaders/GLTFLoader.js';
 import { Location } from '@angular/common';
-import { on } from 'cluster';
 
 @Component({
   selector: 'app-liveart-model',

@@ -2,7 +2,15 @@
 @import "../../styles.scss";
 
 main {
-  background: $pale-lilac;
+  min-height: 100%;
+  background: black;
+  padding: 20px;
+
+  #radius {
+    padding: 25px 0;
+    background: $pale-lilac;
+    border-radius: 30px;
+  }
 }
 
 #header {
@@ -12,7 +20,7 @@ main {
 }
 
 #header > button {
-  flex: 0 0 32px;
+  flex: 0 1 32px;
   width: 32px;
   height: 32px;
 
@@ -52,5 +60,5 @@ main {
   margin-left: auto;
   background-size: 32px;
   background-position: center;
-  background-image: url('../../assets/cross.png');
+  background-image: url('../../assets/icon/cancel.svg');
 }

@@ -102,3 +102,19 @@ $block-size: 180px;
 #btn-start-tour.active {
   opacity: 1;
 }
+
+#btn-close-all {
+  @extend .sf;
+  position: absolute;
+
+  right: 10px;
+  bottom: 8px;
+
+  width: 42px;
+  height: 42px;
+
+  border: 0;
+
+  background-color: transparent;
+  background-image: url('../../assets/back.png');
+}

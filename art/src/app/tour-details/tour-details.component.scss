@@ -2,13 +2,24 @@
 @import '../../styles.scss';
 
 main {
-  margin: 0 20px;
+  background: black;
+  padding: 20px;
+
+  #radius {
+    padding: 14px 20px 10px;
+    background: $pale-lilac;
+    border-radius: 30px;
+
+    position: relative;
+  }
 }
 
 #title {
   @extend .global-font;
   font-size: 22px;
   font-weight: bold;
+
+  width: calc(100% - 32px);
 }
 
 #sub {
@@ -96,7 +107,7 @@ main {
 
 #btn-back {
   position: absolute;
-  top: 11px;
+  top: 25px;
   right: 15px;
 
   width: 32px;
@@ -104,9 +115,10 @@ main {
   display: block;
 
   border: 0;
+  padding: 0;
 
   background-position: center;
-  background-image: url('../../assets/cross.png');
+  background-image: url('../../assets/icon/cancel.svg');
   background-repeat: no-repeat;
   background-color: transparent;
 }

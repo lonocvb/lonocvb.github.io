@@ -1,8 +1,4 @@
 
-import PanoramaCameraControl from './PanoramaCameraControl.js';
-import SensorSource from './SensorSource';
-import SetSensorType from './SensorSourceType';
-
 const gRadius = 1000;
 
 // ref: THREE.js
@@ -48,8 +44,6 @@ class PanoramaViewer {
 
     this.camera.target = new THREE.Vector3(0, 0, 0);
 
-    //this.sensorSource = new SensorSource(SetSensorType.MANUAL);
-    //this.cameraControl = new PanoramaCameraControl(this.sensorSource);
     this.cameraControl = cameraControl;
     this.cameraControl.connect(this.camera);
 
@@ -179,11 +173,6 @@ class PanoramaViewer {
         elementLabel.element.style.display = 'none';
       }
     }
-
-  }
-
-  setSensorType(type) {
-    this.cameraControl.setSensorType(type);
   }
 
   changeTexture(imagePath) {

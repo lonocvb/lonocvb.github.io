@@ -15,7 +15,9 @@ import { LiveartModelComponent } from './liveart-model/liveart-model.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
-  { path: 'index', component: MainComponent },
+  { path: 'index', component: MainComponent, children: [
+    { path: 'tourlist', component: TourListComponent, outlet: 'popup' },
+  ]},
   { path: 'exhibit/:name', component: ExhibitsComponent, children: [
     { path: '', redirectTo: 'info', pathMatch: 'full' },
     { path: 'info', component: ExhibitDetailsComponent },
@@ -25,6 +27,7 @@ const routes: Routes = [
   { path: 'liveart-scaner', component: LiveartScanerComponent },
   { path: 'tour/:name', component: TourDetailsComponent },
   { path: 'test', component: LiveartModelComponent },
+
   { path: '**', component: Page404Component },
 ];
 

@@ -4,11 +4,11 @@ import SensorSourceType from './SensorSourceType.js';
 const GENGAR_EXISTED = (typeof window.gengar !== 'undefined');
 
 class SensorSource {
-  constructor(type, ele = document) {
+  constructor(type) {
+    this.type = 0;
     this.setType(type);
-    this.ele = ele;
 
-    const ori_default = { alpha: 180, beta: 90, gamma: 0 };
+    const ori_default = { alpha: 72, beta: 90, gamma: 0 };
     this.ori_manual = { ...ori_default };
     this.ori_ori =    { ...ori_default };
     this.ori_motion = { ...ori_default };
@@ -103,6 +103,10 @@ class SensorSource {
     this.onPointerUp = () => {
       isUserInteracting = false;
     }
+  }
+
+  listen(ele = document) {
+    this.ele = ele;
 
     window.addEventListener('deviceorientation', this.event_ori, false);
     window.addEventListener('devicemotion', this.event_motion, false);

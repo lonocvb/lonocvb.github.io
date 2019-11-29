@@ -1,7 +1,7 @@
 
-<app-panorama [imagePath]="navPaths[0]" [(sensorType)]="sensorType">
+<app-panorama [imagePath]="navPaths[navIdx]" [(sensorType)]="sensorType">
 
-  <div appPelement lon="231" lat="5" [ngClass]="navExtra == 2 ? '' : 'hide'">
+  <div appPelement lon="250" lat="-8" rb="true" [ngClass]="navExtra == 2 ? '' : 'hide'">
     <img src="assets/icon/extra-guide-toilet.png" width="140" height="120" />
   </div>
 
@@ -45,6 +45,4 @@
   <button id="btn-footer-menu-exit"      [ngClass]="navExtra == 4 ? 'active' : ''" (click)="navExtraSet(4)"></button>
 </div>
 
-<app-tour-list *ngIf="tourListShow" (wantClose)="closeAll()"></app-tour-list>
-
-<button id="btn-close-all" *ngIf="tourListShow" (click)="closeAll()"></button>
+<router-outlet name="popup"></router-outlet>

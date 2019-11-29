@@ -1,25 +1,27 @@
 <main>
+  <div id="radius">
 
-  <div id="title">{{ tour.tourTitle }}</div>
-  <div id="sub">
-    {{ tour.numberOfItems | i18nPlural: {'=0': '0 Items', '=1': '1 Items', 'other': '# Items' } }},
-    {{ tour.duration }}
-  </div>
-  <div id="describe">{{ tour.description }} </div>
+    <div id="title">{{ tour.tourTitle }}</div>
+    <div id="sub">
+      {{ tour.numberOfItems | i18nPlural: {'=0': '0 Items', '=1': '1 Items', 'other': '# Items' } }},
+      {{ tour.duration }}
+    </div>
+    <div id="describe">{{ tour.description }} </div>
 
-  <div id="artworks-title">ARTWORKS</div>
-  <div id="artworks">
-    <div class="artwork" appFloatTop *ngFor="let artwork of tour.artworks;">
-      <div class="container">
-        <div class="img"><img src="assets/tour/{{ tour.tourTitle }}/{{ artwork.img }}" (load)="artwrokImageLoaded()" /></div>
-        <div class="name">{{ artwork.name }}</div>
+    <div id="artworks-title">ARTWORKS</div>
+    <div id="artworks">
+      <div class="artwork" appFloatTop *ngFor="let artwork of tour.artworks;">
+        <div class="container">
+          <div class="img"><img src="assets/tour/{{ tour.tourTitle }}/{{ artwork.img }}" (load)="artwrokImageLoaded()" /></div>
+          <div class="name">{{ artwork.name }}</div>
+        </div>
       </div>
     </div>
+
+    <br style="clear:both" />
+
+    <button id="btn-back" (click)="close();"></button>
+    <button id="btn-start-tour" (click)="startTour();">START TOUR</button>
+
   </div>
-
-  <br style="clear:both" />
-
-  <button id="btn-back" (click)="close();"></button>
-  <button id="btn-start-tour" (click)="startTour();">START TOUR</button>
-
 </main>

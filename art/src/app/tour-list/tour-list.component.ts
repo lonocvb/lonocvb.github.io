@@ -12,9 +12,6 @@ export class TourListComponent implements OnInit {
   tourIdx: number;
   tours: Array<TourData>;
 
-  @Output()
-  wantClose = new EventEmitter();
-
   constructor(
     private tourNav: TourNavService,
     private router: Router,
@@ -28,10 +25,13 @@ export class TourListComponent implements OnInit {
   stopTour() {
     if (this.tourNav.tourIdx != -1) {
       this.tourNav.stopTour();
-      this.wantClose.emit('close');
     }
 
     this.tourIdx = this.tourNav.tourIdx;
+  }
+
+  closeAll() {
+    this.router.navigate(['index', {outlets: {popup: null}}]);
   }
 
   onWheel({ deltaY }: WheelEvent, item: Element) {
