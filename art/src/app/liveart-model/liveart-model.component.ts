@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChildren, ElementRef, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, HostListener } from '@angular/core';
 
 import * as THREE from '../3rd-party/build/three.module.js';
 
 import { OrbitControls } from '../3rd-party/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from '../3rd-party/examples/jsm/loaders/GLTFLoader.js';
 import { Location } from '@angular/common';
+import { on } from 'cluster';
 
 @Component({
   selector: 'app-liveart-model',
@@ -18,25 +19,29 @@ export class LiveartModelComponent implements OnInit {
     this.updateScene(value);
   }
 
-  @Input()
   width: number;
-
-  @Input()
   height: number;
 
   @ViewChild('container', {static: true})
   container: ElementRef;
+
   showLoading: boolean = false;
 
   constructor(
     private location: Location,
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+    this.width = this.container.nativeElement.offsetWidth;
+    this.height = this.container.nativeElement.offsetHeight;
+
     this.init({
       container: this.container.nativeElement,
     });
     this.animate();
+
   }
 
   ngOnDestroy() {
@@ -48,8 +53,17 @@ export class LiveartModelComponent implements OnInit {
   scene;
   renderer;
 
-  init({ container }) {
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.width = this.container.nativeElement.offsetWidth;
+    this.height = this.container.nativeElement.offsetHeight;
 
+    this.renderer.setSize(this.width, this.height);
+    this.camera.aspect = this.width / this.height;
+    this.camera.updateProjectionMatrix();
+  }
+
+  init({ container }) {
     this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 0.25, 200);
     this.camera.position.set(-1.8, 0.9, 2.7);
 

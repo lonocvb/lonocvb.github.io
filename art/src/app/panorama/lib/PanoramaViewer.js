@@ -96,8 +96,8 @@ class PanoramaViewer {
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
 
-    this.cameraOrtho = new THREE.OrthographicCamera(-width / 2, width / 2,height / 2, -height / 2, 1, 10);
-    this.cameraOrtho.position.z = 10;
+    this.cameraOrtho.aspect = width / height;
+    this.cameraOrtho.updateProjectionMatrix();
   }
 
   createLabelSprite({ text, position: pos, args = [] }) {

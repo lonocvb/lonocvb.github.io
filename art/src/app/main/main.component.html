@@ -1,8 +1,10 @@
 
 <app-panorama [imagePath]="navPaths[0]" [(sensorType)]="sensorType">
+
   <div appPelement lon="231" lat="5" [ngClass]="navExtra == 2 ? '' : 'hide'">
-    <img src="assets/icon/extra-guide-toilet.png" />
+    <img src="assets/icon/extra-guide-toilet.png" width="140" height="120" />
   </div>
+
 </app-panorama>
 
 <div id="sensor-control" [ngClass]="isGengar ? 'hide' : ''">
@@ -25,9 +27,12 @@
 </div>
 
 <div id="right-menu">
+
   <button id="btn-liveart-scaner" routerLink="/liveart-scaner"></button>
+
   <button id="btn-tour-list" [ngClass]="inTour ? 'active' : ''" (click)="showTourList()"></button>
   <div id="text-tour-list" *ngIf="inTour">70%</div>
+
 </div>
 
 <button id="btn-footer-menu-toggle"

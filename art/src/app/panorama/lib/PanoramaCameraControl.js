@@ -15,9 +15,9 @@ class PanoramaCameraControl {
   }
 
   onScreenOrientationChangeEvent(e) {
-    const orientation = e && e.orientation ? e.orientation : window.orientation;
-
-    this.screenOrientation = orientation || 0;
+    //const orientation = e && e.orientation ? e.orientation : window.orientation;
+    //this.screenOrientation = orientation || 0;
+    //console.log('screenOrientation', this.screenOrientation);
   };
 
   setObjectQuaternion(quaternion, alpha, beta, gamma, orient) {
