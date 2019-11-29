@@ -156,3 +156,7 @@ $footer-menu-height: 51px;
 .hide {
   visibility: hidden;
 }
+
+.p-element {
+  @extend .sf;
+}
