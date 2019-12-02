@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,7 @@ import { MainComponent } from './main/main.component';
 import { FloatTopDirective } from './float-top.directive';
 import { CameraComponent } from './camera/camera.component';
 import { LiveartModelComponent } from './liveart-model/liveart-model.component';
+import { GengarService } from './gengar.service';
 
 @NgModule({
   declarations: [
@@ -42,8 +43,10 @@ import { LiveartModelComponent } from './liveart-model/liveart-model.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: APP_INITIALIZER, useFactory: () => () => {}, deps: [GengarService], multi: true },
+  ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [],
 })
 export class AppModule { }

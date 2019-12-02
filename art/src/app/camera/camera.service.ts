@@ -5,6 +5,7 @@ import { Camera, CameraSource } from './camera.js';
 import QrScanner from './lib/qr-scanner.min.js';
 import { CameraLocalImpl } from './camera-local-impl.js';
 import { CameraGengarImpl } from './camera-gengar-impl.js';
+import { GengarService } from '../gengar.service.js';
 
 
 @Injectable({
@@ -16,12 +17,13 @@ export class CameraService implements Camera {
 
   constructor(
     private location: Location,
+    private gengar: GengarService,
   ) {
     const QrScannerWorkerPath = this.location.prepareExternalUrl('/assets/qr-scanner-worker.min.js');
     QrScanner.WORKER_PATH = QrScannerWorkerPath;
 
 
-    this.impl = (!(window as any).gengar) ? new CameraLocalImpl() : new CameraGengarImpl();
+    this.impl = this.gengar.isSupported() ? new CameraGengarImpl(this.gengar.getRaw()) : new CameraLocalImpl();
   }
 
   async scanQR(ele) {

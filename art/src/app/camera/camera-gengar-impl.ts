@@ -1,8 +1,6 @@
 
 import { Camera, CameraSource } from './camera.js';
 
-const gengar = (window as any).gengar;
-
 export class CameraGengarImpl implements Camera {
 
   id: number;
@@ -10,7 +8,7 @@ export class CameraGengarImpl implements Camera {
 
   stream: MediaStream;
 
-  constructor() {
+  constructor(private gengarRaw) {
     this.id = 1234; // TODO random gen
     this.state = CameraSource.INIT;
   }
@@ -21,7 +19,7 @@ export class CameraGengarImpl implements Camera {
       return;
     }
 
-    let openFunc = (faceMode == CameraSource.FRONT) ? gengar.camera.openFront : gengar.camera.openBack;
+    let openFunc = (faceMode == CameraSource.FRONT) ? this.gengarRaw.camera.openFront : this.gengarRaw.camera.openBack;
     this.stream = await openFunc(width, height);
 
     this.state = faceMode;
@@ -30,7 +28,7 @@ export class CameraGengarImpl implements Camera {
 
   disconnect() {
     this.state = CameraSource.INIT;
-    gengar.camera.close();
+    this.gengarRaw.camera.close();
   }
 
   getMediaStream(): MediaStream {
