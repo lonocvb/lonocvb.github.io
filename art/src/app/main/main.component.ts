@@ -24,9 +24,9 @@ export class MainComponent implements OnInit {
 
   navPaths = [
     'assets/360/AR-room.png',
-    'assets/360/AR-room-1.png',
-    'assets/360/AR-room-2.png',
-    'assets/360/AR-room-3.png',
+    'assets/360/AR-room-Tour01.png',
+    'assets/360/AR-room-Tour02.png',
+    'assets/360/AR-room-Tour03.png',
   ];
   navIdx: number = 0;
 

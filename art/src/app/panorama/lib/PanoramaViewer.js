@@ -35,6 +35,7 @@ class PanoramaViewer {
   initWebGL({ canvas, width, height, imagePath, cameraControl }) {
     this.renderer = new THREE.WebGLRenderer({ canvas });
     this.renderer.setSize(width, height);
+    //this.renderer.setPixelRatio( window.devicePixelRatio / 0.75 ); // TODO
     this.renderer.autoClear = false;
 
     this.sceneOrtho = new THREE.Scene();
@@ -139,18 +140,22 @@ class PanoramaViewer {
   }
 
   updateSprites() {
+    const { width: cwidth, height: cheight } = this.canvas;
+
     for (let sprite of this.sceneOrtho.children) {
       const label = sprite.label;
       const wp = geoPosition2World(label.pos.lon, label.pos.lat);
-      const sp = worldPostion2Screen(wp, this.camera, this.canvas.width, this.canvas.height);
+      const sp = worldPostion2Screen(wp, this.camera, cwidth, cheight);
       const test = wp.clone().project(this.camera);
 
-      if (test.x >= -1 && test.x <= 1 && test.y >= -1 && test.y <= 1 && test.z >= -1 && test.z <= 1) {
+      if (test.x >= -2 && test.x <= 2 && test.y >= -2 && test.y <= 2 && test.z >= -1 && test.z <= 1) {
         const width = label.width;
         const height = label.height;
+        const x = sp.x + width / 2;
+        const y = sp.y - height / 2;
 
         sprite.scale.set(width, height, 10);
-        sprite.position.set(sp.x + width / 2, sp.y - height / 2, 1);
+        sprite.position.set(x, y, 1);
       } else {
         sprite.scale.set(1.0, 1.0, 1.0);
         sprite.position.set(0, 0, 0);
@@ -159,14 +164,16 @@ class PanoramaViewer {
   }
 
   updateElements() {
+    const { width: cwidth, height: cheight } = this.canvas;
+
     for (let elementLabel of this.elementLabels) {
       const wp = geoPosition2World(elementLabel.position.lon, elementLabel.position.lat);
-      const sp = worldPostion2Screen(wp, this.camera, this.canvas.width, this.canvas.height);
+      const sp = worldPostion2Screen(wp, this.camera, cwidth, cheight);
       const test = wp.clone().project(this.camera);
 
       if (test.x >= -2 && test.x <= 2 && test.y >= -2 && test.y <= 2 && test.z >= -1 && test.z <= 1) {
-        const x = sp.x + this.canvas.width / 2;
-        const y = -sp.y + this.canvas.height / 2;
+        const x = sp.x + cwidth / 2;
+        const y = -sp.y + cheight / 2;
 
         elementLabel.element.style.display = 'inline-block';
         elementLabel.element.style.left = `${x}px`;
