@@ -21,7 +21,7 @@ export class PelementDirective {
       this.el.nativeElement.style.opacity = this.opacity;
       this.el.nativeElement.style.transform = `scale(${Math.pow(this.opacity, 0.33) / 2.0})`;
     }
-    this.el.nativeElement.style.marginTop = `${- this.el.nativeElement.offsetHeight}px`;
+    this.el.nativeElement.style.marginTop = `${-12 - this.el.nativeElement.offsetHeight}px`;
     if (this.rb) {
       this.el.nativeElement.style.marginLeft = `${- this.el.nativeElement.offsetWidth}px`;
     }

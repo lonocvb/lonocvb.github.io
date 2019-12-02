@@ -36,10 +36,10 @@ body {
 @media (min-width:400px) {
   #root-container {
     // scale 1.33333
+    transform-origin: top left;
     transform: scale((1 / 0.75));
     width: 75%;
     height: 75%;
-    margin: 12.5vh 12.5vw;
   }
 }
 
