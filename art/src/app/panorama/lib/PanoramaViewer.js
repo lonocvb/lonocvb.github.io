@@ -35,7 +35,7 @@ class PanoramaViewer {
   initWebGL({ canvas, width, height, imagePath, cameraControl }) {
     this.renderer = new THREE.WebGLRenderer({ canvas });
     this.renderer.setSize(width, height);
-    //this.renderer.setPixelRatio( window.devicePixelRatio / 0.75 ); // TODO
+    this.renderer.setPixelRatio( window.devicePixelRatio / 0.75 );
     this.renderer.autoClear = false;
 
     this.sceneOrtho = new THREE.Scene();
@@ -140,7 +140,7 @@ class PanoramaViewer {
   }
 
   updateSprites() {
-    const { width: cwidth, height: cheight } = this.canvas;
+    const { offsetWidth: cwidth, offsetHeight: cheight } = this.canvas;
 
     for (let sprite of this.sceneOrtho.children) {
       const label = sprite.label;
@@ -164,7 +164,7 @@ class PanoramaViewer {
   }
 
   updateElements() {
-    const { width: cwidth, height: cheight } = this.canvas;
+    const { offsetWidth: cwidth, offsetHeight: cheight } = this.canvas;
 
     for (let elementLabel of this.elementLabels) {
       const wp = geoPosition2World(elementLabel.position.lon, elementLabel.position.lat);
