@@ -3,7 +3,7 @@
   <div id="tour-list-new" class="tour" onclick="alert('new');"></div>
 
   <div *ngFor="let tour of tours; let id = index;"  class="tour tour-{{ tour.name }}" [ngClass]="tourIdx == id ? 'active' : ''" routerLink="/tour/{{ tour.name }}" >
-    <div class="img"><img src="assets/tour/{{tour.name}}{{ tourIdx == id ? '-ongoing' : '' }}.png" /></div>
+    <div class="img"><img src="assets/tour/{{tour.name}}{{ tourIdx == id ? '-ongoing' : '' }}@3x.png" /></div>
     <div class="title">{{ tour.tourTitle }}</div>
     <div class="sub">
       {{ tour.numberOfItems | i18nPlural: {'=0': '0 Items', '=1': '1 Items', 'other': '# Items' } }},

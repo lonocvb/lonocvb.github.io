@@ -129,17 +129,19 @@ $footer-menu-height: 51px;
 }
 
 #btn-footer-menu-resturant {
-  background-image: url('../../assets/resturant.png');
+  background-image: url('../../assets/icon/extra-resturant.svg');
 }
 #btn-footer-menu-toilet {
-  background-image: url('../../assets/toilet.png');
+  background-size: 32px 32px;
+  background-image: url('../../assets/icon/extra-toilet@3x.png');
   filter: contrast(0) brightness(100);
 }
 #btn-footer-menu-toilet.active {
   filter: none;
 }
 #btn-footer-menu-elevator {
-  background-image: url('../../assets/elevator.png');
+  background-size: 32px 32px;
+  background-image: url('../../assets/icon/extra-elevator@3x.png');
 }
 #btn-footer-menu-resturant.active,
 #btn-footer-menu-elevator.active,
@@ -147,7 +149,7 @@ $footer-menu-height: 51px;
   filter: sepia(1) saturate(10) hue-rotate(110deg) contrast(0.6);
 }
 #btn-footer-menu-exit {
-  background-image: url('../../assets/exit.png');
+  background-image: url('../../assets/icon/extra-exit.svg');
 }
 #btn-footer-menu-toilet.active {
   filter: none;

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="31" height="32" viewBox="0 0 31 32">
+    <defs>
+        <filter id="a" width="157%" height="195.5%" x="-28.5%" y="-47.7%" filterUnits="objectBoundingBox">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#000" d="M5.982 24.429L16.5 18.143l10.518 6.286L16.5 30.714z" filter="url(#a)" opacity=".64" transform="translate(-1 -1)"/>
+        <path fill="#000" d="M4.982 21.714L15.5 15.43l10.518 6.285L15.5 28z"/>
+        <path fill="#D41034" d="M4.982 9.143v12.571L15.5 28V15.429z" opacity=".534"/>
+        <path stroke="#FFC7D1" stroke-linecap="round" stroke-linejoin="round" d="M15.5 15.429L4.982 21.714"/>
+        <path fill="#D41034" d="M15.5 15.429V28l10.518-6.286V9.143z" opacity=".761"/>
+        <path fill="#D41034" d="M4.982 9.143L15.5 2.857l10.518 6.286L15.5 15.429z" opacity=".392"/>
+        <path stroke="#FFC7D1" stroke-linecap="round" stroke-linejoin="round" d="M15.5 15.429V2.857M15.5 15.429l10.518 6.285"/>
+        <path stroke="#FFF" stroke-width="2" d="M15.5 15.429l10.518-6.286"/>
+        <path stroke="#FFF" stroke-linejoin="round" stroke-width="2" d="M4.982 9.143L15.5 15.429"/>
+        <path stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.5 15.429v12"/>
+        <path stroke="#FFF" stroke-linejoin="round" stroke-width="2" d="M15.485 2.883L4.953 9.143l.015 12.545 10.547 6.286 10.532-6.26-.015-12.545z"/>
+    </g>
+</svg>

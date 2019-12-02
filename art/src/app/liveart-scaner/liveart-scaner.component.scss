@@ -71,9 +71,9 @@ button {
 .title:before {
   display: inline-block;
   content: ' ';
-  width: 33px;
-  height: 33px;
-  background-image: url('../../assets/live-art-small.png');
+  width: 31px;
+  height: 32px;
+  background-image: url('../../assets/icon/button-live-art-small.svg');
 }
 
 #btn-dialog-close,
@@ -222,7 +222,7 @@ button {
 
 #qr-focus {
   background-color: transparent;
-  background-image: url('../../assets/qr-scanner.png');
+  background-image: url('../../assets/qr-scanner.svg');
   background-repeat: no-repeat;
   background-position: center center;
 

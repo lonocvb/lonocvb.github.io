@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180" height="180" viewBox="0 0 180 180">
+    <defs>
+        <circle id="a" cx="30" cy="30" r="30"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#E9E9F2" d="M0 0h180v180H0z"/>
+        <text fill="#000" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold">
+            <tspan x="22" y="121">CREATE PERSONAL</tspan> <tspan x="66.926" y="136">TOUR</tspan>
+        </text>
+        <g transform="translate(60 27)">
+            <mask id="b" fill="#fff">
+                <use xlink:href="#a"/>
+            </mask>
+            <use fill="#808091" xlink:href="#a"/>
+            <g fill="#E9E9F2" mask="url(#b)">
+                <path d="M38.5 28.5h-7v-7a1.5 1.5 0 1 0-3 0v7h-7a1.5 1.5 0 1 0 0 3h7v7a1.5 1.5 0 1 0 3 0v-7h7a1.5 1.5 0 1 0 0-3"/>
+            </g>
+        </g>
+    </g>
+</svg>
