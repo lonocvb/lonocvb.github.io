@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TourNavService } from '../tour-nav.service';
 import { startWith } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { GengarService } from '../gengar.service';
 
 @Component({
   selector: 'app-main',
@@ -35,10 +36,9 @@ export class MainComponent implements OnInit {
   constructor(
     private router: Router,
     private tourNav: TourNavService,
+    gengar: GengarService,
   ) {
-    const windowAny: any = window;
-    this.isGengar = (typeof windowAny.gengar !== 'undefined');
-    this.sensorType = (this.isGengar) ? 4 : 1;
+    this.isGengar = gengar.isSupported();
   }
 
   ngOnInit() {
