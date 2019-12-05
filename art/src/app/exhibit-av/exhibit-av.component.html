@@ -1,14 +1,14 @@
 <main>
 
   <div id="title-audio">AUDIO</div>
-  <div class="audio" *ngFor="let audio of audios;" (click)="play(audio);">
-    {{ audio.title }}
+  <div class="audio" *ngFor="let audio of audios;" (click)="play(thisaudio);">
+    <app-audio #thisaudio src="{{ audio.src }}"></app-audio>
+    <span class="title">{{ audio.title }}</span>
   </div>
 
   <div id="title-video">VIDEO</div>
-  <div class="video" *ngFor="let video of videos;" (click)="play(video);">
-    <img src="assets/{{ video.preview }}" />
-    <button class="btn-play"></button>
+  <div class="video" *ngFor="let video of videos;" (click)="play(thisvideo);">
+    <app-video #thisvideo src="{{ video.src }}" preview="assets/{{ video.preview }}"></app-video>
   </div>
 
 </main>

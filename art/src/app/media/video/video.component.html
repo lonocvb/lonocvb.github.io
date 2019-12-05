@@ -1,0 +1,7 @@
+
+<div class="video" [ngClass]="playing ? 'playing': ''" (click)="toggle()">
+  <video #video src="{{ src }}" width="100%">
+  </video>
+  <img src="{{ preview }}" *ngIf="!played" />
+  <button class="btn-play" *ngIf="!playing"></button>&nbsp;
+</div>

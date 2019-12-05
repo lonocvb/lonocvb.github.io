@@ -19,6 +19,8 @@ import { FloatTopDirective } from './float-top.directive';
 import { CameraComponent } from './camera/camera.component';
 import { LiveartModelComponent } from './liveart-model/liveart-model.component';
 import { GengarService } from './gengar.service';
+import { AudioComponent } from './media/audio/audio.component';
+import { VideoComponent } from './media/video/video.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { GengarService } from './gengar.service';
     FloatTopDirective,
     CameraComponent,
     LiveartModelComponent,
+    AudioComponent,
+    VideoComponent,
   ],
   imports: [
     BrowserModule,

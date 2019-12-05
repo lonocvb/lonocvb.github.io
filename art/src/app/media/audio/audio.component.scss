@@ -1,0 +1,15 @@
+
+.audio {
+  line-height: 0;
+
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-image: url('../../../assets/icon/play-audio.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  &.playing {
+    background-image: url('../../../assets/icon/play-audio-pause.svg');
+  }
+}
