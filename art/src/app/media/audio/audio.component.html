@@ -1,4 +1,6 @@
 
 <span class="audio" [ngClass]="playing ? 'playing': ''" (click)="toggle()">
-  <audio #ele src="{{src}}"></audio>
+  <audio #ele>
+    <ng-content></ng-content>
+  </audio>
 </span>

@@ -51,6 +51,9 @@ export class PanoramaComponent implements OnInit {
     }
   }
 
+  @ViewChild('panramaMain', { static: true })
+  mainElement: ElementRef;
+
   @ViewChild('panoramaCanvas', { static: true })
   canvas: ElementRef;
 
@@ -80,18 +83,18 @@ export class PanoramaComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.viewer.changeSize(
-      this.canvas.nativeElement.parentElement.offsetWidth,
-      this.canvas.nativeElement.parentElement.offsetHeight);
+      this.mainElement.nativeElement.offsetWidth,
+      this.mainElement.nativeElement.offsetHeight);
   }
 
   ngAfterViewInit() {
-    this.sensorSource.listen(this.canvas.nativeElement);
+    this.sensorSource.listen(this.mainElement.nativeElement);
 
     this.viewer = new PanoramaViewer({
       canvas: this.canvas.nativeElement,
       imagePath: this.location.prepareExternalUrl(this._imagePath),
-      width: this.canvas.nativeElement.parentElement.offsetWidth,
-      height: this.canvas.nativeElement.parentElement.offsetHeight,
+      width: this.mainElement.nativeElement.offsetWidth,
+      height: this.mainElement.nativeElement.offsetHeight,
 
       cameraControl: this.tourNav.cameraControl,
 /*

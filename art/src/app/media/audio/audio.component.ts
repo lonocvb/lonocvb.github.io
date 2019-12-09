@@ -9,9 +9,6 @@ import { MediaBase } from '../media.base';
 })
 export class AudioComponent extends MediaBase implements OnInit {
 
-  @Input()
-  src: string;
-
   @ViewChild('ele', { static: true })
   video: ElementRef;
 

@@ -1,6 +1,8 @@
 
 <div class="video" [ngClass]="playing ? 'playing': ''" (click)="toggle()">
-  <video #video src="{{ src }}" width="100%">
+  <video #video width="100%">
+    <ng-content></ng-content>
+    Not supported.
   </video>
   <img src="{{ preview }}" *ngIf="!played" />
   <button class="btn-play" *ngIf="!playing"></button>&nbsp;

@@ -12,9 +12,6 @@ export class VideoComponent extends MediaBase implements OnInit {
   played: boolean = false;
 
   @Input()
-  src: string;
-
-  @Input()
   preview: string;
 
   @ViewChild('video', { static: true })

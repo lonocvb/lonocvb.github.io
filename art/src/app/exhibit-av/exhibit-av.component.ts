@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
-import { AudioComponent } from '../media/audio/audio.component';
-import { VideoComponent } from '../media/video/video.component';
 import { MediaBase } from '../media/media.base';
+
+interface Media {
+  src: string;
+  type: string;
+};
 
 interface AVData {
   title: string;
-  src?: string;
+  media: Media | Array<Media>;
   preview?: string;
 };
 
@@ -25,11 +27,18 @@ export class ExhibitAvComponent implements OnInit {
 
   ngOnInit() {
     this.audios = [
-      { title: 'The introduction', src: 'assets/av/Medea.mp3' },
-      { title: 'The history', src: 'assets/av/Sappho.mp3' },
+      { title: 'The introduction', media: { src: 'assets/av/Medea.mp3', type: 'audio/mpeg' } },
+      { title: 'The history', media: { src: 'assets/av/Sappho.mp3', type: 'audio/mpeg' } },
     ];
     this.videos = [
-      { title: 'vidoe01', src: 'assets/av/SampleVideo.mp4', preview: 'exhibit/video.png' },
+      {
+        title: 'vidoe01',
+        media: [
+          { src: 'assets/av/SampleVideo.mkv', type: 'video/webm' },
+          { src: 'assets/av/SampleVideo.mp4', type: 'video/mp4' },
+        ],
+        preview: 'exhibit/video.png'
+      },
     ];
   }
 
@@ -39,6 +48,14 @@ export class ExhibitAvComponent implements OnInit {
       this.lastMedia = media;
     }
     media.toggle();
+  }
+
+  getMedias(av: AVData): Array<Media> {
+    if (Array.isArray(av.media)) {
+      return av.media as Array<Media>;
+    } else {
+      return [ av.media as Media ];
+    }
   }
 
 }

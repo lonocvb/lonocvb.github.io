@@ -1,14 +1,17 @@
-<main>
 
+<main>
   <div id="title-audio">AUDIO</div>
-  <div class="audio" *ngFor="let audio of audios;" (click)="play(thisaudio);">
-    <app-audio #thisaudio src="{{ audio.src }}"></app-audio>
-    <span class="title">{{ audio.title }}</span>
+  <div class="audio" *ngFor="let av of audios;" (click)="play(thisaudio);">
+    <app-audio #thisaudio>
+      <source *ngFor="let m of getMedias(av)" src="{{ m.src }}" type="{{ m.type }}" />
+    </app-audio>
+    <span class="title">{{ av.title }}</span>
   </div>
 
   <div id="title-video">VIDEO</div>
-  <div class="video" *ngFor="let video of videos;" (click)="play(thisvideo);">
-    <app-video #thisvideo src="{{ video.src }}" preview="assets/{{ video.preview }}"></app-video>
+  <div class="video" *ngFor="let av of videos;" (click)="play(thisvideo);">
+    <app-video #thisvideo preview="assets/{{ av.preview }}">
+      <source *ngFor="let m of getMedias(av)" src="{{ m.src }}" type="{{ m.type }}" />
+    </app-video>
   </div>
-
 </main>
